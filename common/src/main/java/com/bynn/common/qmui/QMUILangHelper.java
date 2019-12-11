@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bynn.marketll.qmui;
+package com.bynn.common.qmui;
 
 import androidx.annotation.Nullable;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bynn.marketll.qmui.webview;
+package com.bynn.common.qmui.webview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,8 +22,8 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.webkit.WebSettings;
 
-import com.bynn.marketll.BuildConfig;
-import com.bynn.marketll.qmui.QMUIDisplayHelper;
+import com.bynn.common.BuildConfig;
+import com.bynn.common.qmui.QMUIDisplayHelper;
 
 
 /**
@@ -89,6 +89,6 @@ public class QDWebView extends QMUIWebView {
     protected int getExtraInsetTop(float density) {
 //        return (int) DensityUtil.dp2px(getResources(), 45);
         final float scale = getResources().getDisplayMetrics().density;
-        return (int)(45 * scale + 0.5f);
+        return (int) (45 * scale + 0.5f);
     }
 }

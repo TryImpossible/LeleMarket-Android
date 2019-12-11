@@ -1,18 +1,22 @@
-package com.bynn.marketll.ui;
+package com.bynn.marketll.ui.base;
 
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bynn.common.qmui.QMUIStatusBarHelper;
+import com.bynn.common.view.ProgressDialog;
 import com.bynn.marketll.R;
-import com.bynn.marketll.qmui.QMUIDisplayHelper;
-import com.bynn.marketll.qmui.QMUIStatusBarHelper;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements IBaseView {
+
     protected final String TAG = this.getClass().getSimpleName();
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     public void setContentView(View view) {
@@ -35,7 +39,7 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
             compatStatusBar();
-        };
+        }
     }
 
     /**
@@ -63,5 +67,43 @@ public class BaseActivity extends AppCompatActivity {
             statusBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.light_status_backgroud));
             contentView.addView(statusBarView, layoutParams);
         }
+    }
+
+    @Override
+    public void showProgress() {
+        showProgress(R.string.label_progress_text);
+    }
+
+    @Override
+    public void showProgress(@StringRes int resId) {
+        if (null == mProgressDialog) {
+            synchronized (this) {
+                if (null == mProgressDialog) {
+                    mProgressDialog = new ProgressDialog(this, getString(resId));
+                }
+            }
+        } else {
+            mProgressDialog.setText(getString(resId));
+        }
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        if (null != mProgressDialog) {
+            if (mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+        }
+    }
+
+    @Override
+    public void showToast(String text) {
+
+    }
+
+    @Override
+    public void showToast(@StringRes int resId) {
+
     }
 }

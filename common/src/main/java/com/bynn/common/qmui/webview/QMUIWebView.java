@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bynn.marketll.qmui.webview;
+package com.bynn.common.qmui.webview;
 
 import android.content.Context;
 import android.graphics.Rect;

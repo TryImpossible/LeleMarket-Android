@@ -2,9 +2,9 @@ package com.bynn.marketll.ui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.bynn.marketll.R;
+import com.bynn.marketll.ui.base.BaseActivity;
 import com.bynn.marketll.ui.customization.CustomizationFragment;
 import com.bynn.marketll.ui.discover.DiscoverFragment;
 import com.bynn.marketll.ui.home.HomeFragment;
@@ -13,36 +13,31 @@ import com.bynn.marketll.ui.shoppingcart.ShoppingCartFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    public static final String TAG_HOME = "home";
-    public static final String TAG_DISCOVER = "discover";
+    public static final String TAG_HOME          = "home";
+    public static final String TAG_DISCOVER      = "discover";
     public static final String TAG_CUSTOMIZATION = "customization";
     public static final String TAG_SHOPPING_CART = "shoppintcart";
-    public static final String TAG_MINE = "mine";
+    public static final String TAG_MINE          = "mine";
 
     @BindView(R.id.nav_view)
     BottomNavigationView mBottomNavView;
 
-    private HomeFragment mHomeFragment;
-    private DiscoverFragment mDiscoverFragment;
+    private HomeFragment          mHomeFragment;
+    private DiscoverFragment      mDiscoverFragment;
     private CustomizationFragment mCustomizationFragment;
-    private ShoppingCartFragment mShoppingCartFragment;
-    private MineFragment mMimeFragment;
+    private ShoppingCartFragment  mShoppingCartFragment;
+    private MineFragment          mMimeFragment;
 
     private Fragment mLastFragment;
-    private int mLastSelectedId;
+    private int      mLastSelectedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +45,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-        initViews();
+        initView();
     }
 
-    private void initViews() {
+    private void initView() {
         mBottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
