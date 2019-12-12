@@ -1,2 +1,2 @@
-include ':app', ':common'
+include ':app', ':lib_common', ':module_main'
 rootProject.name='LeleMarket'

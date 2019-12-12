@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bynn.common.qmui.QMUIStatusBarHelper;
+import com.bynn.common.utils.ToastUtils;
 import com.bynn.common.view.ProgressDialog;
 import com.bynn.marketll.R;
 
@@ -98,12 +99,12 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
     }
 
     @Override
-    public void showToast(String text) {
-
+    public void showToast(String message) {
+        ToastUtils.show(this, message);
     }
 
     @Override
     public void showToast(@StringRes int resId) {
-
+        showToast(getString(resId));
     }
 }
