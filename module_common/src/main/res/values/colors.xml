@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_colorPrimary">@android:color/white</color>
+    <color name="common_colorPrimaryDark">#FE3F56</color>
+    <color name="common_colorAccent">#FE3F56</color>
+
+    <!--    灰色状态栏-->
+    <!--    <color name="light_status_bg">#889B9B9B</color>-->
+    <color name="common_light_status_backgroud">@android:color/white</color>
+
+    <color name="common_activity_background">#F5F5F5</color>
+
+    <color name="common_text_dark">#000000</color>
+    <color name="common_text_normal">#000000</color>
+    <color name="common_text_light">#6A6A6A</color>
+
+    <color name="common_divide_line">#F1F1F1</color>
+</resources>

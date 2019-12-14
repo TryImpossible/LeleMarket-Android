@@ -1,0 +1,59 @@
+def config = rootProject.ext
+
+if (config.isApp) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: config.plugins.butterknife
+
+android {
+    compileSdkVersion config.android.compileSdkVersion
+    buildToolsVersion config.android.buildToolsVersion
+
+
+    defaultConfig {
+        if (config.isApp) {
+            applicationId "com.bynn.marketll.module_shopping_cart"
+        }
+
+        minSdkVersion config.android.minSdkVersion
+        targetSdkVersion config.android.targetSdkVersion
+        versionCode config.android.versionCode
+        versionName config.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        sourceSets {
+            main {
+                if (isApp) {
+                    manifest.srcFile 'src/main/app/AndroidManifest.xml'
+                } else {
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    resourcePrefix "shopping_"
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation config.dependencies["appcompat"]
+    testImplementation config.dependencies["junit"]
+    androidTestImplementation config.dependencies["ext:junit"]
+    androidTestImplementation config.dependencies["espresso-core"]
+
+    implementation project(':module_common')
+    annotationProcessor config.dependencies["butterknife-compiler"]
+}

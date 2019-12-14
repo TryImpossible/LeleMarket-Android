@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">common</string>
-
-    <!-- view -->
-    <string name="label_progress_text">加载中...</string>
-</resources>

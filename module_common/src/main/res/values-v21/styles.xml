@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="CommonAppTheme" parent="@style/CommonBaseAppTheme">
+        <!--        <item name="android:windowFullscreen">true</item>-->
+        <!--        &lt;!&ndash;不让windowBackground延申到navigation bar区域&ndash;&gt;-->
+        <!--        <item name="android:windowDrawsSystemBarBackgrounds">false</item>-->
+    </style>
+</resources>
