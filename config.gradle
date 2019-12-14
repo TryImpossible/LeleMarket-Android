@@ -85,7 +85,7 @@ ext {
 
             SmartRefreshLayout           : "com.scwang.smartrefresh:SmartRefreshLayout:${versions.SmartRefreshLayout}",
             BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.BaseRecyclerViewAdapterHelper}",
-                
+
             fresco                       : "com.facebook.fresco:fresco:${versions.fresco}",
     ]
 }

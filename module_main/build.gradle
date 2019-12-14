@@ -57,14 +57,14 @@ dependencies {
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]
 
-    implementation project(':module_common')
-    implementation project(':module_home')
-    implementation project(':module_discover')
-    implementation project(':module_custom')
-    implementation project(':module_shopping_cart')
-    implementation project(':module_mine')
-
-    implementation config.dependencies["material"]
-    implementation config.dependencies["constraintlayout"]
+    if (!isApp) {
+        implementation project(':module_home')
+        implementation project(':module_discover')
+        implementation project(':module_custom')
+        implementation project(':module_shopping_cart')
+        implementation project(':module_mine')
+    } else {
+        api project(':module_common')
+    }
     annotationProcessor config.dependencies["butterknife-compiler"]
 }

@@ -43,10 +43,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation config.dependencies["appcompat"]
     testImplementation config.dependencies["junit"]
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]
+
+    api config.dependencies["appcompat"]
+    api config.dependencies["material"]
+    api config.dependencies["constraintlayout"]
 
     api config.dependencies["butterknife"]
     annotationProcessor config.dependencies["butterknife-compiler"]
