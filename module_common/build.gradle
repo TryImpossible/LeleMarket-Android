@@ -16,11 +16,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
 
-        multiDexEnabled true
 //        ndk {
 //            //设置支持的SO库架构
 //            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
 //        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -50,7 +58,29 @@ dependencies {
     api config.dependencies["appcompat"]
     api config.dependencies["material"]
     api config.dependencies["constraintlayout"]
+    implementation config.dependencies["multidex"]
 
     api config.dependencies["butterknife"]
     annotationProcessor config.dependencies["butterknife-compiler"]
+
+    api config.dependencies["arouter-api"]
+    annotationProcessor config.dependencies["arouter-compiler"]
+
+    api config.dependencies["rxandroid"]
+    api config.dependencies["rxjava"]
+    api config.dependencies["dagger"]
+    annotationProcessor config.dependencies["dagger-compiler"]
+    api config.dependencies["retrofit"]
+    api config.dependencies["converter-gson"]
+    api config.dependencies["adapter-rxjava2"]
+    api config.dependencies["okhttp"]
+    api config.dependencies["logging-interceptor"]
+    api config.dependencies["rxbus"]
+
+    compileOnly config.dependencies["lombok"]
+    compileOnly config.dependencies["javax.annotation"]
+
+    api config.dependencies["SmartRefreshLayout"]
+    api config.dependencies["BaseRecyclerViewAdapterHelper"]
+    api config.dependencies["fresco"]
 }

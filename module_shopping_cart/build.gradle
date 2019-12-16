@@ -1,6 +1,6 @@
 def config = rootProject.ext
 
-if (config.isApp) {
+if (config.isMoudleAsApp) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -12,7 +12,7 @@ android {
     buildToolsVersion config.android.buildToolsVersion
 
     defaultConfig {
-        if (config.isApp) {
+        if (config.isMoudleAsApp) {
             applicationId "com.bynn.marketll.module_shopping_cart"
         }
 
@@ -25,13 +25,21 @@ android {
 
         sourceSets {
             main {
-                if (isApp) {
+                if (isMoudleAsApp) {
                     manifest.srcFile 'src/main/app/AndroidManifest.xml'
                 } else {
                     manifest.srcFile 'src/main/AndroidManifest.xml'
                 }
             }
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -60,4 +68,5 @@ dependencies {
 
     api project(':module_common')
     annotationProcessor config.dependencies["butterknife-compiler"]
+    annotationProcessor config.dependencies["arouter-compiler"]
 }

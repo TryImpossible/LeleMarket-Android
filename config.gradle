@@ -3,7 +3,7 @@
  */
 ext {
     // # is enable app mode, default false
-    isApp = false
+    isMoudleAsApp = false
 
     android = [
             versionName      : "1.0.0",
@@ -48,10 +48,15 @@ ext {
             BaseRecyclerViewAdapterHelper: "2.9.47",
 
             fresco                       : "1.10.0",
+
+            "arouter-api"                : "1.5.0",
+            "arouter-compiler"           : "1.2.2",
+            "arouter-register"           : "1.0.2"
     ]
 
     plugins = [
-            butterknife: "com.jakewharton.butterknife",
+            butterknife       : "com.jakewharton.butterknife",
+            "arouter-register": "ccom.alibaba.arouter",
     ]
 
     dependencies = [
@@ -78,6 +83,7 @@ ext {
             "converter-gson"             : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
             "adapter-rxjava2"            : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
             okhttp                       : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+            "logging-interceptor"        : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
             rxbus                        : "com.hwangjr.rxbus:rxbus:${versions.rxbus}",
 
             lombok                       : "org.projectlombok:lombok:${versions.lombok}",
@@ -87,5 +93,8 @@ ext {
             BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.BaseRecyclerViewAdapterHelper}",
 
             fresco                       : "com.facebook.fresco:fresco:${versions.fresco}",
+
+            "arouter-api"                : "com.alibaba:arouter-api:${versions["arouter-api"]}",
+            "arouter-compiler"           : "com.alibaba:arouter-compiler:${versions["arouter-compiler"]}"
     ]
 }

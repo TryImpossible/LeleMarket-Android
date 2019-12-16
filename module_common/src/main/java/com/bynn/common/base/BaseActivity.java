@@ -1,13 +1,16 @@
 package com.bynn.common.base;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.R;
 import com.bynn.common.qmui.QMUIStatusBarHelper;
 import com.bynn.common.utils.ToastUtils;
@@ -18,6 +21,12 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
     protected final String TAG = this.getClass().getSimpleName();
 
     private ProgressDialog mProgressDialog;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
+    }
 
     @Override
     public void setContentView(View view) {

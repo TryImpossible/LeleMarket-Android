@@ -1,16 +1,16 @@
-package com.bynn.marketll.module_custom.activity;
+package com.bynn.marketll.module_home.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bynn.marketll.module_custom.R;
+import com.bynn.marketll.module_home.R;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.custom_activity_main);
+        setContentView(R.layout.home_fragment_home);
     }
 }

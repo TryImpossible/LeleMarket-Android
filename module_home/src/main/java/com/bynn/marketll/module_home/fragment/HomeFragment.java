@@ -6,8 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bynn.common.arouter.HomeRoutePath;
+import com.bynn.common.base.BaseFragment;
 import com.bynn.common.utils.ToastUtils;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
@@ -21,7 +26,8 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+@Route(path = HomeRoutePath.HOME_FRAGMENT)
+public class HomeFragment extends BaseFragment {
 
     @BindView(R2.id.text) TextView text;
 

@@ -8,12 +8,16 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bynn.common.arouter.ShoppingCartRoutePath;
+import com.bynn.common.base.BaseFragment;
 import com.bynn.marketll.module_shopping_cart.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShoppingCartFragment extends Fragment {
+@Route(path = ShoppingCartRoutePath.SHOPPING_CART_FRAGMENT)
+public class ShoppingCartFragment extends BaseFragment {
     public static ShoppingCartFragment newInstance() {
 
         Bundle args = new Bundle();

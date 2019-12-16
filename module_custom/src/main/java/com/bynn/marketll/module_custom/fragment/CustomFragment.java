@@ -7,13 +7,17 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bynn.common.arouter.CustomRoutePath;
+import com.bynn.common.base.BaseFragment;
 import com.bynn.marketll.module_custom.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CustomFragment extends Fragment {
+@Route(path = CustomRoutePath.CUSTOM_FRAGMENT)
+public class CustomFragment extends BaseFragment {
     public static CustomFragment newInstance() {
 
         Bundle args = new Bundle();
