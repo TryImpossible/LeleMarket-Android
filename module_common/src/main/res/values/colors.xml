@@ -4,6 +4,9 @@
     <color name="common_colorPrimaryDark">#FE3F56</color>
     <color name="common_colorAccent">#FE3F56</color>
 
+    <color name="common_white">@android:color/white</color>
+    <color name="common_gray">@android:color/darker_gray</color>
+
     <!--    灰色状态栏-->
     <!--    <color name="light_status_bg">#889B9B9B</color>-->
     <color name="common_light_status_backgroud">@android:color/white</color>

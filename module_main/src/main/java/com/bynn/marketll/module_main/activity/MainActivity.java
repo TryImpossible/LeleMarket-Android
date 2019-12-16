@@ -7,10 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.arouter.CustomRoutePath;
 import com.bynn.common.arouter.DiscoverRoutePath;
 import com.bynn.common.arouter.HomeRoutePath;
+import com.bynn.common.arouter.MainRoutePath;
 import com.bynn.common.arouter.MineRoutePath;
 import com.bynn.common.arouter.ShoppingCartRoutePath;
 import com.bynn.common.base.BaseActivity;
@@ -21,13 +23,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Route(path = MainRoutePath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity {
 
-    public static final String TAG_HOME          = "home";
-    public static final String TAG_DISCOVER      = "discover";
+    public static final String TAG_HOME = "home";
+    public static final String TAG_DISCOVER = "discover";
     public static final String TAG_CUSTOMIZATION = "customization";
     public static final String TAG_SHOPPING_CART = "shoppintcart";
-    public static final String TAG_MINE          = "mine";
+    public static final String TAG_MINE = "mine";
 
     @BindView(R2.id.nav_view)
     BottomNavigationView mBottomNavView;
@@ -39,7 +42,7 @@ public class MainActivity extends BaseActivity {
     private Fragment mMimeFragment;
 
     private Fragment mLastFragment;
-    private int      mLastSelectedId;
+    private int mLastSelectedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
