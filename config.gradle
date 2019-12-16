@@ -3,7 +3,7 @@
  */
 ext {
     // # is enable app mode, default false
-    isMoudleAsApp = false
+    isMoudleAsApp = true
 
     android = [
             versionName      : "1.0.0",

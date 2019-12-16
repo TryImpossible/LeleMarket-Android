@@ -11,6 +11,8 @@ import com.bynn.common.config.ModuleConfig;
 import com.bynn.common.dagger.AppComponent;
 import com.bynn.common.dagger.AppModule;
 import com.bynn.common.dagger.DaggerAppComponent;
+import com.bynn.common.dagger.NetworkModule;
+import com.bynn.common.utils.DensityHelp;
 
 public class BaseApplication extends Application {
 
@@ -33,6 +35,8 @@ public class BaseApplication extends Application {
         super.onCreate();
         sApplication = this;
         sContext = getApplicationContext();
+        // 初始化屏幕密度
+        DensityHelp.setDensity(sApplication);
         // 初始化Module类的Application
         initModulesApplication();
         // 初始化ARouter
@@ -72,6 +76,7 @@ public class BaseApplication extends Application {
     private void initInjector() {
         sAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .networkModule(new NetworkModule(this))
                 .build();
     }
 

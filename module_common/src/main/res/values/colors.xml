@@ -15,4 +15,6 @@
     <color name="common_text_light">#6A6A6A</color>
 
     <color name="common_divide_line">#F1F1F1</color>
+
+    <color name="common_action_bar">#FFFFFF</color>
 </resources>

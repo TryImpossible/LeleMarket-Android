@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.R;
 import com.bynn.common.qmui.QMUIStatusBarHelper;
+import com.bynn.common.utils.DensityHelp;
 import com.bynn.common.utils.ToastUtils;
 import com.bynn.common.view.ProgressDialog;
 
@@ -25,6 +26,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DensityHelp.setOrientationWidth(this, false);
         ARouter.getInstance().inject(this);
     }
 

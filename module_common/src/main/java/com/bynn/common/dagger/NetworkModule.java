@@ -47,7 +47,7 @@ public class NetworkModule {
         mBuilder.writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         mBuilder.readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
-        mOkHttpClient = mBuilder.addNetworkInterceptor(null)
+        mOkHttpClient = mBuilder
                 // 设置Loggger拦截器
                 .addInterceptor(getHttpLoggingInterceptor())
                 // 禁止网络差，重复请求
@@ -77,7 +77,7 @@ public class NetworkModule {
 
 
     private String getBaseUrl() {
-        return "";
+        return "https://api.51app.cn/diyMall/";
     }
 
     private HttpLoggingInterceptor getHttpLoggingInterceptor() {
