@@ -13,6 +13,7 @@
     <dimen name="common_text_small_mini_size">11sp</dimen>
 
     <dimen name="common_divide_line_height">0.5dp</dimen>
+    <dimen name="common_divide_line_width">0.5dp</dimen>
 
     <dimen name="common_action_bar_height">48dp</dimen>
 </resources>

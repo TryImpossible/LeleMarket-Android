@@ -36,11 +36,11 @@ import butterknife.Unbinder;
 @Route(path = HomeRoutePath.HOME_FRAGMENT)
 public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.iv_scan_qrcode) ImageView mIvScanQrcode;
-    @BindView(R.id.et_keyword)     EditText  mEtKeyword;
-    @BindView(R.id.iv_news)        ImageView mIvNews;
-    @BindView(R.id.tabLayout)      TabLayout mTabLayout;
-    @BindView(R.id.viewPager)      ViewPager mViewPager;
+    @BindView(R2.id.iv_scan_qrcode) ImageView mIvScanQrcode;
+    @BindView(R2.id.et_keyword)     EditText  mEtKeyword;
+    @BindView(R2.id.iv_news)        ImageView mIvNews;
+    @BindView(R2.id.tabLayout)      TabLayout mTabLayout;
+    @BindView(R2.id.viewPager)      ViewPager mViewPager;
 
     private Unbinder                  mUnbinder;
     private List<String>              mTitleList;
@@ -123,17 +123,17 @@ public class HomeFragment extends BaseFragment {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    @OnClick(R.id.iv_scan_qrcode)
+    @OnClick(R2.id.iv_scan_qrcode)
     public void onScanClicked() {
         showToast("扫码");
     }
 
-    @OnClick(R.id.et_keyword)
+    @OnClick(R2.id.et_keyword)
     public void onSearchClicked() {
         showToast("搜索");
     }
 
-    @OnClick(R.id.iv_news)
+    @OnClick(R2.id.iv_news)
     public void onNewsClicked() {
         showToast("消息");
     }

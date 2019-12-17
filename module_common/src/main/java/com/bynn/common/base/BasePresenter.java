@@ -8,7 +8,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class BasePresenter implements IPresenter {
-    private CompositeDisposable mCompositeDisposable;
+    protected IBaseView           mIBaseView;
+    private   CompositeDisposable mCompositeDisposable;
 
     @Override
     public void onDestroy(LifecycleOwner owner) {

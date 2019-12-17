@@ -22,12 +22,22 @@ public class BaseApplication extends Application {
 
     private static AppComponent sAppComponent;
 
-    public static synchronized BaseApplication getInstance() {
+    public static BaseApplication getInstance() {
         return sApplication;
     }
 
-    public static synchronized Context getContext() {
+    public static Context getContext() {
         return sContext;
+    }
+
+    public static AppComponent getAppComponent() {
+        if (null == sAppComponent) {
+            sAppComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(sApplication))
+                    .networkModule(new NetworkModule(sApplication))
+                    .build();
+        }
+        return sAppComponent;
     }
 
     @Override

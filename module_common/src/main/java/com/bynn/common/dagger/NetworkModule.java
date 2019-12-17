@@ -77,7 +77,7 @@ public class NetworkModule {
 
 
     private String getBaseUrl() {
-        return "https://api.51app.cn/diyMall/";
+        return "https://api.51app.cn";
     }
 
     private HttpLoggingInterceptor getHttpLoggingInterceptor() {
