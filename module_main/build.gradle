@@ -69,6 +69,7 @@ dependencies {
     androidTestImplementation config.dependencies["espresso-core"]
 
     api project(':module_common')
+
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
 }

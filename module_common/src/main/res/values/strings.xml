@@ -3,4 +3,5 @@
 
     <!-- view -->
     <string name="common_label_progress_message">加载中...</string>
+    <string name="common_label_search_action_bar_hint">请输入商品名称</string>
 </resources>

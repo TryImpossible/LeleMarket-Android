@@ -20,4 +20,5 @@
         <item name="android:backgroundDimAmount">0.5</item> <!-- 模糊系数 -->
         <item name="android:background">@android:color/transparent</item> <!-- 背景透明 -->
     </style>
+
 </resources>

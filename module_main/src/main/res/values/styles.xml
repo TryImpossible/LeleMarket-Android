@@ -2,7 +2,13 @@
 
     <style name="MainAppTheme" parent="@style/CommonBaseAppTheme">
         <!-- Customize your theme here. -->
-   
+
+    </style>
+
+    <style name="MainAppTheme.Launcher">
+        <item name="android:windowBackground">@color/common_activity_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>
