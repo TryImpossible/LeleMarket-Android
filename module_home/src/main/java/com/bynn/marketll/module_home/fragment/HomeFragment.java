@@ -16,9 +16,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bynn.common.arouter.HomeRoutePath;
+import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
+import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
+import com.bynn.marketll.module_home.bean.TopNavBean;
+import com.bynn.marketll.module_home.bean.TopNavResult;
+import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
+import com.bynn.marketll.module_home.dagger.HomeComponent;
+import com.bynn.marketll.module_home.dagger.HomeModule;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -43,6 +50,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R2.id.viewPager)      ViewPager mViewPager;
 
     private Unbinder                  mUnbinder;
+    private HomePresenter             mHomePresenter;
     private List<String>              mTitleList;
     private List<Fragment>            mFragmentList;
     private FragmentStatePagerAdapter mPagerAdapter;
@@ -67,7 +75,8 @@ public class HomeFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.home_fragment_home, container, false);
         mUnbinder = ButterKnife.bind(this, view);
-        initView();
+        injectPresenter();
+        loadData();
         return view;
     }
 
@@ -80,25 +89,34 @@ public class HomeFragment extends BaseFragment {
         super.onDestroy();
     }
 
-    private void initView() {
-        mTitleList = new ArrayList<>();
-        mTitleList.add("精选");
-        mTitleList.add("礼物推荐");
-        mTitleList.add("明星同款");
-        mTitleList.add("新品");
-        mTitleList.add("送自己");
-        mTitleList.add("团体定制");
-        mTitleList.add("品质生活");
+    private void injectPresenter() {
+        HomeComponent component = DaggerHomeComponent.builder()
+                .appComponent(BaseApplication.getAppComponent())
+                .homeModule(new HomeModule(this))
+                .build();
+        mHomePresenter = component.getHomePresenter();
+        getLifecycle().addObserver(mHomePresenter);
+    }
 
-        mFragmentList = new ArrayList<>();
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
-        mFragmentList.add(ChoicenessFragment.newInstance());
+    private void loadData() {
+        mHomePresenter.getTopNav();
+    }
+
+    private void initView(List<TopNavBean> topNavBeanList) {
+        if (null == mTitleList) {
+            mTitleList = new ArrayList<>();
+        }
+        if (null == mFragmentList) {
+            mFragmentList = new ArrayList<>();
+        }
+        for (TopNavBean bean : topNavBeanList) {
+            mTitleList.add(bean.getName());
+            if (topNavBeanList.indexOf(bean) == 0) {
+                mFragmentList.add(ChoicenessFragment.newInstance(bean.getId()));
+            } else {
+                mFragmentList.add(new OtherFragment());
+            }
+        }
 
         mPagerAdapter = new FragmentStatePagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
             @NonNull
@@ -136,5 +154,16 @@ public class HomeFragment extends BaseFragment {
     @OnClick(R2.id.iv_news)
     public void onNewsClicked() {
         showToast("消息");
+    }
+
+    @Override
+    public void onSuccess(Object successObj) {
+        super.onSuccess(successObj);
+        if (successObj instanceof TopNavResult) {
+            TopNavResult.DataBean data = ((TopNavResult) successObj).getData();
+            if (null != data && null != data.getTopNav() && data.getTopNav().size() > 0) {
+                initView(data.getTopNav());
+            }
+        }
     }
 }

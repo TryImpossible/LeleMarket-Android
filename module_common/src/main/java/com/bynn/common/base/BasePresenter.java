@@ -17,6 +17,11 @@ public class BasePresenter implements IPresenter {
         disposeAll();
     }
 
+    /**
+     * 添加当前View的Disposable
+     *
+     * @param disposable
+     */
     protected void addDisposable(Disposable disposable) {
         if (null == mCompositeDisposable) {
             mCompositeDisposable = new CompositeDisposable();
@@ -24,6 +29,9 @@ public class BasePresenter implements IPresenter {
         mCompositeDisposable.add(disposable);
     }
 
+    /**
+     * 释放所有Disposable
+     */
     protected void disposeAll() {
         if (null == mCompositeDisposable) {
             return;
@@ -32,5 +40,15 @@ public class BasePresenter implements IPresenter {
             mCompositeDisposable.dispose();
         }
         mCompositeDisposable = null;
+    }
+
+    /**
+     * 是否与View建立连接
+     * 每次调用业务请求的时候都要出先调用方法检查是否与View建立连接
+     *
+     * @return
+     */
+    public boolean isViewAttached() {
+        return this.mIBaseView != null;
     }
 }
