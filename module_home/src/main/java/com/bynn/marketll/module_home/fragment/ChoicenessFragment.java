@@ -11,12 +11,18 @@ import androidx.fragment.app.Fragment;
 
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
+import com.bynn.common.view.MyBanner;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
+import com.bynn.marketll.module_home.R2;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -26,9 +32,11 @@ import butterknife.Unbinder;
 public class ChoicenessFragment extends BaseFragment {
     private static final String ID = "id";
 
+    @BindView(R.id.banner)
+    MyBanner mBanner;
+
     private Unbinder      mUnbinder;
     private HomePresenter mHomePresenter;
-
     // 表示TopNav类型
     private int mId;
 
@@ -83,6 +91,11 @@ public class ChoicenessFragment extends BaseFragment {
     }
 
     private void initData() {
-
+        List<String> imageList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            imageList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576690815768&di=baa04edd442026ceeeb988b98f1141e8&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb8a2f3cb90ebfdcc8f432e55137d8008d8e0b53c656d-LYlEC1_fw658");
+        }
+        mBanner.setImageList(imageList);
+        mBanner.setAutoPlay(true);
     }
 }

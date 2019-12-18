@@ -23,10 +23,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 @Route(path = MainRoutePath.SPLASH_ACTIVITY)
 public class SplashActivity extends BaseActivity {
@@ -44,15 +46,16 @@ public class SplashActivity extends BaseActivity {
 
         translucentStatusBar();
 
-        final int count = 6;
+        final int count = 5;
         Observable.interval(1, 1, TimeUnit.SECONDS)
-                .take(count)
+                .take(count + 1)
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
-                        return count - 1 - aLong;
+                        return count - aLong;
                     }
                 })
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
@@ -97,10 +100,10 @@ public class SplashActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (null != mDisposable) {
-            if (mDisposable.isDisposed()) {
+            if (!mDisposable.isDisposed()) {
                 mDisposable.dispose();
+                mDisposable = null;
             }
-            mDisposable = null;
         }
     }
 }

@@ -6,6 +6,7 @@
     tools:context=".fragment.ChoicenessFragment">
 
     <com.bynn.common.view.MyBanner
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="180dp" />
 </FrameLayout>
