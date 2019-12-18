@@ -5,6 +5,7 @@
     <color name="common_colorAccent">#FE3F56</color>
 
     <color name="common_white">@android:color/white</color>
+    <color name="common_black">@android:color/black</color>
     <color name="common_gray">#B7B7B7</color>
 
     <!--    灰色状态栏-->

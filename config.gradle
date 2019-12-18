@@ -47,6 +47,7 @@ ext {
             SmartRefreshLayout           : "1.0.5",
             BaseRecyclerViewAdapterHelper: "2.9.47",
 
+            glide                        : "4.9.0",
             fresco                       : "1.10.0",
 
             "arouter-api"                : "1.5.0",
@@ -93,6 +94,8 @@ ext {
             BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.BaseRecyclerViewAdapterHelper}",
 
             fresco                       : "com.facebook.fresco:fresco:${versions.fresco}",
+            glide                        : "com.github.bumptech.glide:glide:${versions.glide}",
+            "glide-compiler"             : "com.github.bumptech.glide:compiler:${versions.glide}",
 
             "arouter-api"                : "com.alibaba:arouter-api:${versions["arouter-api"]}",
             "arouter-compiler"           : "com.alibaba:arouter-compiler:${versions["arouter-compiler"]}"

@@ -82,7 +82,9 @@ dependencies {
     compileOnly config.dependencies["lombok"]
     compileOnly config.dependencies["javax.annotation"]
 
+    api config.dependencies["glide"]
+    annotationProcessor config.dependencies["glide-compiler"]
+
     api config.dependencies["SmartRefreshLayout"]
     api config.dependencies["BaseRecyclerViewAdapterHelper"]
-    api config.dependencies["fresco"]
 }
