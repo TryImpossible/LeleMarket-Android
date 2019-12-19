@@ -14,14 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@color/common_white"
+        android:visibility="gone"
         app:tabIndicatorFullWidth="false"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/common_colorAccent"
         app:tabTextColor="@color/common_text_dark" />
 
+    <include
+        android:id="@+id/divider"
+        layout="@layout/common_include_divide_line"
+        android:visibility="gone" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="gone" />
 </LinearLayout>

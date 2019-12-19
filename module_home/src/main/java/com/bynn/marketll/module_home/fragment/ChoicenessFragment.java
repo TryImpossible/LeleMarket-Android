@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
@@ -15,9 +17,17 @@ import com.bynn.common.view.MyBanner;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
+import com.bynn.marketll.module_home.adapter.ChoicenessAdapter;
+import com.bynn.marketll.module_home.bean.ChoicenessBean;
+import com.bynn.marketll.module_home.bean.ChoicenessResult;
+import com.bynn.marketll.module_home.bean.CustomizationBean;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
+import com.google.android.material.internal.FlowLayout;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,18 +42,22 @@ import butterknife.Unbinder;
 public class ChoicenessFragment extends BaseFragment {
     private static final String ID = "id";
 
-    @BindView(R.id.banner)
-    MyBanner mBanner;
+    @BindView(R.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.recyclerView)  RecyclerView       mRecyclerView;
+    private                       MyBanner           mBanner;
+    private                       FlowLayout         mFlowLayout;
 
-    private Unbinder      mUnbinder;
-    private HomePresenter mHomePresenter;
+    private Unbinder          mUnbinder;
+    private HomePresenter     mHomePresenter;
+    private ChoicenessAdapter mAdapter;
     // 表示TopNav类型
-    private int mId;
+    private int               mId;
+    private boolean           mIsLoadedData = false;
 
     public static ChoicenessFragment newInstance(int id) {
 
         Bundle args = new Bundle();
-        args.putInt("id", id);
+        args.putInt(ID, id);
         ChoicenessFragment fragment = new ChoicenessFragment();
         fragment.setArguments(args);
         return fragment;
@@ -67,9 +81,18 @@ public class ChoicenessFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.home_fragment_choiceness, container, false);
         ButterKnife.bind(this, view);
-        injectPresenter();
-        initData();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!mIsLoadedData) {
+            mIsLoadedData = true;
+            injectPresenter();
+            initData();
+            initView();
+        }
     }
 
     @Override
@@ -79,6 +102,35 @@ public class ChoicenessFragment extends BaseFragment {
             mUnbinder = null;
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void hideProgress() {
+        super.hideProgress();
+        if (null != mRefreshLayout) {
+            mRefreshLayout.finishRefresh();
+        }
+    }
+
+    @Override
+    public void onSuccess(Object successObj) {
+        super.onSuccess(successObj);
+        if (successObj instanceof ChoicenessResult) {
+            ChoicenessResult.DataBean data = ((ChoicenessResult) successObj).getData();
+            if (null != data) {
+                mBanner.setImageList(data.getBannerImageList());
+                mBanner.startPlay();
+
+                List<ChoicenessBean> list = new ArrayList<>();
+                list.add(new ChoicenessBean(true, getString(R.string.home_label_enable_customization)));
+                list.add(new ChoicenessBean(ChoicenessBean.HANDPICK, new ChoicenessBean.Item(data.getHandpick())));
+                list.add(new ChoicenessBean(true, getString(R.string.home_label_customization_recommend)));
+                for (CustomizationBean bean : data.getCustomization()) {
+                    list.add(new ChoicenessBean(ChoicenessBean.CUSTOMIZATION, new ChoicenessBean.Item(bean)));
+                }
+                mAdapter.setNewData(list);
+            }
+        }
     }
 
     private void injectPresenter() {
@@ -91,11 +143,25 @@ public class ChoicenessFragment extends BaseFragment {
     }
 
     private void initData() {
-        List<String> imageList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            imageList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576690815768&di=baa04edd442026ceeeb988b98f1141e8&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb8a2f3cb90ebfdcc8f432e55137d8008d8e0b53c656d-LYlEC1_fw658");
-        }
-        mBanner.setImageList(imageList);
-        mBanner.setAutoPlay(true);
+        mHomePresenter.getHomeChoiceness();
     }
+
+    private void initView() {
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                initData();
+            }
+        });
+        mRefreshLayout.setEnableLoadMore(false);
+
+        mAdapter = new ChoicenessAdapter(new ArrayList<>());
+        View headerView = getLayoutInflater().inflate(R.layout.home_header_choiceness, (ViewGroup) mRecyclerView.getParent(), false);
+        mBanner = headerView.findViewById(R.id.banner);
+        mFlowLayout = headerView.findViewById(R.id.flowLayout);
+        mAdapter.addHeaderView(headerView);
+
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
 }

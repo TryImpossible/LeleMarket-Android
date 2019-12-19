@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_layout_selector">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_white"
+        android:padding="@dimen/common_dp_8">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintDimensionRatio="W,2:3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:background="@color/common_colorAccent"
+            android:paddingHorizontal="3dp"
+            android:textColor="@color/common_white"
+            android:textSize="@dimen/common_text_normal_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_icon"
+            tools:text="@string/home_label_ketuyin" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_divide_line_height"
+            android:layout_marginTop="@dimen/dp_4"
+            android:background="@color/common_divide_line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_type" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/common_text_dark"
+            android:textSize="@dimen/common_text_normal_size"
+            app:layout_constraintLeft_toLeftOf="@id/divider"
+            app:layout_constraintRight_toRightOf="@id/divider"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:text="DIY人形抱枕" />
+
+        <TextView
+            android:id="@+id/tv_custom_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/common_text_light"
+            android:textSize="@dimen/common_text_normal_size"
+            app:layout_constraintLeft_toLeftOf="@id/divider"
+            app:layout_constraintRight_toRightOf="@id/divider"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="@string/home_label_already_custom_count" />
+
+        <Button
+            android:id="@+id/btn_custom"
+            style="@style/CommonMyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_dp_6"
+            android:text="@string/home_label_start_customization"
+            android:textColor="@color/common_colorAccent"
+            android:textSize="@dimen/common_text_normal_size"
+            app:layout_constraintLeft_toLeftOf="@id/divider"
+            app:layout_constraintRight_toRightOf="@id/divider"
+            app:layout_constraintTop_toBottomOf="@id/tv_custom_count" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -21,4 +21,8 @@
         <item name="android:background">@android:color/transparent</item> <!-- 背景透明 -->
     </style>
 
+    <style name="CommonMyButton">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
 </resources>

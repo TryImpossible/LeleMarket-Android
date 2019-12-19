@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -47,6 +46,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R2.id.et_keyword)     EditText  mEtKeyword;
     @BindView(R2.id.iv_news)        ImageView mIvNews;
     @BindView(R2.id.tabLayout)      TabLayout mTabLayout;
+    @BindView(R2.id.divider)        View      mDivider;
     @BindView(R2.id.viewPager)      ViewPager mViewPager;
 
     private Unbinder                  mUnbinder;
@@ -114,7 +114,7 @@ public class HomeFragment extends BaseFragment {
             if (topNavBeanList.indexOf(bean) == 0) {
                 mFragmentList.add(ChoicenessFragment.newInstance(bean.getId()));
             } else {
-                mFragmentList.add(new OtherFragment());
+                mFragmentList.add(NavInfoFragment.newInstance(bean.getId()));
             }
         }
 
@@ -138,7 +138,18 @@ public class HomeFragment extends BaseFragment {
         };
 
         mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setOffscreenPageLimit(topNavBeanList.size() - 1);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        if (mTabLayout.getVisibility() == View.GONE) {
+            mTabLayout.setVisibility(View.VISIBLE);
+        }
+        if (mDivider.getVisibility() == View.GONE) {
+            mDivider.setVisibility(View.VISIBLE);
+        }
+        if (mViewPager.getVisibility() == View.GONE) {
+            mViewPager.setVisibility(View.VISIBLE);
+        }
     }
 
     @OnClick(R2.id.iv_scan_qrcode)
