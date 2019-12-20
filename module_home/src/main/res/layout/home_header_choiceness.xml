@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_white"
     android:orientation="vertical">
 
     <com.bynn.common.view.MyBanner
@@ -14,10 +15,6 @@
         android:id="@+id/flowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/common_activity_horizontal_margin"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="@dimen/common_activity_horizontal_margin"
-        android:layout_marginBottom="50dp"
-        app:itemSpacing="10dp"
+        android:layout_marginVertical="@dimen/common_activity_vertical_margin"
         app:lineSpacing="10dp" />
 </LinearLayout>

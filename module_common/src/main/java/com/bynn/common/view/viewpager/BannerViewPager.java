@@ -1,21 +1,21 @@
-package com.bynn.common.view;
+package com.bynn.common.view.viewpager;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Build;
+import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -23,6 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bynn.common.R;
 import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.common.view.MyBanner;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,21 +36,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class MyBanner extends LinearLayout {
-
+public class BannerViewPager extends LinearLayout {
     /**
      * 上下文
      */
     private Context      mContext;
     /**
+     * 容器
+     */
+    private FrameLayout  mFlContainer;
+    /**
      * ViewPager,实现图片切换
      */
     private ViewPager    mViewPager;
-    /**
-     * 小圆点容器
-     */
-    private LinearLayout mLldots;
-
     /**
      * PagerAdapter
      */
@@ -75,42 +74,24 @@ public class MyBanner extends LinearLayout {
      */
     private boolean      mIsLoop;
     /**
-     * 圆点是否显示
+     * 指示器
      */
-    private boolean      mDotVisible;
-    /**
-     * 圆点大小，单位px
-     */
-    private int          mDotSize;
-    /**
-     * 圆点默认颜色
-     */
-    private int          mDotColor;
-    /**
-     * 圆点选中颜色
-     */
-    private int          mDotCheckedColor;
-    /**
-     * 圆点边距
-     */
-    private int          mDotMargin;
+    private Indicator    mIndicator;
 
-    public MyBanner(Context context) {
+    public BannerViewPager(Context context) {
         super(context);
-        init(context, null);
     }
 
-    public MyBanner(Context context, AttributeSet attrs) {
+    public BannerViewPager(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
     }
 
-    public MyBanner(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BannerViewPager(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MyBanner(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public BannerViewPager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -122,18 +103,20 @@ public class MyBanner extends LinearLayout {
      */
     private void init(Context context, AttributeSet attrs) {
         mContext = context;
+
+        mIndicator = new Indicator(mContext);
+        mIndicator.setItemSize(QMUIDisplayHelper.dp2px(mContext, 6));
+        mIndicator.setColor(ContextCompat.getColor(mContext, R.color.common_white));
+        mIndicator.setCheckedColor(ContextCompat.getColor(mContext, R.color.common_colorAccent));
+        mIndicator.setItemMargin(QMUIDisplayHelper.dp2px(mContext, 8));
+
+        mFlContainer = new FrameLayout(mContext);
+        mFlContainer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mFlContainer.addView(mIndicator);
+
         mLastPosition = 0;
         mIsAutoPlay = true;
         mIsLoop = true;
-        mDotVisible = true;
-        mDotSize = QMUIDisplayHelper.dp2px(mContext, 6);
-        mDotColor = ContextCompat.getColor(mContext, R.color.common_white);
-        mDotCheckedColor = ContextCompat.getColor(mContext, R.color.common_colorAccent);
-        mDotMargin = QMUIDisplayHelper.dp2px(mContext, 8);
-
-        View view = LayoutInflater.from(context).inflate(R.layout.common_my_banner, this);
-        mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
-        mLldots = (LinearLayout) view.findViewById(R.id.ll_dots);
     }
 
     public void setImageList(@NotNull List<String> imageList) {
@@ -184,10 +167,7 @@ public class MyBanner extends LinearLayout {
             @Override
             public void onPageSelected(int position) {
                 position = position % length;
-                if (null != mLldots) {
-                    ((Dot) mLldots.getChildAt(mLastPosition)).setChecked(false);
-                    ((Dot) mLldots.getChildAt(position)).setChecked(true);
-                }
+                mIndicator.setCheckedItem(position);
                 mLastPosition = position;
                 if (!mIsLoop) {
                     stopPlay();
@@ -249,16 +229,7 @@ public class MyBanner extends LinearLayout {
             }
         });
 
-        mLldots.removeAllViews();
-        for (int i = 0; i < length; i++) {
-            Dot dot = new Dot(mContext);
-            dot.setColor(mDotColor);
-            dot.setCheckedColor(mDotCheckedColor);
-            dot.setChecked(i == mLastPosition);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mDotSize, mDotSize);
-            layoutParams.setMargins(mDotMargin, 0, 0, 0);
-            mLldots.addView(dot, layoutParams);
-        }
+        mIndicator.show();
     }
 
     /**
@@ -372,135 +343,18 @@ public class MyBanner extends LinearLayout {
     }
 
     /**
-     * 设置圆点是否显示
+     * 设置指示器
+     */
+    public void setIndicator(@NonNull Indicator indicator) {
+        mIndicator = indicator;
+    }
+
+    /**
+     * 设置指示器是否显示
      *
      * @param visible
      */
-    public void setDotVisible(boolean visible) {
-        mDotVisible = visible;
-        if (mDotVisible) {
-            mLldots.setVisibility(VISIBLE);
-        } else {
-            mLldots.setVisibility(GONE);
-        }
+    public void setIndicatorVisible(boolean visible) {
+        mIndicator.setVisible(visible);
     }
-
-    /**
-     * 设置圆点大小
-     *
-     * @param dotSize
-     */
-    public void setDotSize(int dotSize) {
-        mDotSize = dotSize;
-    }
-
-    /**
-     * 设置圆点默认颜色
-     *
-     * @param dotColor
-     */
-    public void setDotColor(int dotColor) {
-        mDotColor = dotColor;
-    }
-
-    /**
-     * 设置圆点选中颜色
-     *
-     * @param dotCheckedColor
-     */
-    public void setDotCheckedColor(int dotCheckedColor) {
-        mDotCheckedColor = dotCheckedColor;
-    }
-
-    /**
-     * 设置圆点相邻边距
-     *
-     * @param dotMargin
-     */
-    public void setDotMargin(int dotMargin) {
-        mDotMargin = dotMargin;
-    }
-
-    private class Dot extends View {
-
-        /**
-         * 上下文
-         */
-        private Context mContext;
-        /**
-         * 画笔
-         */
-        private Paint   mPaint;
-        /**
-         * 默认颜色
-         */
-        private int     mColor;
-        /**
-         * 选中颜色
-         */
-        private int     mCheckedColor;
-
-        public Dot(Context context) {
-            super(context);
-            init(context);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            int width = getWidth();
-            int height = getHeight();
-            int radius = Math.min(width, height) / 2;
-            canvas.drawCircle(width / 2, height / 2, radius, mPaint);
-        }
-
-        @Override
-        public void setEnabled(boolean enabled) {
-            super.setEnabled(enabled);
-            setChecked(enabled);
-        }
-
-        private void init(Context context) {
-            mContext = context;
-
-            // 默认白色
-            mColor = ContextCompat.getColor(mContext, R.color.common_white);
-            // 默认红色
-            mCheckedColor = ContextCompat.getColor(mContext, R.color.common_colorAccent);
-
-            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mPaint.setStyle(Paint.Style.FILL);
-        }
-
-        /**
-         * 设置默认颜色
-         *
-         * @param color
-         */
-        public void setColor(int color) {
-            mColor = color;
-            invalidate();
-        }
-
-        /**
-         * 设置选中颜色
-         *
-         * @param color
-         */
-        public void setCheckedColor(int color) {
-            mCheckedColor = color;
-            invalidate();
-        }
-
-        /**
-         * 切换选中状态
-         *
-         * @param checked
-         */
-        public void setChecked(boolean checked) {
-            mPaint.setColor(checked ? mCheckedColor : mColor);
-            invalidate();
-        }
-    }
-
 }

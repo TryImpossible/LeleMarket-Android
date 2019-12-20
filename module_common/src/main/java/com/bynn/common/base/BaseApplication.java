@@ -21,6 +21,7 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 
 public class BaseApplication extends Application {
@@ -51,6 +52,12 @@ public class BaseApplication extends Application {
 
     //static 代码段可以防止内存泄露
     static {
+        ClassicsFooter.REFRESH_FOOTER_PULLING = "上拉加载更多";
+        ClassicsFooter.REFRESH_FOOTER_RELEASE = "释放立即加载";
+        ClassicsFooter.REFRESH_FOOTER_LOADING = "正在加载...";
+        ClassicsFooter.REFRESH_FOOTER_REFRESHING = "正在刷新...";
+        ClassicsFooter.REFRESH_FOOTER_FINISH = "加载完成";
+        ClassicsFooter.REFRESH_FOOTER_FAILED = "加载失败";
         ClassicsFooter.REFRESH_FOOTER_NOTHING = "到底啦~";
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
@@ -66,7 +73,8 @@ public class BaseApplication extends Application {
             @Override
             public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
                 //指定为经典Footer，默认是 BallPulseFooter
-                return new ClassicsFooter(context).setDrawableSize(20);
+                return new ClassicsFooter(context).setTextSizeTitle(13)
+                        .setSpinnerStyle(SpinnerStyle.Translate);
             }
         });
     }

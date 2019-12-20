@@ -32,6 +32,8 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
         switch (helper.getItemViewType()) {
             case ChoicenessBean.HANDPICK:
                 MyBanner banner = helper.getView(R.id.banner);
+                banner.setAutoPlay(false);
+                banner.setDotVisible(false);
                 banner.setImageList(item.getItem().getHandPickImageList());
                 break;
             case ChoicenessBean.CUSTOMIZATION:

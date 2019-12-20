@@ -132,10 +132,8 @@ public class NavInfoFragment extends BaseFragment {
             }
             if (data.size() < HomePresenter.PAGE_SIZE) {
                 mRefreshLayout.setNoMoreData(true);
-                mRefreshLayout.setEnableLoadMore(false);
             } else {
                 mRefreshLayout.setNoMoreData(false);
-                mRefreshLayout.setEnableLoadMore(true);
             }
         }
     }
