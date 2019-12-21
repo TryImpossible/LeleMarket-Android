@@ -30,5 +30,13 @@ public class ChoicenessResult extends NetworkResult {
             }
             return list;
         }
+
+        public List<String> getHandPickImageList() {
+            List<String> list = new ArrayList<>();
+            for (HandpickBean bean : handpick) {
+                list.add(bean.getImgUrl());
+            }
+            return list;
+        }
     }
 }

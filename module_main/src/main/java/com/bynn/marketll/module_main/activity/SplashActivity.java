@@ -55,7 +55,7 @@ public class SplashActivity extends BaseActivity {
                         return count - aLong;
                     }
                 })
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override

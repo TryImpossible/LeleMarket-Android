@@ -1,7 +1,8 @@
-package com.bynn.common.view.viewpager;
+package com.bynn.common.view.banner;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
@@ -19,51 +20,47 @@ public class Indicator extends LinearLayout {
     /**
      * 上下文
      */
-    private Context      mContext;
-    /**
-     * 容器
-     */
-    private LinearLayout mLlContainer;
+    private Context mContext;
     /**
      * 是否显示
      */
-    private boolean      mVisible;
+    private boolean mVisible;
     /**
      * 单个指示器大小，单位px
      */
-    private int          mItemSize;
+    private int     mItemSize;
     /**
      * 指示器默认颜色
      */
-    private int          mColor;
+    private int     mColor;
     /**
      * 指示器选中颜色
      */
-    private int          mCheckedColor;
+    private int     mCheckedColor;
     /**
      * 单个指示器边距
      */
-    private int          mItemMargin;
+    private int     mItemMargin;
     /**
      * 指示器数量
      */
-    private int          mCount;
+    private int     mCount;
     /**
      * 上次选中项
      */
-    private int          mLastCheckedItem;
-
+    private int     mLastCheckedItem;
 
     public Indicator(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public Indicator(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public Indicator(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -71,14 +68,12 @@ public class Indicator extends LinearLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    private void init(Context context) {
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
 
-        mLlContainer = new LinearLayout(mContext);
-        mLlContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        mLlContainer.setOrientation(HORIZONTAL);
+        setOrientation(HORIZONTAL);
 
-        // 默认不显示
+        // 默认显示
         mVisible = true;
         // 默认6dp
         mItemSize = QMUIDisplayHelper.dp2px(mContext, 6);
@@ -90,15 +85,17 @@ public class Indicator extends LinearLayout {
         mCount = 0;
         // 默认选中第一项
         mLastCheckedItem = 0;
-    }
 
-    /**
-     * 设置Indicator
-     *
-     * @param count 数量
-     */
-    public void setCount(int count) {
-        mCount = count;
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonIndicator, defStyleAttr, 0);
+        if (null != typedArray) {
+            mVisible = typedArray.getBoolean(R.styleable.CommonIndicator_visible, mVisible);
+            mItemSize = typedArray.getDimensionPixelSize(R.styleable.CommonIndicator_item_size, mItemSize);
+            mColor = typedArray.getColor(R.styleable.CommonIndicator_color, mColor);
+            mCheckedColor = typedArray.getColor(R.styleable.CommonIndicator_checked_color, mCheckedColor);
+            mItemMargin = typedArray.getDimensionPixelSize(R.styleable.CommonIndicator_item_margin, mItemMargin);
+            mCount = typedArray.getInteger(R.styleable.CommonIndicator_count, mCount);
+        }
+
     }
 
     /**
@@ -107,8 +104,8 @@ public class Indicator extends LinearLayout {
      * @param position 索引
      */
     public void setCheckedItem(int position) {
-        ((Dot) mLlContainer.getChildAt(mLastCheckedItem)).setChecked(false);
-        ((Dot) mLlContainer.getChildAt(position)).setChecked(true);
+        ((Dot) getChildAt(mLastCheckedItem)).setChecked(false);
+        ((Dot) getChildAt(position)).setChecked(true);
         mLastCheckedItem = position;
     }
 
@@ -142,6 +139,10 @@ public class Indicator extends LinearLayout {
      */
     public void setColor(int color) {
         mColor = color;
+        for (int i = 0; i < mCount; i++) {
+            Dot dot = (Dot) getChildAt(i);
+            dot.setColor(mColor);
+        }
     }
 
     /**
@@ -151,6 +152,10 @@ public class Indicator extends LinearLayout {
      */
     public void setCheckedColor(int checkedColor) {
         mCheckedColor = checkedColor;
+        for (int i = 0; i < mCount; i++) {
+            Dot dot = (Dot) getChildAt(i);
+            dot.setCheckedColor(mCheckedColor);
+        }
     }
 
     /**
@@ -163,10 +168,13 @@ public class Indicator extends LinearLayout {
     }
 
     /**
-     * 显示
+     * 显示Indicator
+     *
+     * @param count 数量
      */
-    public void show() {
-        mLlContainer.removeAllViews();
+    public void show(int count) {
+        mCount = count;
+        removeAllViews();
         for (int i = 0; i < mCount; i++) {
             Dot dot = new Dot(mContext);
             dot.setColor(mColor);
@@ -174,7 +182,8 @@ public class Indicator extends LinearLayout {
             dot.setChecked(i == mLastCheckedItem);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mItemSize, mItemSize);
             layoutParams.setMargins(mItemMargin, 0, 0, 0);
-            mLlContainer.addView(dot);
+            dot.setLayoutParams(layoutParams);
+            addView(dot);
         }
     }
 

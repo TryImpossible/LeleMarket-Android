@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.bynn.common.view.banner.Indicator
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/common_dp_8"
+        android:orientation="horizontal"
+        app:checked_color="@color/common_colorAccent"
+        app:color="@color/common_white"
+        app:count="0"
+        app:item_margin="8dp"
+        app:item_size="6dp"
+        app:visible="true" />
+
+</merge>

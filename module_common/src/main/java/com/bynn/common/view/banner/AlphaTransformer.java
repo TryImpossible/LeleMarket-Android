@@ -1,4 +1,4 @@
-package com.bynn.common.view.viewpager;
+package com.bynn.common.view.banner;
 
 import android.view.View;
 

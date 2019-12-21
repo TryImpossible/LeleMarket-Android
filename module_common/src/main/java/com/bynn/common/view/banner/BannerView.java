@@ -1,29 +1,27 @@
-package com.bynn.common.view.viewpager;
+package com.bynn.common.view.banner;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
-import android.text.Layout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bynn.common.R;
-import com.bynn.common.qmui.QMUIDisplayHelper;
-import com.bynn.common.view.MyBanner;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,15 +34,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class BannerViewPager extends LinearLayout {
+public class BannerView extends FrameLayout {
     /**
      * 上下文
      */
     private Context      mContext;
-    /**
-     * 容器
-     */
-    private FrameLayout  mFlContainer;
     /**
      * ViewPager,实现图片切换
      */
@@ -78,20 +72,21 @@ public class BannerViewPager extends LinearLayout {
      */
     private Indicator    mIndicator;
 
-    public BannerViewPager(Context context) {
-        super(context);
+    public BannerView(Context context) {
+        this(context, null);
     }
 
-    public BannerViewPager(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public BannerView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public BannerViewPager(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BannerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public BannerViewPager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public BannerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -101,25 +96,28 @@ public class BannerViewPager extends LinearLayout {
      * @param context
      * @param attrs
      */
-    private void init(Context context, AttributeSet attrs) {
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
 
-        mIndicator = new Indicator(mContext);
-        mIndicator.setItemSize(QMUIDisplayHelper.dp2px(mContext, 6));
-        mIndicator.setColor(ContextCompat.getColor(mContext, R.color.common_white));
-        mIndicator.setCheckedColor(ContextCompat.getColor(mContext, R.color.common_colorAccent));
-        mIndicator.setItemMargin(QMUIDisplayHelper.dp2px(mContext, 8));
-
-        mFlContainer = new FrameLayout(mContext);
-        mFlContainer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mFlContainer.addView(mIndicator);
+        View view = LayoutInflater.from(context).inflate(R.layout.common_banner_viewpager, this);
+        mViewPager = view.findViewById(R.id.view_pager);
+        mIndicator = view.findViewById(R.id.indicator);
 
         mLastPosition = 0;
         mIsAutoPlay = true;
         mIsLoop = true;
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonBannerView, defStyleAttr, 0);
+        if (null != typedArray) {
+            mIsAutoPlay = typedArray.getBoolean(R.styleable.CommonBannerView_auto_play, mIsAutoPlay);
+            mIsLoop = typedArray.getBoolean(R.styleable.CommonBannerView_loop, mIsLoop);
+        }
     }
 
-    public void setImageList(@NotNull List<String> imageList) {
+    public void setImageList(@NonNull List<String> imageList) {
+        setImageList(imageList, 0);
+    }
+
+    public void setImageList(@NotNull List<String> imageList, int roundingRadius) {
         mImageList = imageList;
         int length = imageList.size();
         mPagerAdapter = new PagerAdapter() {
@@ -140,11 +138,21 @@ public class BannerViewPager extends LinearLayout {
 
                 position = position % length; // 计算实际的位置
                 ImageView imageView = new ImageView(mContext);
-                Glide.with(mContext)
-                        .load(mImageList.get(position))
-                        .into(imageView);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 container.addView(imageView);
+
+                if (roundingRadius > 0) {
+                    RoundedCorners roundedCorners = new RoundedCorners(roundingRadius);
+                    RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
+                    Glide.with(mContext)
+                            .load(mImageList.get(position))
+                            .apply(options)
+                            .into(imageView);
+                } else {
+                    Glide.with(mContext)
+                            .load(mImageList.get(position))
+                            .into(imageView);
+                }
                 return imageView;
             }
 
@@ -156,8 +164,6 @@ public class BannerViewPager extends LinearLayout {
         };
 
         mViewPager.setAdapter(mPagerAdapter);
-        // 一次加载2张，加上本身ViewPgaer的1张，总共3张
-        mViewPager.setOffscreenPageLimit(3);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -201,46 +207,8 @@ public class BannerViewPager extends LinearLayout {
                 return false;
             }
         });
-        mViewPager.setPageMargin(100);
-        mViewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
-            private static final float MIN_SCALE = 0.70f;
-            private static final float MIN_ALPHA = 0.5f;
 
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                if (position < -1 || position > 1) {
-                    page.setAlpha(MIN_ALPHA);
-                    page.setScaleX(MIN_SCALE);
-                    page.setScaleY(MIN_SCALE);
-                } else if (position <= 1) { // [-1,1]
-                    float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
-                    if (position < 0) {
-                        float scaleX = 1 + 0.3f * position;
-                        Log.e("google_lenve_fb", "transformPage: scaleX:" + scaleX);
-                        page.setScaleX(scaleX);
-                        page.setScaleY(scaleX);
-                    } else {
-                        float scaleX = 1 - 0.3f * position;
-                        page.setScaleX(scaleX);
-                        page.setScaleY(scaleX);
-                    }
-                    page.setAlpha(MIN_ALPHA + (scaleFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
-                }
-            }
-        });
-
-        mIndicator.show();
-    }
-
-    /**
-     * 每页的外边距
-     *
-     * @param marginPixels
-     */
-    public void setPageMargin(int marginPixels) {
-        if (null != mViewPager) {
-            mViewPager.setPageMargin(marginPixels);
-        }
+        mIndicator.show(length);
     }
 
     /**
@@ -342,19 +310,39 @@ public class BannerViewPager extends LinearLayout {
         }
     }
 
+//    /**
+//     * 设置指示器
+//     *
+//     * @param layoutId
+//     */
+//    public void setViewPager(@LayoutRes int layoutId) {
+//        mViewPager = (ViewPager) LayoutInflater.from(mContext).inflate(layoutId, this);
+//    }
+
     /**
-     * 设置指示器
+     * 获取ViewPager
+     *
+     * @return
      */
-    public void setIndicator(@NonNull Indicator indicator) {
-        mIndicator = indicator;
+    public ViewPager getViewPgaer() {
+        return mViewPager;
     }
 
     /**
-     * 设置指示器是否显示
+     * 设置指示器
      *
-     * @param visible
+     * @param layoutId
      */
-    public void setIndicatorVisible(boolean visible) {
-        mIndicator.setVisible(visible);
+    public void setIndicator(@LayoutRes int layoutId) {
+        mIndicator = (Indicator) LayoutInflater.from(mContext).inflate(layoutId, this);
+    }
+
+    /**
+     * 获取指示器
+     *
+     * @return
+     */
+    public Indicator getIndicator() {
+        return mIndicator;
     }
 }

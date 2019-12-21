@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="CommonBannerView">
+        <!--是否自动播放-->
+        <attr name="auto_play" format="boolean" tools:ignore="ResourceName" />
+        <!--是否轮播-->
+        <attr name="loop" format="boolean" tools:ignore="ResourceName" />
+    </declare-styleable>
+    <declare-styleable name="CommonIndicator">
+        <!--是否显示-->
+        <attr name="visible" format="boolean" tools:ignore="ResourceName" />
+        <!--单个大小-->
+        <attr name="item_size" format="dimension|reference" tools:ignore="ResourceName" />
+        <!--颜色-->
+        <attr name="color" format="color|reference" tools:ignore="ResourceName" />
+        <!--选中颜色-->
+        <attr name="checked_color" format="color|reference" tools:ignore="ResourceName" />
+        <!--边距-->
+        <attr name="item_margin" format="dimension|reference" tools:ignore="ResourceName" />
+        <!--数量-->
+        <attr name="count" format="integer" tools:ignore="ResourceName" />
+    </declare-styleable>
+</resources>

@@ -1,16 +1,26 @@
 package com.bynn.marketll.module_home.adapter;
 
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
-import com.bynn.common.view.MyBanner;
+import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.common.view.banner.BannerView;
+import com.bynn.common.view.banner.ScaleTransformer;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.CustomizationBean;
+import com.bynn.marketll.module_home.bean.MidNavBean;
 import com.chad.library.adapter.base.BaseSectionMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.google.android.material.internal.FlowLayout;
 
 import java.util.List;
 
@@ -18,6 +28,8 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
 
     public ChoicenessAdapter(List<ChoicenessBean> data) {
         super(R.layout.home_section_choiceness, data);
+        addItemType(ChoicenessBean.BANNER, R.layout.home_item_choiceness_banner);
+        addItemType(ChoicenessBean.MIDNVA, R.layout.home_item_choiceness_midnav);
         addItemType(ChoicenessBean.HANDPICK, R.layout.home_item_choiceness_handpick);
         addItemType(ChoicenessBean.CUSTOMIZATION, R.layout.home_item_choiceness_customization);
     }
@@ -30,14 +42,55 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
     @Override
     protected void convert(@NonNull BaseViewHolder helper, ChoicenessBean item) {
         switch (helper.getItemViewType()) {
+            case ChoicenessBean.BANNER:
+                BannerView banner = helper.getView(R.id.banner);
+                banner.getViewPgaer().setPageMargin(QMUIDisplayHelper.dp2px(mContext, 16));
+                banner.getIndicator().setColor(Color.GRAY);
+                banner.getIndicator().setCheckedColor(ContextCompat.getColor(mContext, R.color.common_white));
+                banner.setImageList((List<String>) item.getItem());
+                banner.startPlay();
+                break;
+            case ChoicenessBean.MIDNVA:
+                FlowLayout flowLayout = helper.getView(R.id.flowLayout);
+                flowLayout.removeAllViews();
+                for (MidNavBean bean : (List<MidNavBean>) item.getItem()) {
+                    ImageView image = new ImageView(mContext);
+                    image.setLayoutParams(new LinearLayout.LayoutParams(QMUIDisplayHelper.dp2px(mContext, 44), QMUIDisplayHelper.dp2px(mContext, 44)));
+                    image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    Glide.with(mContext).load(bean.getImgUrl()).into(image);
+
+                    TextView text = new TextView(mContext);
+                    text.setText(bean.getName());
+                    text.setTextColor(Color.RED);
+                    text.setTextSize(11);
+                    text.setTextColor(ContextCompat.getColor(mContext, R.color.common_text_light));
+                    ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.topMargin = QMUIDisplayHelper.dp2px(mContext, 4);
+                    text.setLayoutParams(params);
+
+                    LinearLayout layout = new LinearLayout(mContext);
+                    layout.setLayoutParams(new ViewGroup.LayoutParams(QMUIDisplayHelper.getScreenWidth(mContext) / 4, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.setBackgroundResource(R.drawable.common_layout_selector);
+                    layout.setOrientation(LinearLayout.VERTICAL);
+                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
+                    layout.addView(image);
+                    layout.addView(text);
+
+                    flowLayout.addView(layout);
+                }
+                break;
             case ChoicenessBean.HANDPICK:
-                MyBanner banner = helper.getView(R.id.banner);
-                banner.setAutoPlay(false);
-                banner.setDotVisible(false);
-                banner.setImageList(item.getItem().getHandPickImageList());
+                BannerView handPick = helper.getView(R.id.handpick);
+                handPick.getIndicator().setVisible(false);
+                // 禁止裁剪子视图
+                handPick.getViewPgaer().setClipToPadding(false);
+                handPick.getViewPgaer().setPadding(QMUIDisplayHelper.dp2px(mContext, 16), 0, QMUIDisplayHelper.dp2px(mContext, 70), 0);
+                handPick.getViewPgaer().setOffscreenPageLimit(3);
+                handPick.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
+                handPick.setImageList((List<String>) item.getItem(), QMUIDisplayHelper.dp2px(mContext, 10));
                 break;
             case ChoicenessBean.CUSTOMIZATION:
-                CustomizationBean bean = item.getItem().getCustomizationBean();
+                CustomizationBean bean = (CustomizationBean) item.getItem();
 
                 ImageView bigIamge = (ImageView) helper.getView(R.id.iv_big_image);
                 Glide.with(mContext)

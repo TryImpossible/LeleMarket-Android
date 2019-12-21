@@ -1,35 +1,27 @@
 package com.bynn.marketll.module_home.fragment;
 
 
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
 import com.bynn.common.qmui.QMUIDisplayHelper;
-import com.bynn.common.view.MyBanner;
+import com.bynn.common.view.banner.BannerView;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.adapter.ChoicenessAdapter;
 import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.CustomizationBean;
-import com.bynn.marketll.module_home.bean.MidNavBean;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
@@ -53,8 +45,6 @@ public class ChoicenessFragment extends BaseFragment {
 
     @BindView(R.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.recyclerView)  RecyclerView       mRecyclerView;
-    private                       MyBanner           mBanner;
-    private                       FlowLayout         mFlowLayout;
 
     private Unbinder          mUnbinder;
     private HomePresenter     mHomePresenter;
@@ -107,11 +97,12 @@ public class ChoicenessFragment extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (null != mBanner) {
+        BannerView bannerView = (BannerView) mAdapter.getViewByPosition(0, R.id.banner);
+        if (null != bannerView) {
             if (!hidden) {
-                mBanner.startPlay();
+                bannerView.startPlay();
             } else {
-                mBanner.stopPlay();
+                bannerView.stopPlay();
             }
         }
     }
@@ -139,16 +130,14 @@ public class ChoicenessFragment extends BaseFragment {
         if (successObj instanceof ChoicenessResult) {
             ChoicenessResult.DataBean data = ((ChoicenessResult) successObj).getData();
             if (null != data) {
-                mBanner.setImageList(data.getBannerImageList());
-                mBanner.startPlay();
-                initMidNavView(data.getMidNav());
-
                 List<ChoicenessBean> list = new ArrayList<>();
+                list.add(new ChoicenessBean(ChoicenessBean.BANNER, data.getBannerImageList()));
+                list.add(new ChoicenessBean(ChoicenessBean.MIDNVA, data.getMidNav()));
                 list.add(new ChoicenessBean(true, getString(R.string.home_label_enable_customization)));
-                list.add(new ChoicenessBean(ChoicenessBean.HANDPICK, new ChoicenessBean.Item(data.getHandpick())));
+                list.add(new ChoicenessBean(ChoicenessBean.HANDPICK, data.getHandPickImageList()));
                 list.add(new ChoicenessBean(true, getString(R.string.home_label_customization_recommend)));
                 for (CustomizationBean bean : data.getCustomization()) {
-                    list.add(new ChoicenessBean(ChoicenessBean.CUSTOMIZATION, new ChoicenessBean.Item(bean)));
+                    list.add(new ChoicenessBean(ChoicenessBean.CUSTOMIZATION, bean));
                 }
                 mAdapter.setNewData(list);
             }
@@ -177,13 +166,7 @@ public class ChoicenessFragment extends BaseFragment {
         });
         mRefreshLayout.setEnableLoadMore(false);
 
-        View headerView = getLayoutInflater().inflate(R.layout.home_header_choiceness, (ViewGroup) mRecyclerView.getParent(), false);
-        mBanner = headerView.findViewById(R.id.banner);
-//        mBanner.setPageMargin(QMUIDisplayHelper.dp2px(getContext(), 10));
-        mFlowLayout = headerView.findViewById(R.id.flowLayout);
-
         mAdapter = new ChoicenessAdapter(new ArrayList<>());
-        mAdapter.addHeaderView(headerView);
 
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
@@ -193,39 +176,10 @@ public class ChoicenessFragment extends BaseFragment {
                 int position = parent.getChildAdapterPosition(view);
                 int space = QMUIDisplayHelper.dp2px(getContext(), 6);
                 outRect.top = space;
-                if (position == 0 || (position - 1 > 0 && mAdapter.getData().get(position - 1 - 1).isHeader)) {
+                if (position == 0 || position == 1 || position == 3 || position == 5) {
                     outRect.top = 0;
                 }
             }
         });
-    }
-
-    private void initMidNavView(List<MidNavBean> midNavBeans) {
-        mFlowLayout.removeAllViews();
-        for (MidNavBean bean : midNavBeans) {
-            ImageView image = new ImageView(getContext());
-            image.setLayoutParams(new LinearLayout.LayoutParams(QMUIDisplayHelper.dp2px(getContext(), 44), QMUIDisplayHelper.dp2px(getContext(), 44)));
-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            Glide.with(this).load(bean.getImgUrl()).into(image);
-
-            TextView text = new TextView(getContext());
-            text.setText(bean.getName());
-            text.setTextColor(Color.RED);
-            text.setTextSize(11);
-            text.setTextColor(ContextCompat.getColor(getContext(), R.color.common_text_light));
-            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.topMargin = QMUIDisplayHelper.dp2px(getContext(), 4);
-            text.setLayoutParams(params);
-
-            LinearLayout layout = new LinearLayout(getContext());
-            layout.setLayoutParams(new ViewGroup.LayoutParams(QMUIDisplayHelper.getScreenWidth(getContext()) / 4, ViewGroup.LayoutParams.WRAP_CONTENT));
-            layout.setBackgroundResource(R.drawable.common_layout_selector);
-            layout.setOrientation(LinearLayout.VERTICAL);
-            layout.setGravity(Gravity.CENTER_HORIZONTAL);
-            layout.addView(image);
-            layout.addView(text);
-
-            mFlowLayout.addView(layout);
-        }
     }
 }
