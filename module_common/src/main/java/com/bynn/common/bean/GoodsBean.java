@@ -1,4 +1,4 @@
-package com.bynn.marketll.module_home.bean;
+package com.bynn.common.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,29 +6,27 @@ import android.os.Parcelable;
 import lombok.Data;
 
 @Data
-public class HandpickBean implements Parcelable {
+public class GoodsBean implements Parcelable {
 
     /**
-     * id : 150
-     * imgUrl : https://api.51app.cn/resource/diymall/uu20/special/b866b7de.png
-     * param1 : 二合一伸缩数据线
+     * id : 18
+     * imgUrl : https://api.51app.cn/resource/diymall/uu20/special/9dcf69fd.jpg
+     * param1 : 3D定制手机壳
      * param2 :
      * param3 :
-     * type : 4
-     * pid : 182
-     * module : 1
-     * url :
+     * type : 2
+     * pid : 19
+     * layout : 1
      */
 
-    private int    id;
+    private int id;
     private String imgUrl;
     private String param1;
     private String param2;
     private String param3;
-    private int    type;
-    private int    pid;
-    private int    module;
-    private String url;
+    private int type;
+    private int pid;
+    private int layout;
 
     @Override
     public int describeContents() {
@@ -44,11 +42,10 @@ public class HandpickBean implements Parcelable {
         dest.writeString(this.param3);
         dest.writeInt(this.type);
         dest.writeInt(this.pid);
-        dest.writeInt(this.module);
-        dest.writeString(this.url);
+        dest.writeInt(this.layout);
     }
 
-    protected HandpickBean(Parcel in) {
+    protected GoodsBean(Parcel in) {
         this.id = in.readInt();
         this.imgUrl = in.readString();
         this.param1 = in.readString();
@@ -56,19 +53,18 @@ public class HandpickBean implements Parcelable {
         this.param3 = in.readString();
         this.type = in.readInt();
         this.pid = in.readInt();
-        this.module = in.readInt();
-        this.url = in.readString();
+        this.layout = in.readInt();
     }
 
-    public static final Parcelable.Creator<HandpickBean> CREATOR = new Parcelable.Creator<HandpickBean>() {
+    public static final Creator<GoodsBean> CREATOR = new Creator<GoodsBean>() {
         @Override
-        public HandpickBean createFromParcel(Parcel source) {
-            return new HandpickBean(source);
+        public GoodsBean createFromParcel(Parcel source) {
+            return new GoodsBean(source);
         }
 
         @Override
-        public HandpickBean[] newArray(int size) {
-            return new HandpickBean[size];
+        public GoodsBean[] newArray(int size) {
+            return new GoodsBean[size];
         }
     };
 }

@@ -34,13 +34,13 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/common_ic_search" />
 
-        <EditText
-            android:id="@+id/et_keyword"
+        <TextView
+            android:id="@+id/tv_keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@null"
             android:focusable="false"
+            android:background="@null"
             android:hint="@string/common_label_search_action_bar_hint"
             android:paddingVertical="6dp"
             android:textColor="@color/common_text_light"

@@ -62,9 +62,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation config.dependencies["junit"]
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]
@@ -72,6 +69,7 @@ dependencies {
     api project(':module_common')
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
+    implementation config.dependencies["dagger"]
     annotationProcessor config.dependencies["dagger-compiler"]
     compileOnly config.dependencies["lombok"]
     compileOnly config.dependencies["javax.annotation"]

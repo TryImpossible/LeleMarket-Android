@@ -6,12 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bynn.common.arouter.HomeRoutePath;
@@ -30,6 +25,11 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,7 +43,7 @@ import butterknife.Unbinder;
 public class HomeFragment extends BaseFragment {
 
     @BindView(R2.id.iv_scan_qrcode) ImageView mIvScanQrcode;
-    @BindView(R2.id.et_keyword)     EditText  mEtKeyword;
+    @BindView(R2.id.tv_keyword)     TextView  mTvKeyword;
     @BindView(R2.id.iv_news)        ImageView mIvNews;
     @BindView(R2.id.tabLayout)      TabLayout mTabLayout;
     @BindView(R2.id.divider)        View      mDivider;
@@ -157,7 +157,7 @@ public class HomeFragment extends BaseFragment {
         showToast("扫码");
     }
 
-    @OnClick(R2.id.et_keyword)
+    @OnClick(R2.id.tv_keyword)
     public void onSearchClicked() {
         showToast("搜索");
     }

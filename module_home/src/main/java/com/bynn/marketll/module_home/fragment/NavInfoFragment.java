@@ -3,23 +3,17 @@ package com.bynn.marketll.module_home.fragment;
 
 import android.graphics.Rect;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bynn.common.adapter.GoodsAdapter;
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
+import com.bynn.common.bean.RecommendGoodsBean;
 import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
-import com.bynn.marketll.module_home.adapter.NavInfoAdapter;
-import com.bynn.marketll.module_home.bean.RecommendGoodsBean;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
@@ -31,6 +25,10 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -48,7 +46,7 @@ public class NavInfoFragment extends BaseFragment {
 
     private Unbinder       mUnbinder;
     private HomePresenter  mHomePresenter;
-    private NavInfoAdapter mAdapter;
+    private GoodsAdapter   mAdapter;
     // 表示TopNav类型
     private int            mId;
     // 当前页码, 从0开始
@@ -163,7 +161,7 @@ public class NavInfoFragment extends BaseFragment {
         });
         mRefreshLayout.autoRefresh();
 
-        mAdapter = new NavInfoAdapter(new ArrayList<>());
+        mAdapter = new GoodsAdapter(new ArrayList<>());
 
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));

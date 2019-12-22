@@ -1,11 +1,15 @@
 package com.bynn.marketll.module_home.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class CustomizationBean {
+public class CustomizationBean implements Parcelable {
 
     /**
      * id : 60
@@ -22,4 +26,41 @@ public class CustomizationBean {
     private int             pid;
     private String          url;
     private List<GoodsBean> goods;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.imgUrl);
+        dest.writeInt(this.type);
+        dest.writeInt(this.pid);
+        dest.writeString(this.url);
+        dest.writeList(this.goods);
+    }
+
+    protected CustomizationBean(Parcel in) {
+        this.id = in.readInt();
+        this.imgUrl = in.readString();
+        this.type = in.readInt();
+        this.pid = in.readInt();
+        this.url = in.readString();
+        this.goods = new ArrayList<GoodsBean>();
+        in.readList(this.goods, GoodsBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<CustomizationBean> CREATOR = new Parcelable.Creator<CustomizationBean>() {
+        @Override
+        public CustomizationBean createFromParcel(Parcel source) {
+            return new CustomizationBean(source);
+        }
+
+        @Override
+        public CustomizationBean[] newArray(int size) {
+            return new CustomizationBean[size];
+        }
+    };
 }

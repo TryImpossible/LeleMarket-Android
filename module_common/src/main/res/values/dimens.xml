@@ -7,6 +7,8 @@
     <dimen name="common_dp_8">8dp</dimen>
     <dimen name="common_dp_6">6dp</dimen>
     <dimen name="common_dp_4">4dp</dimen>
+    <dimen name="common_dp_2">2dp</dimen>
+    <dimen name="common_dp_1">1dp</dimen>
 
     <dimen name="common_text_title_size">18sp</dimen>
     <dimen name="common_text_big_size">18sp</dimen>

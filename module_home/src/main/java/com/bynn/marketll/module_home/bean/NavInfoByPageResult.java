@@ -3,6 +3,7 @@ package com.bynn.marketll.module_home.bean;
 import androidx.annotation.NonNull;
 
 import com.bynn.common.bean.NetworkResult;
+import com.bynn.common.bean.RecommendGoodsBean;
 
 import java.util.List;
 

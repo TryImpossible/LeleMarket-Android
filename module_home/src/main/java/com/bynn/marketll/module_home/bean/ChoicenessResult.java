@@ -1,5 +1,6 @@
 package com.bynn.marketll.module_home.bean;
 
+import com.bynn.common.bean.BannerBean;
 import com.bynn.common.bean.NetworkResult;
 
 import java.util.ArrayList;

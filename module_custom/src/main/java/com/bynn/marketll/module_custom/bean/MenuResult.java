@@ -1,4 +1,4 @@
-package com.bynn.marketll.module_home.bean;
+package com.bynn.marketll.module_custom.bean;
 
 import com.bynn.common.bean.BannerBean;
 import com.bynn.common.bean.NetworkResult;
@@ -11,12 +11,13 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class NavInfoResult extends NetworkResult {
+public class MenuResult extends NetworkResult {
     private DataBean data;
 
     @Data
     public static class DataBean {
+        private List<MenuBean> menus;
         private List<RecommendGoodsBean> recommendGoods;
-        private List<BannerBean>         banners;
+        private List<BannerBean> banners;
     }
 }

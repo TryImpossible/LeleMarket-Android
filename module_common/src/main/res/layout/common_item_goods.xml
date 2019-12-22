@@ -21,7 +21,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@mipmap/ic_launcher" />
+            tools:src="@mipmap/common_ic_scan_qrcode" />
 
         <TextView
             android:id="@+id/tv_type"
@@ -34,7 +34,7 @@
             android:textSize="@dimen/common_text_normal_size"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_icon"
-            tools:text="@string/home_label_ketuyin" />
+            tools:text="@string/common_label_ketuyin" />
 
         <View
             android:id="@+id/divider"
@@ -72,7 +72,7 @@
             app:layout_constraintLeft_toLeftOf="@id/divider"
             app:layout_constraintRight_toRightOf="@id/divider"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
-            tools:text="@string/home_label_already_custom_count" />
+            tools:text="@string/common_label_already_custom_count" />
 
         <Button
             android:id="@+id/btn_custom"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_dp_6"
-            android:text="@string/home_label_start_customization"
+            android:text="@string/common_label_start_customization"
             android:textColor="@color/common_colorAccent"
             android:textSize="@dimen/common_text_normal_size"
             app:layout_constraintLeft_toLeftOf="@id/divider"

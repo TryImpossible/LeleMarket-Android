@@ -51,8 +51,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation config.dependencies["junit"]
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]
@@ -60,6 +58,7 @@ dependencies {
     api config.dependencies["appcompat"]
     api config.dependencies["material"]
     api config.dependencies["constraintlayout"]
+    api config.dependencies["legacy-support-v4"]
     implementation config.dependencies["multidex"]
 
     api config.dependencies["butterknife"]

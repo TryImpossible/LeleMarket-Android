@@ -38,7 +38,7 @@ public class NetworkModule {
 
     public NetworkModule(Application application) {
 
-        File httpCacheDir = new File(application.getCacheDir(), "http");
+        File httpCacheDir = new File(application.getCacheDir(), "http-cache");
         Cache cache = new Cache(httpCacheDir, DISK_CACHE_SIZE);
 
         // 创建OKHttpClient，设置超时时间
@@ -106,7 +106,8 @@ public class NetworkModule {
     @Singleton
     @Provides
     Gson provideGson() {
-        return new GsonBuilder().create();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        return gsonBuilder.create();
     }
 
 }
