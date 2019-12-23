@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -46,22 +47,21 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class GoodsFragment extends BaseFragment {
-    private static final String MENU_ID = "menuId";
-    private static final String BANNER = "banner";
+    private static final String MENU_ID        = "menuId";
+    private static final String BANNER         = "banner";
     private static final String RECOMMENDGOODS = "recommendGoods";
 
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.bannerView)    BannerView         mBannerView;
+    @BindView(R.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.recyclerView)  RecyclerView       mRecyclerView;
 
-    private Unbinder mUnbinder;
-    private GoodsAdapter mGoodsAdapter;
+    private Unbinder        mUnbinder;
+    private GoodsAdapter    mGoodsAdapter;
     private CustomPresenter mCustomPresenter;
     // 菜单id
-    private int mMenuId;
+    private int             mMenuId;
     //  页码从0 开始
-    private int mPage = 0;
+    private int             mPage = 0;
 
     public GoodsFragment() {
         // Required empty public constructor
@@ -91,11 +91,6 @@ public class GoodsFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMenuId = getArguments().getInt(MENU_ID);
-        if (null != getArguments().getParcelableArrayList(RECOMMENDGOODS)) {
-            mPage = 1; // 第一页数据，从左侧数据传递过来了，所以从1开始，即第2页
-        } else {
-            mPage = 0;
-        }
     }
 
     @Override
@@ -170,16 +165,16 @@ public class GoodsFragment extends BaseFragment {
             for (BannerBean bean : bannerBeans) {
                 imageList.add(bean.getImgUrl());
             }
-            BannerView bannerView = new BannerView(getContext());
-            bannerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100));
-            bannerView.getIndicator().setVisible(false);
+            mBannerView.setVisibility(View.VISIBLE);
+            mBannerView.getIndicator().setVisible(false);
             // 禁止裁剪子视图
-            bannerView.getViewPgaer().setClipToPadding(false);
-            bannerView.getViewPgaer().setPadding(QMUIDisplayHelper.dp2px(getContext(), 16), 0, QMUIDisplayHelper.dp2px(getContext(), 50), 0);
-            bannerView.getViewPgaer().setOffscreenPageLimit(3);
-            bannerView.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
-            bannerView.setImageList(imageList);
-            mGoodsAdapter.setHeaderView(bannerView);
+            mBannerView.getViewPgaer().setClipToPadding(false);
+            mBannerView.getViewPgaer().setPadding(0, 0, QMUIDisplayHelper.dp2px(getContext(), 50), 0);
+            mBannerView.getViewPgaer().setOffscreenPageLimit(3);
+            mBannerView.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
+            mBannerView.setImageList(imageList);
+        } else {
+            mBannerView.setVisibility(View.GONE);
         }
 
         mRecyclerView.setAdapter(mGoodsAdapter);
@@ -190,7 +185,7 @@ public class GoodsFragment extends BaseFragment {
                 super.getItemOffsets(outRect, view, parent, state);
                 int position = parent.getChildAdapterPosition(view);
                 int space = QMUIDisplayHelper.dp2px(getContext(), 6);
-                if (position / 2 == 0) {
+                if ((int)position / 2 == 0) {
                     outRect.top = space;
                 }
                 if (position % 2 == 0) {

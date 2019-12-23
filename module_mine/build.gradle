@@ -35,6 +35,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
+                includeCompileClasspath true
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
@@ -68,4 +69,7 @@ dependencies {
     api project(':module_common')
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
+    annotationProcessor config.dependencies["dagger-compiler"]
+    compileOnly config.dependencies["lombok"]
+    compileOnly config.dependencies["javax.annotation"]
 }
