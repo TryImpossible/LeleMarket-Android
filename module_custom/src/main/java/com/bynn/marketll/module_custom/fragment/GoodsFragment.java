@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,21 +48,22 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class GoodsFragment extends BaseFragment {
-    private static final String MENU_ID        = "menuId";
-    private static final String BANNER         = "banner";
+    private static final String MENU_ID = "menuId";
+    private static final String BANNER = "banner";
     private static final String RECOMMENDGOODS = "recommendGoods";
 
-    @BindView(R.id.bannerView)    BannerView         mBannerView;
-    @BindView(R.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.recyclerView)  RecyclerView       mRecyclerView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
 
-    private Unbinder        mUnbinder;
-    private GoodsAdapter    mGoodsAdapter;
+    private Unbinder mUnbinder;
+    private GoodsAdapter mGoodsAdapter;
     private CustomPresenter mCustomPresenter;
     // 菜单id
-    private int             mMenuId;
+    private int mMenuId;
     //  页码从0 开始
-    private int             mPage = 0;
+    private int mPage = 0;
 
     public GoodsFragment() {
         // Required empty public constructor
@@ -165,31 +167,55 @@ public class GoodsFragment extends BaseFragment {
             for (BannerBean bean : bannerBeans) {
                 imageList.add(bean.getImgUrl());
             }
-            mBannerView.setVisibility(View.VISIBLE);
-            mBannerView.getIndicator().setVisible(false);
+
+            BannerView BannerView = new BannerView(getContext());
+            BannerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, QMUIDisplayHelper.dp2px(getContext(), 100)));
+            BannerView.setAutoPlay(false);
+            BannerView.setLoop(false);
+            BannerView.setVisibility(View.VISIBLE);
+            BannerView.getIndicator().setVisible(false);
             // 禁止裁剪子视图
-            mBannerView.getViewPgaer().setClipToPadding(false);
-            mBannerView.getViewPgaer().setPadding(0, 0, QMUIDisplayHelper.dp2px(getContext(), 50), 0);
-            mBannerView.getViewPgaer().setOffscreenPageLimit(3);
-            mBannerView.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
-            mBannerView.setImageList(imageList);
-        } else {
-            mBannerView.setVisibility(View.GONE);
+            BannerView.getViewPgaer().setClipToPadding(false);
+            BannerView.getViewPgaer().setPadding(0, 0, QMUIDisplayHelper.dp2px(getContext(), 50), 0);
+            BannerView.getViewPgaer().setOffscreenPageLimit(3);
+            BannerView.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
+            BannerView.setImageList(imageList);
+            mGoodsAdapter.addHeaderView(BannerView);
         }
 
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position <= 1 && null != bannerBeans) {
+                    return 2;
+                } else {
+                    return 1;
+                }
+            }
+        });
+        mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mGoodsAdapter);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
                 int position = parent.getChildAdapterPosition(view);
                 int space = QMUIDisplayHelper.dp2px(getContext(), 6);
-                if ((int)position / 2 == 0) {
-                    outRect.top = space;
-                }
-                if (position % 2 == 0) {
-                    outRect.left = space;
+                if (null != bannerBeans) {
+                    if (position == 0) {
+                        outRect.top = space;
+                    }
+                    if (position == 0 || position % 2 == 1) {
+                        outRect.left = space;
+                    }
+                } else {
+                    if ((int) position / 2 == 0) {
+                        outRect.top = space;
+                    }
+                    if (position % 2 == 0) {
+                        outRect.left = space;
+                    }
                 }
                 outRect.right = space;
                 outRect.bottom = space;

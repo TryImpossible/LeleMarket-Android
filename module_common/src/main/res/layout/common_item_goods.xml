@@ -56,8 +56,8 @@
             android:singleLine="true"
             android:textColor="@color/common_text_dark"
             android:textSize="@dimen/common_text_normal_size"
-            app:layout_constraintLeft_toLeftOf="@id/divider"
-            app:layout_constraintRight_toRightOf="@id/divider"
+            app:layout_constraintLeft_toLeftOf="@id/iv_icon"
+            app:layout_constraintRight_toRightOf="@id/iv_icon"
             app:layout_constraintTop_toBottomOf="@id/divider"
             tools:text="DIY人形抱枕" />
 
@@ -70,8 +70,8 @@
             android:singleLine="true"
             android:textColor="@color/common_text_light"
             android:textSize="@dimen/common_text_normal_size"
-            app:layout_constraintLeft_toLeftOf="@id/divider"
-            app:layout_constraintRight_toRightOf="@id/divider"
+            app:layout_constraintLeft_toLeftOf="@id/tv_name"
+            app:layout_constraintRight_toRightOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             tools:text="@string/common_label_already_custom_count" />
 
@@ -84,8 +84,8 @@
             android:text="@string/common_label_start_customization"
             android:textColor="@color/common_colorAccent"
             android:textSize="@dimen/common_text_normal_size"
-            app:layout_constraintLeft_toLeftOf="@id/divider"
-            app:layout_constraintRight_toRightOf="@id/divider"
+            app:layout_constraintLeft_toLeftOf="@id/tv_custom_count"
+            app:layout_constraintRight_toRightOf="@id/tv_custom_count"
             app:layout_constraintTop_toBottomOf="@id/tv_custom_count" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

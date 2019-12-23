@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="@dimen/common_dp_6">
-
-        <com.bynn.common.view.banner.BannerView
-            android:layout_marginLeft="@dimen/common_dp_6"
-            android:id="@+id/bannerView"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:auto_play="false"
-            app:loop="true" />
-
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:context=".fragment.GoodsFragment" />
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+        tools:context=".fragment.GoodsFragment" />
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
