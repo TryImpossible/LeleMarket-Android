@@ -1,3 +1,18 @@
 <resources>
     <string name="mine_app_name">module_mine</string>
+
+    <string name="mine_label_login">请登录</string>
+    <string name="mine_label_wait_pay">待付款</string>
+    <string name="mine_label_wait_delivery">待发货</string>
+    <string name="mine_label_wait_take_delivery">待收货</string>
+    <string name="mine_label_wait_comment">待评价</string>
+    <string name="mine_label_all_order">全部订单</string>
+    <string name="mine_label_coupon">我的礼券</string>
+    <string name="mine_label_works">我的作品</string>
+    <string name="mine_label_friends">我的好友</string>
+    <string name="mine_label_address">收货地址</string>
+    <string name="mine_label_customer_service">客服和售后</string>
+    <string name="mine_label_scan_qrcode">扫乐唯码</string>
+    <string name="mine_label_see_more">更多</string>
+
 </resources>

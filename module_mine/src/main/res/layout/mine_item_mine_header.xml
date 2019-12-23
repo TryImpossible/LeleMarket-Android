@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/common_colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_default_header"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="@dimen/common_activity_horizontal_margin"
+        android:layout_marginBottom="25dp"
+        android:background="@color/common_transparent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_user_default_header"
+        app:layout_constraintBottom_toBottomOf="@id/iv_background"
+        app:layout_constraintLeft_toLeftOf="@id/iv_background" />
+
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/common_dp_10"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/mine_label_login"
+        android:textColor="@color/common_white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/ib_default_header"
+        app:layout_constraintLeft_toRightOf="@id/ib_default_header"
+        app:layout_constraintTop_toTopOf="@id/ib_default_header" />
+
+    <Button
+        android:id="@+id/btn_wait_pay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:drawableTop="@mipmap/mine_ic_wait_pay"
+        android:drawablePadding="@dimen/common_dp_6"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:text="@string/mine_label_wait_pay"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_small_size"
+        app:layout_constraintLeft_toLeftOf="@id/iv_background"
+        app:layout_constraintRight_toLeftOf="@id/btn_wait_delivery"
+        app:layout_constraintTop_toBottomOf="@id/iv_background" />
+
+    <Button
+        android:id="@+id/btn_wait_delivery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:drawableTop="@mipmap/mine_ic_wait_pay"
+        android:drawablePadding="@dimen/common_dp_6"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:text="@string/mine_label_wait_delivery"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_small_size"
+        app:layout_constraintLeft_toRightOf="@id/btn_wait_pay"
+        app:layout_constraintRight_toLeftOf="@id/btn_wait_take_delivery"
+        app:layout_constraintTop_toTopOf="@id/btn_wait_pay" />
+
+    <Button
+        android:id="@+id/btn_wait_take_delivery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:drawableTop="@mipmap/mine_ic_wait_pay"
+        android:drawablePadding="@dimen/common_dp_6"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:text="@string/mine_label_wait_take_delivery"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_small_size"
+        app:layout_constraintLeft_toRightOf="@id/btn_wait_delivery"
+        app:layout_constraintRight_toLeftOf="@id/btn_wait_comment"
+        app:layout_constraintTop_toTopOf="@id/btn_wait_delivery" />
+
+    <Button
+        android:id="@+id/btn_wait_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:drawableTop="@mipmap/mine_ic_wait_comment"
+        android:drawablePadding="@dimen/common_dp_6"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:text="@string/mine_label_wait_comment"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_small_size"
+        app:layout_constraintLeft_toRightOf="@id/btn_wait_take_delivery"
+        app:layout_constraintRight_toLeftOf="@id/btn_all_orders"
+        app:layout_constraintTop_toTopOf="@id/btn_wait_take_delivery" />
+
+    <Button
+        android:id="@+id/btn_all_orders"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:background="@color/common_white"
+        android:drawableTop="@mipmap/mine_ic_all_order"
+        android:drawablePadding="@dimen/common_dp_6"
+        android:gravity="center"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:text="@string/mine_label_all_order"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_small_size"
+        app:layout_constraintLeft_toRightOf="@id/btn_wait_comment"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_wait_delivery" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

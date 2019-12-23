@@ -5,10 +5,40 @@
     android:layout_height="match_parent"
     tools:context=".fragment.MineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Mine" />
+        android:layout_height="@dimen/common_action_bar_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:layout_width="@dimen/common_action_bar_height"
+            android:layout_height="@dimen/common_action_bar_height"
+            android:background="@color/common_transparent"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_user_default_header" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/common_dp_10"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/mine_label_login"
+            android:textColor="@color/common_white"
+            android:textSize="@dimen/common_text_normal_size" />
+
+        <ImageButton
+            android:layout_width="@dimen/common_action_bar_height"
+            android:layout_height="@dimen/common_action_bar_height"
+            android:background="@color/common_transparent"
+            android:scaleType="center"
+            android:src="@mipmap/common_ic_news" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
