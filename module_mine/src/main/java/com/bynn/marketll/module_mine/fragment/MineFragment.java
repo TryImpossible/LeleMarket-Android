@@ -2,6 +2,9 @@ package com.bynn.marketll.module_mine.fragment;
 
 
 import android.content.ClipData;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -95,19 +98,46 @@ public class MineFragment extends BaseFragment {
 
         mRecyclerView.setAdapter(mMineAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-//            @Override
-//            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-//                super.getItemOffsets(outRect, view, parent, state);
-//                // 线条左右边距
-//                int margin = QMUIDisplayHelper.dp2px(getContext(), 16);
-//                // 线条高度
-//                int height = QMUIDisplayHelper.dp2px(getContext(), 1);
-//                // 间距
-//                int space = QMUIDisplayHelper.dp2px(getContext(), 12);
-//
-//                int position = parent.getChildAdapterPosition(view);
-//            }
-//        });
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                // 线条左右边距
+                int margin = QMUIDisplayHelper.dp2px(getContext(), 16);
+                // 线条高度
+                int height = QMUIDisplayHelper.dp2px(getContext(), 1);
+                // 间距
+                int space = QMUIDisplayHelper.dp2px(getContext(), 10);
+
+                int position = parent.getChildAdapterPosition(view);
+                if (position == 1 || position == 6) {
+                    outRect.top = space;
+                }
+
+            }
+
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                paint.setStyle(Paint.Style.FILL);
+                paint.setAntiAlias(false);
+//                paint.setColor(ContextCompat.getColor(getContext(), R.color.common_divide_line));
+                paint.setColor(Color.RED);
+
+                int count = parent.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    View child = parent.getChildAt(i);
+                    if (i == 1 || i == 6) {
+                        c.drawLine(child.getLeft(), child.getTop(), child.getRight(), child.getTop() + 5, paint);
+                    }
+                    if (i == 5 || i == 7) {
+                        c.drawLine(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom() + 5, paint);
+                    } else if (i > 0) {
+                        c.drawLine(child.getLeft() - 10, child.getBottom(), child.getRight() - 10, child.getBottom() + 5, paint);
+                    }
+                }
+            }
+        });
     }
 }
