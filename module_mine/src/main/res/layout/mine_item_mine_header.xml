@@ -25,7 +25,6 @@
         app:layout_constraintBottom_toBottomOf="@id/iv_background"
         app:layout_constraintLeft_toLeftOf="@id/iv_background" />
 
-
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
@@ -42,9 +41,10 @@
 
     <Button
         android:id="@+id/btn_wait_pay"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/common_white"
+        android:background="@drawable/mine_btn_order_selector"
         android:drawableTop="@mipmap/mine_ic_wait_pay"
         android:drawablePadding="@dimen/common_dp_6"
         android:paddingVertical="@dimen/common_dp_10"
@@ -57,9 +57,10 @@
 
     <Button
         android:id="@+id/btn_wait_delivery"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/common_white"
+        android:background="@drawable/mine_btn_order_selector"
         android:drawableTop="@mipmap/mine_ic_wait_delivery"
         android:drawablePadding="@dimen/common_dp_6"
         android:paddingVertical="@dimen/common_dp_10"
@@ -72,9 +73,10 @@
 
     <Button
         android:id="@+id/btn_wait_take_delivery"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/common_white"
+        android:background="@drawable/mine_btn_order_selector"
         android:drawableTop="@mipmap/mine_ic_wait_take_delivery"
         android:drawablePadding="@dimen/common_dp_6"
         android:paddingVertical="@dimen/common_dp_10"
@@ -87,9 +89,10 @@
 
     <Button
         android:id="@+id/btn_wait_comment"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/common_white"
+        android:background="@drawable/mine_btn_order_selector"
         android:drawableTop="@mipmap/mine_ic_wait_comment"
         android:drawablePadding="@dimen/common_dp_6"
         android:paddingVertical="@dimen/common_dp_10"
@@ -100,13 +103,13 @@
         app:layout_constraintRight_toLeftOf="@id/btn_all_orders"
         app:layout_constraintTop_toTopOf="@id/btn_wait_take_delivery" />
 
-
     <Button
         android:id="@+id/btn_all_orders"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"
-        android:background="@color/common_white"
+        android:background="@drawable/mine_btn_order_selector"
         android:drawableTop="@mipmap/mine_ic_all_order"
         android:drawablePadding="@dimen/common_dp_6"
         android:paddingVertical="@dimen/common_dp_10"

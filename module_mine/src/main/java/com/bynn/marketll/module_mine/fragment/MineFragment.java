@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -31,6 +33,7 @@ import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_mine.R;
 import com.bynn.marketll.module_mine.adapter.MineAdapter;
 import com.bynn.marketll.module_mine.bean.MineBean;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +43,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 @Route(path = MineRoutePath.MINE_FRAGMENT)
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -81,6 +84,24 @@ public class MineFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_wait_pay:
+                break;
+            case R.id.btn_wait_delivery:
+                break;
+            case R.id.btn_wait_take_delivery:
+                break;
+            case R.id.btn_wait_comment:
+                break;
+            case R.id.btn_all_orders:
+                break;
+            default:
+                break;
+        }
+    }
+
     private void initView() {
         translucentStatusBar();
         List<MineBean> dataSource = new ArrayList<>();
@@ -93,7 +114,18 @@ public class MineFragment extends BaseFragment {
         dataSource.add(new MineBean(R.mipmap.mine_ic_see_more, getString(R.string.mine_label_see_more)));
 
         mMineAdapter = new MineAdapter(dataSource);
+        mMineAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                showToast(mMineAdapter.getItem(position).getTitle());
+            }
+        });
         View headerView = LayoutInflater.from(getContext()).inflate(R.layout.mine_item_mine_header, null, false);
+        headerView.findViewById(R.id.btn_wait_pay).setOnClickListener(this);
+        headerView.findViewById(R.id.btn_wait_delivery).setOnClickListener(this);
+        headerView.findViewById(R.id.btn_wait_take_delivery).setOnClickListener(this);
+        headerView.findViewById(R.id.btn_wait_comment).setOnClickListener(this);
+        headerView.findViewById(R.id.btn_all_orders).setOnClickListener(this);
         mMineAdapter.addHeaderView(headerView);
 
         mRecyclerView.setAdapter(mMineAdapter);
@@ -102,10 +134,8 @@ public class MineFragment extends BaseFragment {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                // 线条左右边距
-                int margin = QMUIDisplayHelper.dp2px(getContext(), 16);
                 // 线条高度
-                int height = QMUIDisplayHelper.dp2px(getContext(), 1);
+                int lineHeight = QMUIDisplayHelper.dp2px(getContext(), 1);
                 // 间距
                 int space = QMUIDisplayHelper.dp2px(getContext(), 10);
 
@@ -113,7 +143,9 @@ public class MineFragment extends BaseFragment {
                 if (position == 1 || position == 6) {
                     outRect.top = space;
                 }
-
+                if (position == 5 || position == 7) {
+                    outRect.bottom = lineHeight;
+                }
             }
 
             @Override
@@ -122,21 +154,20 @@ public class MineFragment extends BaseFragment {
                 Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
                 paint.setStyle(Paint.Style.FILL);
                 paint.setAntiAlias(false);
-//                paint.setColor(ContextCompat.getColor(getContext(), R.color.common_divide_line));
-                paint.setColor(Color.RED);
+                paint.setColor(ContextCompat.getColor(getContext(), R.color.common_divide_line));
 
+                int lineHeight = QMUIDisplayHelper.dp2px(getContext(), 1);
                 int count = parent.getChildCount();
-                for (int i = 0; i < count; i++) {
+                for (int i = 1; i < count; i++) {
                     View child = parent.getChildAt(i);
                     if (i == 1 || i == 6) {
-                        c.drawLine(child.getLeft(), child.getTop(), child.getRight(), child.getTop() + 5, paint);
+                        c.drawRect(child.getLeft(), child.getTop() - lineHeight, child.getRight(), child.getTop(), paint);
                     }
                     if (i == 5 || i == 7) {
-                        c.drawLine(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom() + 5, paint);
-                    } else if (i > 0) {
-                        c.drawLine(child.getLeft() - 10, child.getBottom(), child.getRight() - 10, child.getBottom() + 5, paint);
+                        c.drawRect(child.getLeft(), child.getBottom(), child.getRight(), child.getBottom() + lineHeight, paint);
                     }
                 }
+
             }
         });
     }

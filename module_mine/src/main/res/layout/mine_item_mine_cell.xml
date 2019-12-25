@@ -4,32 +4,47 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/common_white"
-    android:gravity="center_vertical"
-    android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
-    android:paddingVertical="@dimen/common_dp_12">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/iv_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:scaleType="center"
-        tools:src="@mipmap/mine_ic_coupon" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/common_dp_12"
-        android:layout_weight="1"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_layout_selector"
         android:gravity="center_vertical"
-        android:textColor="@color/common_text_normal"
-        android:textSize="@dimen/common_text_normal_size"
-        tools:text="@string/mine_label_coupon" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
+        android:paddingVertical="@dimen/common_dp_10">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:scaleType="center"
-        tools:src="@mipmap/common_ic_right_arrow" />
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="center"
+            tools:src="@mipmap/mine_ic_coupon" />
 
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/common_dp_12"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/common_text_normal"
+            android:textSize="@dimen/common_text_normal_size"
+            tools:text="@string/mine_label_coupon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@mipmap/common_ic_right_arrow"
+            android:tint="@color/common_text_dark" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/common_activity_horizontal_margin"
+        android:background="@color/common_divide_line"
+        android:paddingLeft="@dimen/common_activity_horizontal_margin" />
 </LinearLayout>
