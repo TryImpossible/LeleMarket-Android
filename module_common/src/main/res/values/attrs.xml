@@ -28,11 +28,17 @@
     <declare-styleable name="CommonHeaderView">
         <!--是否显示返回图标-->
         <attr name="back_icon_visible" format="boolean" tools:ignore="ResourceName" />
+        <!--返回图标-->
         <attr name="back_icon" format="reference" tools:ignore="ResourceName" />
-        <attr name="back_text" format="string|reference" tools:ignore="ResourceName" />
-        <attr name="title" format="string|reference" tools:ignore="ResourceName" />
+        <!--返回文案-->
+        <attr name="back_text" format="string" tools:ignore="ResourceName" />
+        <!--标题-->
+        <attr name="title" format="string" tools:ignore="ResourceName" />
+        <!--菜单图标-->
         <attr name="menu_icon" format="reference" tools:ignore="ResourceName" />
-        <attr name="menu_text" format="string|reference" tools:ignore="ResourceName" />
+        <!--菜单文案-->
+        <attr name="menu_text" format="string" tools:ignore="ResourceName" />
+        <!--分隔线是否可见-->
         <attr name="line_visible" format="boolean" tools:ignore="ResourceName" />
     </declare-styleable>
 

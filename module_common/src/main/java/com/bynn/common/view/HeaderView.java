@@ -99,6 +99,29 @@ public class HeaderView extends RelativeLayout {
 
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonHeaderView, defStyleAttr, 0);
         if (null != typedArray) {
+            boolean backIconVisible = typedArray.getBoolean(R.styleable.CommonHeaderView_back_icon_visible, true);
+            setBackIconVisible(backIconVisible);
+
+            int backIconResId = typedArray.getResourceId(R.styleable.CommonHeaderView_back_icon, 0);
+            if (backIconResId != 0) {
+                setBackIcon(backIconResId);
+            }
+            String backText = typedArray.getString(R.styleable.CommonHeaderView_back_text);
+            setBackText(backText);
+
+            String title = typedArray.getString(R.styleable.CommonHeaderView_title);
+            setTitleText(title);
+
+            int menuIconResId = typedArray.getResourceId(R.styleable.CommonHeaderView_menu_icon, 0);
+            if (menuIconResId != 0) {
+                setMenuIcon(menuIconResId);
+            }
+            String menuText = typedArray.getString(R.styleable.CommonHeaderView_menu_text);
+            setMenuText(menuText);
+
+            boolean lineVisible = typedArray.getBoolean(R.styleable.CommonHeaderView_line_visible, true);
+            setLineVisible(lineVisible);
+
             typedArray.recycle();
         }
     }
