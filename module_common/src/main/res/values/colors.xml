@@ -16,7 +16,7 @@
     <color name="common_activity_background">#F5F5F5</color>
 
     <color name="common_text_dark">#000000</color>
-    <color name="common_text_normal">#000000</color>
+    <color name="common_text_normal">#333333</color>
     <color name="common_text_light">#6A6A6A</color>
 
     <color name="common_divide_line">#F1F1F1</color>

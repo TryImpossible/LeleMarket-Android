@@ -11,6 +11,9 @@ import retrofit2.Retrofit;
 @Singleton
 @Component(modules = {AppModule.class, NetworkModule.class})
 public interface AppComponent {
+
+    String getBaseUrl();
+
     BaseApplication getApp();
 
     Retrofit getRetrofit();

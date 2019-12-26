@@ -6,4 +6,6 @@ public class MineRoutePath {
 
     public static final String MINE_FRAGMENT = PREFIX + "MineFragment";
 
+    public static final String CUSTOMER_SERVICE_ACTIVITY = PREFIX + "CustomerServiceActivity";
+
 }

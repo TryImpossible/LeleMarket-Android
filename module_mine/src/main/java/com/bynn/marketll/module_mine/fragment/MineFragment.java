@@ -1,34 +1,24 @@
 package com.bynn.marketll.module_mine.fragment;
 
 
-import android.content.ClipData;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.arouter.MineRoutePath;
 import com.bynn.common.base.BaseFragment;
-import com.bynn.common.qmui.QMUIDeviceHelper;
 import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_mine.R;
 import com.bynn.marketll.module_mine.adapter.MineAdapter;
@@ -37,6 +27,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -48,7 +42,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private Unbinder mUnbinder;
+    private Unbinder    mUnbinder;
     private MineAdapter mMineAdapter;
 
     public static MineFragment newInstance() {
@@ -117,6 +111,13 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         mMineAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (position) {
+                    case 4:
+                        ARouter.getInstance().build(MineRoutePath.CUSTOMER_SERVICE_ACTIVITY).navigation();
+                        break;
+                    default:
+                        break;
+                }
                 showToast(mMineAdapter.getItem(position).getTitle());
             }
         });

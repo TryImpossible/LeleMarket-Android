@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -59,6 +60,10 @@ public class BaseWebActivity extends BaseActivity {
     }
 
     private void initView() {
+        //设置true,才能让Webivew支持<meta>标签的viewport属性
+        mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+
         mWebView.setWebViewClient(new QMUIWebViewClient(false, false) {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {

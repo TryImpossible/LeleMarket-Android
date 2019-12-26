@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!--  BannerView  -->
     <declare-styleable name="CommonBannerView">
         <!--是否自动播放-->
         <attr name="auto_play" format="boolean" tools:ignore="ResourceName" />
         <!--是否轮播-->
         <attr name="loop" format="boolean" tools:ignore="ResourceName" />
     </declare-styleable>
+
+    <!--  Indicator  -->
     <declare-styleable name="CommonIndicator">
         <!--是否显示-->
         <attr name="visible" format="boolean" tools:ignore="ResourceName" />
@@ -19,5 +22,22 @@
         <attr name="item_margin" format="dimension|reference" tools:ignore="ResourceName" />
         <!--数量-->
         <attr name="count" format="integer" tools:ignore="ResourceName" />
+    </declare-styleable>
+
+    <!--  HeaderView  -->
+    <declare-styleable name="CommonHeaderView">
+        <!--是否显示返回图标-->
+        <attr name="back_icon_visible" format="boolean" tools:ignore="ResourceName" />
+        <attr name="back_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="back_text" format="string|reference" tools:ignore="ResourceName" />
+        <attr name="title" format="string|reference" tools:ignore="ResourceName" />
+        <attr name="menu_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="menu_text" format="string|reference" tools:ignore="ResourceName" />
+        <attr name="line_visible" format="boolean" tools:ignore="ResourceName" />
+    </declare-styleable>
+
+    <!--  EmptyView  -->
+    <declare-styleable name="CommonEmptyView">
+
     </declare-styleable>
 </resources>

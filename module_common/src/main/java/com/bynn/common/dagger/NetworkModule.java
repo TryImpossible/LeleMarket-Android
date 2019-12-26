@@ -3,6 +3,7 @@ package com.bynn.common.dagger;
 import android.app.Application;
 import android.util.Log;
 
+import com.bynn.common.constants.CommonConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
 import dagger.Module;
@@ -77,7 +77,7 @@ public class NetworkModule {
 
 
     private String getBaseUrl() {
-        return "https://api.51app.cn";
+        return CommonConstants.BASE_RUL;
     }
 
     private HttpLoggingInterceptor getHttpLoggingInterceptor() {
@@ -89,6 +89,11 @@ public class NetworkModule {
         });
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
+    }
+
+    @Provides
+    String provideBaseUrl() {
+        return getBaseUrl();
     }
 
     @Singleton
