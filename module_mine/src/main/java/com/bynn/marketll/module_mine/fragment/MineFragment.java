@@ -115,6 +115,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     case 4:
                         ARouter.getInstance().build(MineRoutePath.CUSTOMER_SERVICE_ACTIVITY).navigation();
                         break;
+                    case 6:
+                        ARouter.getInstance().build(MineRoutePath.SEE_MORE_ACTIVITY).navigation();
+                        break;
                     default:
                         break;
                 }

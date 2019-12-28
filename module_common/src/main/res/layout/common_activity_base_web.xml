@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".base.BaseWebActivity">
 
-    <TextView
-        android:id="@+id/tv_title"
+    <com.bynn.common.view.HeaderView
+        android:id="@+id/header_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_action_bar_height"
-        android:background="@color/common_action_bar"
-        android:gravity="center"
-        android:textColor="@color/common_text_dark"
-        android:textSize="@dimen/common_text_big_size"
-        tools:text="标题" />
+        android:layout_height="wrap_content"
+        app:line_visible="false" />
 
     <com.bynn.common.qmui.webview.QMUIWebView
         android:id="@+id/webview"

@@ -8,4 +8,6 @@ public class MineRoutePath {
 
     public static final String CUSTOMER_SERVICE_ACTIVITY = PREFIX + "CustomerServiceActivity";
 
+    public static final String SEE_MORE_ACTIVITY = PREFIX + "SeeMoreActivity";
+
 }

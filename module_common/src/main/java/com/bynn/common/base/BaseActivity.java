@@ -1,9 +1,13 @@
 package com.bynn.common.base;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -16,7 +20,11 @@ import com.bynn.common.exception.NetworkResultException;
 import com.bynn.common.qmui.QMUIStatusBarHelper;
 import com.bynn.common.utils.DensityHelp;
 import com.bynn.common.utils.ToastUtils;
+import com.bynn.common.view.EmptyView;
 import com.bynn.common.view.ProgressDialog;
+import com.bynn.common.view.banner.BannerView;
+
+import org.w3c.dom.Text;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -158,6 +166,14 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
      * 网络不可用
      */
     protected void noNetwork() {
+//        findViewById(android.R.id.content).setBackgroundColor(Color.WHITE);
 
+        TextView tv = new TextView(this);
+        tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        tv.setText("1231232132112321");
+        tv.setTextColor(Color.BLUE);
+        tv.setTextSize(30);
+
+        addContentView(new EmptyView(this), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 }

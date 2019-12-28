@@ -44,6 +44,11 @@
 
     <!--  EmptyView  -->
     <declare-styleable name="CommonEmptyView">
-
+        <!--图标-->
+        <attr name="icon" format="reference" tools:ignore="ResourceName" />
+        <!--提示文案-->
+        <attr name="content_text" format="string" tools:ignore="ResourceName" />
+        <!--按钮标题-->
+        <attr name="button_text" format="string" tools:ignore="ResourceName" />
     </declare-styleable>
 </resources>

@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/common_activity_horizontal_margin">
 
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_dp_12"
+        android:text="购物车空空如也"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_normal_size" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_dp_12"
+        android:background="@color/common_colorAccent"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingHorizontal="@dimen/common_dp_18"
+        android:paddingVertical="@dimen/common_dp_4"
+        android:text="去逛逛"
+        android:textColor="@color/common_white"
+        android:textSize="@dimen/common_text_normal_size" />
 </LinearLayout>

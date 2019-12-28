@@ -41,7 +41,6 @@
 
     <Button
         android:id="@+id/btn_wait_pay"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/mine_btn_order_selector"
@@ -57,7 +56,6 @@
 
     <Button
         android:id="@+id/btn_wait_delivery"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/mine_btn_order_selector"
@@ -73,7 +71,6 @@
 
     <Button
         android:id="@+id/btn_wait_take_delivery"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/mine_btn_order_selector"
@@ -89,7 +86,6 @@
 
     <Button
         android:id="@+id/btn_wait_comment"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/mine_btn_order_selector"
@@ -105,7 +101,6 @@
 
     <Button
         android:id="@+id/btn_all_orders"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"

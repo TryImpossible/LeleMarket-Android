@@ -16,6 +16,5 @@ public class CustomerServiceActivity extends BaseWebActivity {
         super.onCreate(savedInstanceState);
         String url = BaseApplication.getAppComponent().getBaseUrl() + MineConstants.CUSTOMER_SERVICE_URL;
         loadUrl(url);
-
     }
 }

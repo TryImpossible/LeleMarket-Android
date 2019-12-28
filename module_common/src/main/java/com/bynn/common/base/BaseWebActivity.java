@@ -17,6 +17,7 @@ import com.bynn.common.R2;
 import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.common.qmui.webview.QMUIWebView;
 import com.bynn.common.qmui.webview.QMUIWebViewClient;
+import com.bynn.common.view.HeaderView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +29,7 @@ import io.reactivex.functions.Consumer;
 
 public class BaseWebActivity extends BaseActivity {
 
-    @BindView(R2.id.tv_title)    TextView    mTvTitle;
+    @BindView(R2.id.header_view) HeaderView  mHeaderView;
     @BindView(R2.id.webview)     QMUIWebView mWebView;
     @BindView(R2.id.progressBar) ProgressBar mProgressBar;
 
@@ -60,6 +61,13 @@ public class BaseWebActivity extends BaseActivity {
     }
 
     private void initView() {
+        mHeaderView.setOnBackClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         //设置true,才能让Webivew支持<meta>标签的viewport属性
         mWebView.getSettings().setUseWideViewPort(true);
         mWebView.getSettings().setLoadWithOverviewMode(true);
@@ -88,7 +96,7 @@ public class BaseWebActivity extends BaseActivity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                mTvTitle.setText(title);
+                mHeaderView.setTitleText(title);
             }
 
             @Override
