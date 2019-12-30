@@ -16,13 +16,13 @@
         android:id="@+id/tv_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_dp_12"
-        android:text="@string/common_label_empty_prompt"
+        android:layout_marginTop="@dimen/common_activity_horizontal_margin"
+        android:text="@string/common_label_no_network_prompt"
         android:textColor="@color/common_text_light"
-        android:textSize="@dimen/common_text_normal_size" />
+        android:textSize="@dimen/common_text_small_size" />
 
     <Button
-        android:id="@+id/btn_go"
+        android:id="@+id/btn_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_dp_12"
@@ -31,7 +31,7 @@
         android:minHeight="0dp"
         android:paddingHorizontal="@dimen/common_dp_18"
         android:paddingVertical="@dimen/common_dp_4"
-        android:text="@string/common_button_empty_go"
+        android:text="@string/common_button_no_network_setting"
         android:textColor="@color/common_white"
         android:textSize="@dimen/common_text_normal_size" />
 </LinearLayout>

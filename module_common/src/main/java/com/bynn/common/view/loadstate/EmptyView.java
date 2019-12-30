@@ -24,19 +24,19 @@ public class EmptyView extends LinearLayout {
     /**
      * 上下文
      */
-    private Context              mContext;
+    private Context mContext;
     /**
      * 图标
      */
-    private ImageView            mIvIcon;
+    private ImageView mIvIcon;
     /**
      * 文字
      */
-    private TextView             mTvContent;
+    private TextView mTvPrompt;
     /**
      * 按钮
      */
-    private Button               mButton;
+    private Button mBtnGo;
     /**
      * 按钮事件
      */
@@ -65,9 +65,9 @@ public class EmptyView extends LinearLayout {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.common_empty_view, this);
         mIvIcon = view.findViewById(R.id.iv_icon);
-        mTvContent = view.findViewById(R.id.tv_content);
-        mButton = view.findViewById(R.id.button);
-        mButton.setOnClickListener(new OnClickListener() {
+        mTvPrompt = view.findViewById(R.id.tv_prompt);
+        mBtnGo = view.findViewById(R.id.btn_go);
+        mBtnGo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mButtonClickListener) {
@@ -82,13 +82,13 @@ public class EmptyView extends LinearLayout {
             if (iconResId != 0) {
                 setIcon(iconResId);
             }
-            String content = typedArray.getString(R.styleable.CommonEmptyView_content_text);
+            String content = typedArray.getString(R.styleable.CommonEmptyView_prompt);
             if (!TextUtils.isEmpty(content)) {
-                setContent(content);
+                setPrompt(content);
             }
-            String buttonText = typedArray.getString(R.styleable.CommonEmptyView_button_text);
+            String buttonText = typedArray.getString(R.styleable.CommonEmptyView_button_title);
             if (!TextUtils.isEmpty(buttonText)) {
-                setContent(buttonText);
+                setPrompt(buttonText);
             }
         }
         typedArray.recycle();
@@ -117,8 +117,8 @@ public class EmptyView extends LinearLayout {
      *
      * @param resId
      */
-    private void setContent(@StringRes int resId) {
-        mTvContent.setText(resId);
+    private void setPrompt(@StringRes int resId) {
+        mTvPrompt.setText(resId);
     }
 
     /**
@@ -126,8 +126,8 @@ public class EmptyView extends LinearLayout {
      *
      * @param content
      */
-    private void setContent(String content) {
-        mTvContent.setText(content);
+    private void setPrompt(String content) {
+        mTvPrompt.setText(content);
     }
 
     /**
@@ -135,8 +135,8 @@ public class EmptyView extends LinearLayout {
      *
      * @param resId
      */
-    private void setButtonText(@StringRes int resId) {
-        mTvContent.setText(resId);
+    private void setButtonTitle(@StringRes int resId) {
+        mBtnGo.setText(resId);
     }
 
     /**
@@ -144,8 +144,8 @@ public class EmptyView extends LinearLayout {
      *
      * @param text
      */
-    private void setButtonText(String text) {
-        mTvContent.setText(text);
+    private void setButtonTitle(String text) {
+        mBtnGo.setText(text);
     }
 
     /**

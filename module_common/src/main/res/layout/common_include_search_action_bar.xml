@@ -39,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:focusable="false"
             android:background="@null"
-            android:hint="@string/common_label_search_action_bar_hint"
+            android:focusable="false"
+            android:hint="@string/common_hint_search_action_bar"
             android:paddingVertical="6dp"
             android:textColor="@color/common_text_light"
             android:textSize="@dimen/common_text_small_size" />

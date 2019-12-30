@@ -47,8 +47,16 @@
         <!--图标-->
         <attr name="icon" format="reference" tools:ignore="ResourceName" />
         <!--提示文案-->
-        <attr name="content_text" format="string" tools:ignore="ResourceName" />
+        <attr name="prompt" format="string" tools:ignore="ResourceName" />
         <!--按钮标题-->
-        <attr name="button_text" format="string" tools:ignore="ResourceName" />
+        <attr name="button_title" format="string" tools:ignore="ResourceName" />
+    </declare-styleable>
+
+    <!--加载状态布局-->
+    <declare-styleable name="CommonLoadStateLayout">
+        <attr name="loading" format="reference" tools:ignore="ResourceName" />
+        <attr name="failure" format="reference" tools:ignore="ResourceName" />
+        <attr name="empty" format="reference" tools:ignore="ResourceName" />
+        <attr name="no_network" format="reference" tools:ignore="ResourceName" />
     </declare-styleable>
 </resources>
