@@ -1,13 +1,10 @@
 package com.bynn.common.base;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -15,8 +12,7 @@ import com.bynn.common.R;
 import com.bynn.common.exception.NetworkResultException;
 import com.bynn.common.qmui.QMUIStatusBarHelper;
 import com.bynn.common.utils.ToastUtils;
-import com.bynn.common.view.EmptyView;
-import com.bynn.common.view.ProgressDialog;
+import com.bynn.common.view.loadstate.EmptyView;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

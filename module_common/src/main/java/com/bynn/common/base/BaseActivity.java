@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,11 +19,8 @@ import com.bynn.common.exception.NetworkResultException;
 import com.bynn.common.qmui.QMUIStatusBarHelper;
 import com.bynn.common.utils.DensityHelp;
 import com.bynn.common.utils.ToastUtils;
-import com.bynn.common.view.EmptyView;
+import com.bynn.common.view.loadstate.EmptyView;
 import com.bynn.common.view.ProgressDialog;
-import com.bynn.common.view.banner.BannerView;
-
-import org.w3c.dom.Text;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

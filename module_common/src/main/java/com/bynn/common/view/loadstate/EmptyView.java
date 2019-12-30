@@ -1,4 +1,4 @@
-package com.bynn.common.view;
+package com.bynn.common.view.loadstate;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -91,6 +91,7 @@ public class EmptyView extends LinearLayout {
                 setContent(buttonText);
             }
         }
+        typedArray.recycle();
     }
 
     /**
