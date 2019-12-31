@@ -162,14 +162,5 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
      * 网络不可用
      */
     protected void noNetwork() {
-//        findViewById(android.R.id.content).setBackgroundColor(Color.WHITE);
-
-        TextView tv = new TextView(this);
-        tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        tv.setText("1231232132112321");
-        tv.setTextColor(Color.BLUE);
-        tv.setTextSize(30);
-
-        addContentView(new EmptyView(this), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 }

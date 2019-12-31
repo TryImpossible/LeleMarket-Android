@@ -19,24 +19,25 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.bynn.common.R;
+import com.bynn.common.utils.ToastUtils;
 
-public class EmptyView extends LinearLayout {
+public class EmptyView extends LinearLayout implements View.OnClickListener {
     /**
      * 上下文
      */
-    private Context mContext;
+    private Context              mContext;
     /**
      * 图标
      */
-    private ImageView mIvIcon;
+    private ImageView            mIvIcon;
     /**
      * 文字
      */
-    private TextView mTvPrompt;
+    private TextView             mTvPrompt;
     /**
      * 按钮
      */
-    private Button mBtnGo;
+    private Button               mBtnGo;
     /**
      * 按钮事件
      */
@@ -63,10 +64,18 @@ public class EmptyView extends LinearLayout {
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.common_empty_view, this);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.common_empty_view, null);
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("sidfjasdoipfj");
+            }
+        });
+        addView(view);
         mIvIcon = view.findViewById(R.id.iv_icon);
         mTvPrompt = view.findViewById(R.id.tv_prompt);
         mBtnGo = view.findViewById(R.id.btn_go);
+        mBtnGo.setOnClickListener(this);
         mBtnGo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,17 +87,17 @@ public class EmptyView extends LinearLayout {
 
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonEmptyView, defStyleAttr, 0);
         if (null != typedArray) {
-            int iconResId = typedArray.getResourceId(R.styleable.CommonEmptyView_icon, 0);
+            int iconResId = typedArray.getResourceId(R.styleable.CommonEmptyView_empty_icon, 0);
             if (iconResId != 0) {
                 setIcon(iconResId);
             }
-            String content = typedArray.getString(R.styleable.CommonEmptyView_prompt);
+            String content = typedArray.getString(R.styleable.CommonEmptyView_empty_prompt);
             if (!TextUtils.isEmpty(content)) {
                 setPrompt(content);
             }
-            String buttonText = typedArray.getString(R.styleable.CommonEmptyView_button_title);
-            if (!TextUtils.isEmpty(buttonText)) {
-                setPrompt(buttonText);
+            String goText = typedArray.getString(R.styleable.CommonEmptyView_empty_go_title);
+            if (!TextUtils.isEmpty(goText)) {
+                setButtonTitle(goText);
             }
         }
         typedArray.recycle();
@@ -99,7 +108,7 @@ public class EmptyView extends LinearLayout {
      *
      * @param resId
      */
-    private void setIcon(@DrawableRes int resId) {
+    public void setIcon(@DrawableRes int resId) {
         mIvIcon.setImageResource(resId);
     }
 
@@ -108,7 +117,7 @@ public class EmptyView extends LinearLayout {
      *
      * @param drawable
      */
-    private void setIcon(Drawable drawable) {
+    public void setIcon(Drawable drawable) {
         mIvIcon.setImageDrawable(drawable);
     }
 
@@ -117,7 +126,7 @@ public class EmptyView extends LinearLayout {
      *
      * @param resId
      */
-    private void setPrompt(@StringRes int resId) {
+    public void setPrompt(@StringRes int resId) {
         mTvPrompt.setText(resId);
     }
 
@@ -126,7 +135,7 @@ public class EmptyView extends LinearLayout {
      *
      * @param content
      */
-    private void setPrompt(String content) {
+    public void setPrompt(String content) {
         mTvPrompt.setText(content);
     }
 
@@ -135,7 +144,7 @@ public class EmptyView extends LinearLayout {
      *
      * @param resId
      */
-    private void setButtonTitle(@StringRes int resId) {
+    public void setButtonTitle(@StringRes int resId) {
         mBtnGo.setText(resId);
     }
 
@@ -144,7 +153,7 @@ public class EmptyView extends LinearLayout {
      *
      * @param text
      */
-    private void setButtonTitle(String text) {
+    public void setButtonTitle(String text) {
         mBtnGo.setText(text);
     }
 
@@ -153,7 +162,14 @@ public class EmptyView extends LinearLayout {
      *
      * @param listener
      */
-    private void setOnButtonClickListener(View.OnClickListener listener) {
+    public void setOnButtonClickListener(View.OnClickListener listener) {
         mButtonClickListener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_go) {
+            ToastUtils.showShort("123");
+        }
     }
 }

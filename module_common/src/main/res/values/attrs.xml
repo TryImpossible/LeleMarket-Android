@@ -42,21 +42,50 @@
         <attr name="line_visible" format="boolean" tools:ignore="ResourceName" />
     </declare-styleable>
 
+    <!--加载状态布局-->
+    <declare-styleable name="CommonLoadStateLayout">
+        <!--加载视图-->
+        <attr name="loading" format="reference" tools:ignore="ResourceName" />
+        <!--失败视图-->
+        <attr name="failure" format="reference" tools:ignore="ResourceName" />
+        <!--空视图-->
+        <attr name="empty" format="reference" tools:ignore="ResourceName" />
+        <!--无网络视图-->
+        <attr name="no_network" format="reference" tools:ignore="ResourceName" />
+    </declare-styleable>
+
+    <!--  LoadingView  -->
+    <declare-styleable name="CommonLoadingView">
+        <!--提示文案-->
+        <attr name="loading_prompt" format="string" tools:ignore="ResourceName" />
+    </declare-styleable>
+
     <!--  EmptyView  -->
     <declare-styleable name="CommonEmptyView">
         <!--图标-->
-        <attr name="icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="empty_icon" format="reference" tools:ignore="ResourceName" />
         <!--提示文案-->
-        <attr name="prompt" format="string" tools:ignore="ResourceName" />
+        <attr name="empty_prompt" format="string" tools:ignore="ResourceName" />
         <!--按钮标题-->
-        <attr name="button_title" format="string" tools:ignore="ResourceName" />
+        <attr name="empty_go_title" format="string" tools:ignore="ResourceName" />
     </declare-styleable>
 
-    <!--加载状态布局-->
-    <declare-styleable name="CommonLoadStateLayout">
-        <attr name="loading" format="reference" tools:ignore="ResourceName" />
-        <attr name="failure" format="reference" tools:ignore="ResourceName" />
-        <attr name="empty" format="reference" tools:ignore="ResourceName" />
-        <attr name="no_network" format="reference" tools:ignore="ResourceName" />
+    <!--  FailureView  -->
+    <declare-styleable name="CommonFailureView">
+        <!--图标-->
+        <attr name="failure_icon" format="reference" tools:ignore="ResourceName" />
+        <!--提示文案-->
+        <attr name="failure_prompt" format="string" tools:ignore="ResourceName" />
     </declare-styleable>
+
+    <!--  NoNetworkView  -->
+    <declare-styleable name="CommonNoNetworkView">
+        <!--图标-->
+        <attr name="no_network_icon" format="reference" tools:ignore="ResourceName" />
+        <!--提示文案-->
+        <attr name="no_network_prompt" format="string" tools:ignore="ResourceName" />
+        <!--按钮标题-->
+        <attr name="no_network_setting_text" format="string" tools:ignore="ResourceName" />
+    </declare-styleable>
+
 </resources>
