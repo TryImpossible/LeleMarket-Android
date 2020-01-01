@@ -10,4 +10,8 @@ public class MineRoutePath {
 
     public static final String SEE_MORE_ACTIVITY = PREFIX + "SeeMoreActivity";
 
+    public static final String MINE_COUPON_ACTIVITY = PREFIX + "MineCouponActivity";
+
+    public static final String MINE_LOGIN_ACTIVITY = PREFIX + "MineLoginActivity";
+
 }

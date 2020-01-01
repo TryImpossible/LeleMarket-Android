@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bynn.common.arouter.LoginNavigationCallbackImpl;
 import com.bynn.common.arouter.MineRoutePath;
 import com.bynn.common.base.BaseFragment;
 import com.bynn.common.qmui.QMUIDisplayHelper;
@@ -100,6 +101,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (position) {
+                    case 0:
+                        ARouter.getInstance()
+                                .build(MineRoutePath.MINE_COUPON_ACTIVITY)
+                                .navigation(getActivity(), new LoginNavigationCallbackImpl());
+                        break;
                     case 4:
                         ARouter.getInstance().build(MineRoutePath.CUSTOMER_SERVICE_ACTIVITY).navigation();
                         break;
@@ -109,7 +115,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     default:
                         break;
                 }
-                showToast(mMineAdapter.getItem(position).getTitle());
             }
         });
         View headerView = LayoutInflater.from(getContext()).inflate(R.layout.mine_item_mine_header, null, false);
