@@ -32,6 +32,7 @@ import com.bynn.common.view.banner.BannerView;
 import com.bynn.common.view.banner.ScaleTransformer;
 import com.bynn.marketll.module_custom.CustomPresenter;
 import com.bynn.marketll.module_custom.R;
+import com.bynn.marketll.module_custom.R2;
 import com.bynn.marketll.module_custom.dagger.CustomComponent;
 import com.bynn.marketll.module_custom.dagger.CustomModule;
 import com.bynn.marketll.module_custom.dagger.DaggerCustomComponent;
@@ -52,12 +53,11 @@ public class GoodsFragment extends BaseFragment {
     private static final String BANNER = "banner";
     private static final String RECOMMENDGOODS = "recommendGoods";
 
-    @BindView(R.id.refreshLayout)
+    @BindView(R2.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.recyclerView)
+    @BindView(R2.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private Unbinder mUnbinder;
     private GoodsAdapter mGoodsAdapter;
     private CustomPresenter mCustomPresenter;
     // 菜单id
@@ -108,16 +108,6 @@ public class GoodsFragment extends BaseFragment {
         }
         return view;
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-    }
-
 
     @Override
     public void hideProgress() {

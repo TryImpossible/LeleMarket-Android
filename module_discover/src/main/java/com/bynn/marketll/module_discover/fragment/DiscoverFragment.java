@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bynn.common.arouter.DiscoverRoutePath;
 import com.bynn.common.base.BaseFragment;
 import com.bynn.common.utils.ToastUtils;
+import com.bynn.common.view.loadstate.LoadStateLayout;
 import com.bynn.marketll.module_discover.R;
 import com.bynn.marketll.module_discover.R2;
 
@@ -28,9 +29,8 @@ import butterknife.Unbinder;
 @Route(path = DiscoverRoutePath.DISCOVER_FRAGMENT)
 public class DiscoverFragment extends BaseFragment {
 
-    @BindView(R2.id.text) TextView text;
-
-    private Unbinder mUnbinder;
+    @BindView(R2.id.loadStateLayout)
+    LoadStateLayout mLoadStateLayout;
 
     public static DiscoverFragment newInstance() {
 
@@ -52,21 +52,18 @@ public class DiscoverFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.discover_fragment_discover, container, false);
         mUnbinder = ButterKnife.bind(this, view);
+        initView();
         return view;
     }
 
-    @Override
-    public void onDestroy() {
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-        super.onDestroy();
-    }
-
-
-    @OnClick(R2.id.text)
-    public void click() {
-        ToastUtils.showShort(getContext(), "DiscoverFragment");
+    private void initView() {
+        mLoadStateLayout.getFailureViewBuilder()
+                .setOnReloadClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showToast("重试");
+                    }
+                });
+        mLoadStateLayout.showFailure();
     }
 }

@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.ShoppingCartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.bynn.common.view.HeaderView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Shopping Cart" />
+        android:layout_height="wrap_content"
+        app:back_visible="false"
+        app:title="@string/shopping_title_shopping_cart" />
 
-</FrameLayout>
+    <com.bynn.common.view.loadstate.LoadStateLayout
+        android:id="@+id/loadStateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

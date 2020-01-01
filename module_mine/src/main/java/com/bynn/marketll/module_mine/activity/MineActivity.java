@@ -12,6 +12,7 @@ public class MineActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mine_activity_main);
+        translucentStatusBar();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.frameLayout, MineFragment.newInstance())
                 .commit();

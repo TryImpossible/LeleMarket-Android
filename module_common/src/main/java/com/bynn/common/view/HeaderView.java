@@ -29,43 +29,43 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
     /**
      * 上下文
      */
-    private Context              mContext;
+    private Context mContext;
     /**
      * 左侧
      */
-    private LinearLayout         mLlLeft;
+    private LinearLayout mLlBack;
     /**
      * 返回图标
      */
-    private ImageView            mIvBackIcon;
+    private ImageView mIvBackIcon;
     /**
      * 返回文案
      */
-    private TextView             mTvBackText;
+    private TextView mTvBackText;
     /**
      * 中间
      */
-    private FrameLayout          mFlMiddle;
+    private FrameLayout mFlTitle;
     /**
      * 标题
      */
-    private TextView             mTvTitleText;
+    private TextView mTvTitleText;
     /**
      * 右侧
      */
-    private FrameLayout          mFlRight;
+    private FrameLayout mFlMenu;
     /**
      * 菜单图标
      */
-    private ImageView            mIvMenuIcon;
+    private ImageView mIvMenuIcon;
     /**
      * 菜单文案
      */
-    private TextView             mTvMenuText;
+    private TextView mTvMenuText;
     /**
      * 底部分隔线
      */
-    private View                 mVLine;
+    private View mVLine;
     /**
      * 返回事件
      */
@@ -95,12 +95,12 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ll_left) {
+        if (v.getId() == R.id.ll_back_layout) {
             if (null != mBackClickListener) {
                 mBackClickListener.onClick(v);
             }
         }
-        if (v.getId() == R.id.fl_right) {
+        if (v.getId() == R.id.fl_menu_layout) {
             if (null != mMenuClickListener) {
                 mMenuClickListener.onClick(v);
             }
@@ -111,49 +111,62 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
         mContext = context;
 
         View view = LayoutInflater.from(context).inflate(R.layout.common_header_view, this);
-        mLlLeft = view.findViewById(R.id.ll_left);
-        mLlLeft.setOnClickListener(this);
-        mLlLeft = view.findViewById(R.id.ll_left);
+        mLlBack = view.findViewById(R.id.ll_back_layout);
+        mLlBack.setOnClickListener(this);
         mIvBackIcon = view.findViewById(R.id.iv_back);
         mTvBackText = view.findViewById(R.id.tv_back);
-        mFlMiddle = view.findViewById(R.id.fl_middle);
+        mFlTitle = view.findViewById(R.id.fl_title_layout);
         mTvTitleText = view.findViewById(R.id.tv_title);
-        mFlRight = view.findViewById(R.id.fl_right);
-        mFlRight.setOnClickListener(this);
+        mFlMenu = view.findViewById(R.id.fl_menu_layout);
+        mFlMenu.setOnClickListener(this);
         mIvMenuIcon = view.findViewById(R.id.iv_menu);
         mTvMenuText = view.findViewById(R.id.tv_menu);
         mVLine = view.findViewById(R.id.v_line);
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonHeaderView, defStyleAttr, 0);
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.HeaderView, defStyleAttr, 0);
         if (null != typedArray) {
-            boolean backIconVisible = typedArray.getBoolean(R.styleable.CommonHeaderView_back_icon_visible, true);
+            boolean backVisible = typedArray.getBoolean(R.styleable.HeaderView_back_visible, true);
+            setBackVisible(backVisible);
+
+            boolean backIconVisible = typedArray.getBoolean(R.styleable.HeaderView_back_icon_visible, true);
             setBackIconVisible(backIconVisible);
 
-            int backIconResId = typedArray.getResourceId(R.styleable.CommonHeaderView_back_icon, 0);
+            int backIconResId = typedArray.getResourceId(R.styleable.HeaderView_back_icon, 0);
             if (backIconResId != 0) {
                 setBackIcon(backIconResId);
             }
-            String backText = typedArray.getString(R.styleable.CommonHeaderView_back_text);
+            String backText = typedArray.getString(R.styleable.HeaderView_back_text);
             setBackText(backText);
 
-
-            String title = typedArray.getString(R.styleable.CommonHeaderView_title);
+            String title = typedArray.getString(R.styleable.HeaderView_title);
             setTitleText(title);
 
-            int menuIconResId = typedArray.getResourceId(R.styleable.CommonHeaderView_menu_icon, 0);
+            boolean menuVisible = typedArray.getBoolean(R.styleable.HeaderView_menu_visible, false);
+            setMenuVisible(menuVisible);
+
+            int menuIconResId = typedArray.getResourceId(R.styleable.HeaderView_menu_icon, 0);
             if (menuIconResId != 0) {
                 setMenuIcon(menuIconResId);
             }
-            String menuText = typedArray.getString(R.styleable.CommonHeaderView_menu_text);
+            String menuText = typedArray.getString(R.styleable.HeaderView_menu_text);
             if (!TextUtils.isEmpty(menuText)) {
                 setMenuText(menuText);
             }
 
-            boolean lineVisible = typedArray.getBoolean(R.styleable.CommonHeaderView_line_visible, true);
+            boolean lineVisible = typedArray.getBoolean(R.styleable.HeaderView_line_visible, true);
             setLineVisible(lineVisible);
 
             typedArray.recycle();
         }
+    }
+
+    /**
+     * 是否显示返回
+     *
+     * @param visible
+     */
+    public void setBackVisible(boolean visible) {
+        mLlBack.setVisibility(visible ? VISIBLE : GONE);
     }
 
     /**
@@ -217,6 +230,15 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      */
     public void setTitleText(String title) {
         mTvTitleText.setText(title);
+    }
+
+    /**
+     * 是否显示返回
+     *
+     * @param visible
+     */
+    public void setMenuVisible(boolean visible) {
+        mFlMenu.setVisibility(visible ? VISIBLE : GONE);
     }
 
     /**

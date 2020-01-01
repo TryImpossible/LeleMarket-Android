@@ -21,6 +21,7 @@ import com.bynn.common.arouter.MineRoutePath;
 import com.bynn.common.base.BaseFragment;
 import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_mine.R;
+import com.bynn.marketll.module_mine.R2;
 import com.bynn.marketll.module_mine.adapter.MineAdapter;
 import com.bynn.marketll.module_mine.bean.MineBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -39,10 +40,9 @@ import butterknife.Unbinder;
 @Route(path = MineRoutePath.MINE_FRAGMENT)
 public class MineFragment extends BaseFragment implements View.OnClickListener {
 
-    @BindView(R.id.recyclerView)
+    @BindView(R2.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private Unbinder    mUnbinder;
     private MineAdapter mMineAdapter;
 
     public static MineFragment newInstance() {
@@ -70,34 +70,22 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-    }
-
-    @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_wait_pay:
-                break;
-            case R.id.btn_wait_delivery:
-                break;
-            case R.id.btn_wait_take_delivery:
-                break;
-            case R.id.btn_wait_comment:
-                break;
-            case R.id.btn_all_orders:
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_wait_pay) {
+
+        } else if (id == R.id.btn_wait_delivery) {
+
+        } else if (id == R.id.btn_wait_take_delivery) {
+
+        } else if (id == R.id.btn_wait_comment) {
+
+        } else if (id == R.id.btn_all_orders) {
+
         }
     }
 
     private void initView() {
-        translucentStatusBar();
         List<MineBean> dataSource = new ArrayList<>();
         dataSource.add(new MineBean(R.mipmap.mine_ic_coupon, getString(R.string.mine_label_coupon)));
         dataSource.add(new MineBean(R.mipmap.mine_ic_works, getString(R.string.mine_label_works)));

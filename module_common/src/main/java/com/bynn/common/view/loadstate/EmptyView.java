@@ -14,30 +14,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bynn.common.R;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import com.bynn.common.R;
-import com.bynn.common.utils.ToastUtils;
-
-public class EmptyView extends LinearLayout implements View.OnClickListener {
+public class EmptyView extends LinearLayout {
     /**
      * 上下文
      */
-    private Context              mContext;
+    private Context mContext;
     /**
      * 图标
      */
-    private ImageView            mIvIcon;
+    private ImageView mIvIcon;
     /**
      * 文字
      */
-    private TextView             mTvPrompt;
+    private TextView mTvPrompt;
     /**
      * 按钮
      */
-    private Button               mBtnGo;
+    private Button mBtnGo;
     /**
      * 按钮事件
      */
@@ -64,18 +63,10 @@ public class EmptyView extends LinearLayout implements View.OnClickListener {
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.common_empty_view, null);
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtils.showShort("sidfjasdoipfj");
-            }
-        });
-        addView(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.common_empty_view, this);
         mIvIcon = view.findViewById(R.id.iv_icon);
         mTvPrompt = view.findViewById(R.id.tv_prompt);
         mBtnGo = view.findViewById(R.id.btn_go);
-        mBtnGo.setOnClickListener(this);
         mBtnGo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,23 +76,24 @@ public class EmptyView extends LinearLayout implements View.OnClickListener {
             }
         });
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonEmptyView, defStyleAttr, 0);
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.EmptyView, defStyleAttr, 0);
         if (null != typedArray) {
-            int iconResId = typedArray.getResourceId(R.styleable.CommonEmptyView_empty_icon, 0);
+            int iconResId = typedArray.getResourceId(R.styleable.EmptyView_icon, 0);
             if (iconResId != 0) {
                 setIcon(iconResId);
             }
-            String content = typedArray.getString(R.styleable.CommonEmptyView_empty_prompt);
-            if (!TextUtils.isEmpty(content)) {
-                setPrompt(content);
+            String prompt = typedArray.getString(R.styleable.EmptyView_prompt);
+            if (!TextUtils.isEmpty(prompt)) {
+                setPrompt(prompt);
             }
-            String goText = typedArray.getString(R.styleable.CommonEmptyView_empty_go_title);
+            String goText = typedArray.getString(R.styleable.EmptyView_go_text);
             if (!TextUtils.isEmpty(goText)) {
-                setButtonTitle(goText);
+                setButtonText(goText);
             }
         }
         typedArray.recycle();
     }
+
 
     /**
      * 设置图标
@@ -133,10 +125,19 @@ public class EmptyView extends LinearLayout implements View.OnClickListener {
     /**
      * 设置文字
      *
-     * @param content
+     * @param prompt
      */
-    public void setPrompt(String content) {
-        mTvPrompt.setText(content);
+    public void setPrompt(String prompt) {
+        mTvPrompt.setText(prompt);
+    }
+
+    /**
+     * 设置按钮是否可见
+     *
+     * @param visible
+     */
+    public void setButtonVisible(boolean visible) {
+        mBtnGo.setVisibility(visible ? VISIBLE : GONE);
     }
 
     /**
@@ -144,7 +145,7 @@ public class EmptyView extends LinearLayout implements View.OnClickListener {
      *
      * @param resId
      */
-    public void setButtonTitle(@StringRes int resId) {
+    public void setButtonText(@StringRes int resId) {
         mBtnGo.setText(resId);
     }
 
@@ -153,7 +154,7 @@ public class EmptyView extends LinearLayout implements View.OnClickListener {
      *
      * @param text
      */
-    public void setButtonTitle(String text) {
+    public void setButtonText(String text) {
         mBtnGo.setText(text);
     }
 
@@ -166,10 +167,116 @@ public class EmptyView extends LinearLayout implements View.OnClickListener {
         mButtonClickListener = listener;
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btn_go) {
-            ToastUtils.showShort("123");
+    /**
+     * 设置EmptyView是否可见
+     *
+     * @param visible
+     */
+    public void setVisible(boolean visible) {
+        setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    public static class Builder {
+        private EmptyView instance;
+
+        public Builder(Context context) {
+            this.instance = new EmptyView(context);
         }
+
+        /**
+         * 设置图标
+         *
+         * @param resId
+         */
+        public Builder setIcon(@DrawableRes int resId) {
+            instance.setIcon(resId);
+            return this;
+        }
+
+        /**
+         * 设置图标
+         *
+         * @param drawable
+         */
+        public Builder setIcon(Drawable drawable) {
+            instance.setIcon(drawable);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param resId
+         */
+        public Builder setPrompt(@StringRes int resId) {
+            instance.setPrompt(resId);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param prompt
+         */
+        public Builder setPrompt(String prompt) {
+            instance.setPrompt(prompt);
+            return this;
+        }
+
+        /**
+         * 设置按钮是否可见
+         *
+         * @param visible
+         */
+        public Builder setButtonVisible(boolean visible) {
+            instance.setButtonVisible(visible);
+            return this;
+        }
+
+        /**
+         * 设置按钮文字
+         *
+         * @param resId
+         */
+        public Builder setButtonText(@StringRes int resId) {
+            instance.setButtonText(resId);
+            return this;
+        }
+
+        /**
+         * 设置按钮文字
+         *
+         * @param text
+         */
+        public Builder setButtonText(String text) {
+            instance.setButtonText(text);
+            return this;
+        }
+
+        /**
+         * 设置按钮事件
+         *
+         * @param listener
+         */
+        public Builder setOnButtonClickListener(View.OnClickListener listener) {
+            instance.setOnButtonClickListener(listener);
+            return this;
+        }
+
+        /**
+         * 设置是否可见
+         *
+         * @param visible
+         * @return
+         */
+        public Builder setVisible(boolean visible) {
+            instance.setVisible(visible);
+            return this;
+        }
+
+        public EmptyView create() {
+            return instance;
+        }
+
     }
 }

@@ -86,14 +86,14 @@ public class Indicator extends LinearLayout {
         // 默认选中第一项
         mLastCheckedItem = 0;
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonIndicator, defStyleAttr, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Indicator, defStyleAttr, 0);
         if (null != typedArray) {
-            mVisible = typedArray.getBoolean(R.styleable.CommonIndicator_visible, mVisible);
-            mItemSize = typedArray.getDimensionPixelSize(R.styleable.CommonIndicator_item_size, mItemSize);
-            mColor = typedArray.getColor(R.styleable.CommonIndicator_color, mColor);
-            mCheckedColor = typedArray.getColor(R.styleable.CommonIndicator_checked_color, mCheckedColor);
-            mItemMargin = typedArray.getDimensionPixelSize(R.styleable.CommonIndicator_item_margin, mItemMargin);
-            mCount = typedArray.getInteger(R.styleable.CommonIndicator_count, mCount);
+            mVisible = typedArray.getBoolean(R.styleable.Indicator_visible, mVisible);
+            mItemSize = typedArray.getDimensionPixelSize(R.styleable.Indicator_item_size, mItemSize);
+            mColor = typedArray.getColor(R.styleable.Indicator_color, mColor);
+            mCheckedColor = typedArray.getColor(R.styleable.Indicator_checked_color, mCheckedColor);
+            mItemMargin = typedArray.getDimensionPixelSize(R.styleable.Indicator_item_margin, mItemMargin);
+            mCount = typedArray.getInteger(R.styleable.Indicator_count, mCount);
         }
 
     }

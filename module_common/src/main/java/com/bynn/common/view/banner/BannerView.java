@@ -106,10 +106,10 @@ public class BannerView extends FrameLayout {
         mLastPosition = 0;
         mIsAutoPlay = true;
         mIsLoop = true;
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonBannerView, defStyleAttr, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BannerView, defStyleAttr, 0);
         if (null != typedArray) {
-            mIsAutoPlay = typedArray.getBoolean(R.styleable.CommonBannerView_auto_play, mIsAutoPlay);
-            mIsLoop = typedArray.getBoolean(R.styleable.CommonBannerView_loop, mIsLoop);
+            mIsAutoPlay = typedArray.getBoolean(R.styleable.BannerView_auto_play, mIsAutoPlay);
+            mIsLoop = typedArray.getBoolean(R.styleable.BannerView_loop, mIsLoop);
         }
     }
 
@@ -123,7 +123,7 @@ public class BannerView extends FrameLayout {
         mPagerAdapter = new PagerAdapter() {
             @Override
             public int getCount() {
-                return Integer.MAX_VALUE;
+                return mIsLoop ? Integer.MAX_VALUE : length;
             }
 
             @Override
@@ -207,7 +207,6 @@ public class BannerView extends FrameLayout {
                 return false;
             }
         });
-
         mIndicator.show(length);
     }
 
@@ -274,6 +273,7 @@ public class BannerView extends FrameLayout {
      * 开始播放
      */
     public void startPlay() {
+        stopPlay();
         Observable.interval(1, 5, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

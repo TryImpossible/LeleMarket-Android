@@ -7,11 +7,14 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.bynn.common.R;
 import com.bynn.common.utils.ToastUtils;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -19,63 +22,47 @@ public class LoadStateLayout extends FrameLayout {
     /**
      * 加载中
      */
-    public static final int     LOADING             = 1;
+    public static final int LOADING = 1;
     /**
      * 加载成功
      */
-    public static final int     SUCCESS             = 2;
+    public static final int SUCCESS = 2;
     /**
      * 加载失败，重试
      */
-    public static final int     FAILURE             = 3;
+    public static final int FAILURE = 3;
     /**
      * 数据为空
      */
-    public static final int     EMPTY               = 4;
+    public static final int EMPTY = 4;
     /**
      * 无网络
      */
-    public static final int     NO_NETWORK          = 5;
+    public static final int NO_NETWORK = 5;
     /**
      * 上下文
      */
-    private             Context mContext;
+    private Context mContext;
     /**
-     * 加载视图布局ID
+     * 加载视图构造器
      */
-    private             int     mLoadingViewResId   = -1;
+    private LoadingView.Builder mLoadingViewBuilder;
     /**
-     * 加载视图
+     * 错误视图构造器
      */
-    private             View    mLoadingView;
+    private FailureView.Builder mFailureViewBuilder;
     /**
-     * 错误视图布局ID
+     * 空视图构造器
      */
-    private             int     mFailureViewResId   = -1;
+    private EmptyView.Builder mEmptyViewBuilder;
     /**
-     * 错误视图
+     * 无网络视图构造器
      */
-    private             View    mFailureView;
+    private NoNetworkView.Builder mNoNetworkViewBuilder;
     /**
-     * 空视图布局ID
+     * 上次加载状态，默认成功
      */
-    private             int     mEmptyViewResId     = -1;
-    /**
-     * 空视图
-     */
-    private             View    mEmptyView;
-    /**
-     * 无网络视图布局ID
-     */
-    private             int     mNoNetworkViewResId = -1;
-    /**
-     * 无网络视图
-     */
-    private             View    mNoNetworkView;
-    /**
-     * 上次显示的View，默认null
-     */
-    private             View    mLastShowView;
+    private int mLastState = SUCCESS;
 
     public LoadStateLayout(@NonNull Context context) {
         this(context, null);
@@ -97,109 +84,140 @@ public class LoadStateLayout extends FrameLayout {
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonLoadStateLayout, defStyleAttr, 0);
-        if (typedArray != null) {
-            mLoadingViewResId = typedArray.getResourceId(R.styleable.CommonLoadStateLayout_loading, R.layout.common_loading_view);
-            mFailureViewResId = typedArray.getResourceId(R.styleable.CommonLoadStateLayout_loading, R.layout.common_failure_view);
-            mEmptyViewResId = typedArray.getResourceId(R.styleable.CommonLoadStateLayout_loading, R.layout.common_empty_view);
-            mNoNetworkViewResId = typedArray.getResourceId(R.styleable.CommonLoadStateLayout_loading, R.layout.common_no_network_view);
+    }
+
+    private void initLoadingViewBuilder() {
+        mLoadingViewBuilder = new LoadingView.Builder(mContext);
+        addView(mLoadingViewBuilder.create());
+    }
+
+    private void initFailureViewBuilder() {
+        mFailureViewBuilder = new FailureView.Builder(mContext);
+        addView(mFailureViewBuilder.create());
+    }
+
+    private void initEmptyViewBuilder() {
+        mEmptyViewBuilder = new EmptyView.Builder(mContext);
+        addView(mEmptyViewBuilder.create());
+    }
+
+    private void initNoNetworkViewBuilder() {
+        mNoNetworkViewBuilder = new NoNetworkView.Builder(mContext);
+        addView(mNoNetworkViewBuilder.create());
+    }
+
+    private void hideLastView() {
+        switch (mLastState) {
+            case LOADING:
+                mLoadingViewBuilder.setVisible(false);
+                break;
+            case FAILURE:
+                mFailureViewBuilder.setVisible(false);
+                break;
+            case EMPTY:
+                mEmptyViewBuilder.setVisible(false);
+                break;
+            case NO_NETWORK:
+                mNoNetworkViewBuilder.setVisible(false);
+                break;
+            default:
+                break;
         }
-        typedArray.recycle();
     }
 
     /**
      * 显示加载视图
      */
     public void showLoading() {
-        if (mLastShowView != null) {
-            mLastShowView.setVisibility(GONE);
+        if (mLastState == LOADING) {
+            return;
         }
-        if (mLoadingViewResId != -1 && mLoadingView == null) {
-            mLoadingView = LayoutInflater.from(mContext).inflate(mLoadingViewResId, null);
-            addView(mLoadingView);
+        hideLastView();
+
+        if (mLoadingViewBuilder == null) {
+            initLoadingViewBuilder();
         } else {
-            mLoadingView.setVisibility(VISIBLE);
+            mLoadingViewBuilder.setVisible(true);
         }
-        mLastShowView = mLoadingView;
+        mLastState = LOADING;
     }
 
     /**
      * 显示失败视图
      */
     public void showFailure() {
-        if (mLastShowView != null) {
-            mLastShowView.setVisibility(GONE);
+        if (mLastState == FAILURE) {
+            return;
         }
-        if (mFailureViewResId != -1 && mFailureView == null) {
-            mFailureView = LayoutInflater.from(mContext).inflate(mFailureViewResId, null);
-            addView(mFailureView);
+        hideLastView();
+
+        if (mFailureViewBuilder == null) {
+            initFailureViewBuilder();
         } else {
-            mFailureView.setVisibility(VISIBLE);
+            mFailureViewBuilder.setVisible(true);
         }
-        mLastShowView = mFailureView;
+        mLastState = FAILURE;
     }
 
     /**
      * 显示空视图
      */
     public void showEmpty() {
-        if (mLastShowView != null) {
-            mLastShowView.setVisibility(GONE);
+        if (mLastState == EMPTY) {
+            return;
         }
-        if (mEmptyViewResId != -1 && mEmptyView == null) {
-            mEmptyView = LayoutInflater.from(mContext).inflate(mEmptyViewResId, null);
-            addView(mEmptyView);
+        hideLastView();
+
+        if (mEmptyViewBuilder == null) {
+            initEmptyViewBuilder();
         } else {
-            mEmptyView.setVisibility(VISIBLE);
+            mEmptyViewBuilder.setVisible(true);
         }
-        mLastShowView = mEmptyView;
+        mLastState = EMPTY;
     }
 
     /**
      * 显示无网络视图
      */
     public void showNoNetwork() {
-        if (mLastShowView != null) {
-            mLastShowView.setVisibility(GONE);
+        if (mLastState == NO_NETWORK) {
+            return;
         }
-        if (mNoNetworkViewResId != -1 && mNoNetworkView == null) {
-            mNoNetworkView = LayoutInflater.from(mContext).inflate(mNoNetworkViewResId, null);
-            addView(mNoNetworkView);
+        hideLastView();
+
+        if (mNoNetworkViewBuilder == null) {
+            initNoNetworkViewBuilder();
         } else {
-            mNoNetworkView.setVisibility(VISIBLE);
+            mNoNetworkViewBuilder.setVisible(true);
         }
-        mLastShowView = mNoNetworkView;
+        mLastState = NO_NETWORK;
     }
 
-    public View getLoadingView() {
-        return mLoadingView;
+    public LoadingView.Builder getLoadingViewBuilder() {
+        if (mLoadingViewBuilder == null) {
+            initLoadingViewBuilder();
+        }
+        return mLoadingViewBuilder;
     }
 
-    public void setLoadingView(View loadingView) {
-        mLoadingView = loadingView;
+    public FailureView.Builder getFailureViewBuilder() {
+        if (mFailureViewBuilder == null) {
+            initFailureViewBuilder();
+        }
+        return mFailureViewBuilder;
     }
 
-    public View getFailureView() {
-        return mFailureView;
+    public EmptyView.Builder getEmptyViewBuilder() {
+        if (mEmptyViewBuilder == null) {
+            initEmptyViewBuilder();
+        }
+        return mEmptyViewBuilder;
     }
 
-    public void setFailureView(View failureView) {
-        mFailureView = failureView;
-    }
-
-    public View getEmptyView() {
-        return mEmptyView;
-    }
-
-    public void setEmptyView(View emptyView) {
-        mEmptyView = emptyView;
-    }
-
-    public View getNoNetworkView() {
-        return mNoNetworkView;
-    }
-
-    public void setNoNetworkView(View noNetworkView) {
-        mNoNetworkView = noNetworkView;
+    public NoNetworkView.Builder getNoNetworkViewBuilder() {
+        if (mNoNetworkViewBuilder == null) {
+            initNoNetworkViewBuilder();
+        }
+        return mNoNetworkViewBuilder;
     }
 }

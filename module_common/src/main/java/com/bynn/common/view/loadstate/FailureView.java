@@ -23,19 +23,19 @@ public class FailureView extends LinearLayout {
     /**
      * 上下文
      */
-    private Context              mContext;
+    private Context mContext;
     /**
      * 父容器
      */
-    private LinearLayout         mLlContainer;
+    private LinearLayout mLlContainer;
     /**
      * 图标
      */
-    private ImageView            mIvIcon;
+    private ImageView mIvIcon;
     /**
      * 文字
      */
-    private TextView             mTvPrompt;
+    private TextView mTvPrompt;
     /**
      * 重试
      */
@@ -75,15 +75,15 @@ public class FailureView extends LinearLayout {
         mIvIcon = view.findViewById(R.id.iv_icon);
         mTvPrompt = view.findViewById(R.id.tv_prompt);
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonFailureView, defStyleAttr, 0);
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.FailureView, defStyleAttr, 0);
         if (null != typedArray) {
-            int iconResId = typedArray.getResourceId(R.styleable.CommonFailureView_failure_icon, 0);
+            int iconResId = typedArray.getResourceId(R.styleable.FailureView_icon, 0);
             if (iconResId != 0) {
                 setIcon(iconResId);
             }
-            String content = typedArray.getString(R.styleable.CommonFailureView_failure_prompt);
-            if (!TextUtils.isEmpty(content)) {
-                setPrompt(content);
+            String prompt = typedArray.getString(R.styleable.FailureView_prompt);
+            if (!TextUtils.isEmpty(prompt)) {
+                setPrompt(prompt);
             }
         }
         typedArray.recycle();
@@ -94,7 +94,7 @@ public class FailureView extends LinearLayout {
      *
      * @param resId
      */
-    private void setIcon(@DrawableRes int resId) {
+    public void setIcon(@DrawableRes int resId) {
         mIvIcon.setImageResource(resId);
     }
 
@@ -103,7 +103,7 @@ public class FailureView extends LinearLayout {
      *
      * @param drawable
      */
-    private void setIcon(Drawable drawable) {
+    public void setIcon(Drawable drawable) {
         mIvIcon.setImageDrawable(drawable);
     }
 
@@ -112,17 +112,17 @@ public class FailureView extends LinearLayout {
      *
      * @param resId
      */
-    private void setPrompt(@StringRes int resId) {
+    public void setPrompt(@StringRes int resId) {
         mTvPrompt.setText(resId);
     }
 
     /**
      * 设置文字
      *
-     * @param content
+     * @param prompt
      */
-    private void setPrompt(String content) {
-        mTvPrompt.setText(content);
+    public void setPrompt(String prompt) {
+        mTvPrompt.setText(prompt);
     }
 
     /**
@@ -130,7 +130,89 @@ public class FailureView extends LinearLayout {
      *
      * @param listener
      */
-    private void setOnButtonClickListener(View.OnClickListener listener) {
+    public void setOnReloadClickListener(View.OnClickListener listener) {
         mReloadClickListener = listener;
     }
+
+    /**
+     * 设置FailureView是否可见
+     *
+     * @param visible
+     */
+    public void setVisible(boolean visible) {
+        setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    public static class Builder {
+        private FailureView instance;
+
+        public Builder(Context context) {
+            this.instance = new FailureView(context);
+        }
+
+        /**
+         * 设置图标
+         *
+         * @param resId
+         */
+        public Builder setIcon(@DrawableRes int resId) {
+            instance.setIcon(resId);
+            return this;
+        }
+
+        /**
+         * 设置图标
+         *
+         * @param drawable
+         */
+        public Builder setIcon(Drawable drawable) {
+            instance.setIcon(drawable);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param resId
+         */
+        public Builder setPrompt(@StringRes int resId) {
+            instance.setPrompt(resId);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param prompt
+         */
+        public Builder setPrompt(String prompt) {
+            instance.setPrompt(prompt);
+            return this;
+        }
+
+        /**
+         * 设置按钮事件
+         *
+         * @param listener
+         */
+        public Builder setOnReloadClickListener(View.OnClickListener listener) {
+            instance.setOnReloadClickListener(listener);
+            return this;
+        }
+
+        /**
+         * 设置FailureView是否可见
+         *
+         * @param visible
+         */
+        public Builder setVisible(boolean visible) {
+            instance.setVisible(visible);
+            return this;
+        }
+
+        public FailureView create() {
+            return instance;
+        }
+    }
+
 }

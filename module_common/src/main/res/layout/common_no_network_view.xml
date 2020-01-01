@@ -11,13 +11,12 @@
         android:id="@+id/iv_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/common_ic_net_error" />
 
     <TextView
         android:id="@+id/tv_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_activity_horizontal_margin"
         android:text="@string/common_label_no_network_prompt"
         android:textColor="@color/common_text_light"
         android:textSize="@dimen/common_text_small_size" />

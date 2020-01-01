@@ -20,7 +20,7 @@ public class LoadingView extends LinearLayout {
     /**
      * 上下文
      */
-    private Context  mContext;
+    private Context mContext;
     /**
      * 文字
      */
@@ -48,11 +48,11 @@ public class LoadingView extends LinearLayout {
         mContext = context;
         View view = LayoutInflater.from(mContext).inflate(R.layout.common_loading_view, this);
         mTvPrompt = view.findViewById(R.id.tv_prompt);
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonLoadingView, defStyleAttr, 0);
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.LoadingView, defStyleAttr, 0);
         if (null != typedArray) {
-            String content = typedArray.getString(R.styleable.CommonLoadingView_loading_prompt);
-            if (!TextUtils.isEmpty(content)) {
-                setPrompt(content);
+            String prompt = typedArray.getString(R.styleable.LoadingView_prompt);
+            if (!TextUtils.isEmpty(prompt)) {
+                setPrompt(prompt);
             }
         }
         typedArray.recycle();
@@ -63,16 +63,67 @@ public class LoadingView extends LinearLayout {
      *
      * @param resId
      */
-    private void setPrompt(@StringRes int resId) {
+    public void setPrompt(@StringRes int resId) {
         mTvPrompt.setText(resId);
     }
 
     /**
      * 设置文字
      *
-     * @param content
+     * @param prompt
      */
-    private void setPrompt(String content) {
-        mTvPrompt.setText(content);
+    public void setPrompt(String prompt) {
+        mTvPrompt.setText(prompt);
+    }
+
+    /**
+     * 设置LoadingView是否可见
+     *
+     * @param visible
+     */
+    public void setVisible(boolean visible) {
+        setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    public static class Builder {
+        private LoadingView instance;
+
+        public Builder(Context context) {
+            this.instance = new LoadingView(context);
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param resId
+         */
+        public Builder setPrompt(@StringRes int resId) {
+            instance.setPrompt(resId);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param prompt
+         */
+        public Builder setPrompt(String prompt) {
+            instance.setPrompt(prompt);
+            return this;
+        }
+
+        /**
+         * 设置LoadingView是否可见
+         *
+         * @param visible
+         */
+        public Builder setVisible(boolean visible) {
+            instance.setVisible(visible);
+            return this;
+        }
+
+        public LoadingView create() {
+            return instance;
+        }
     }
 }

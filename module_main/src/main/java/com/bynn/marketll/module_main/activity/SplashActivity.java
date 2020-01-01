@@ -42,7 +42,6 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_splash);
-        ButterKnife.bind(this);
 
         translucentStatusBar();
 

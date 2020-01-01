@@ -26,19 +26,19 @@ public class NoNetworkView extends LinearLayout {
     /**
      * 上下文
      */
-    private Context              mContext;
+    private Context mContext;
     /**
      * 图标
      */
-    private ImageView            mIvIcon;
+    private ImageView mIvIcon;
     /**
      * 文字
      */
-    private TextView             mTvPrompt;
+    private TextView mTvPrompt;
     /**
      * 设定按钮
      */
-    private Button               mBtnSetting;
+    private Button mBtnSetting;
     /**
      * 重试
      */
@@ -78,19 +78,19 @@ public class NoNetworkView extends LinearLayout {
             }
         });
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CommonNoNetworkView, defStyleAttr, 0);
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.NoNetworkView, defStyleAttr, 0);
         if (null != typedArray) {
-            int iconResId = typedArray.getResourceId(R.styleable.CommonNoNetworkView_no_network_icon, 0);
+            int iconResId = typedArray.getResourceId(R.styleable.NoNetworkView_icon, 0);
             if (iconResId != 0) {
                 setIcon(iconResId);
             }
-            String content = typedArray.getString(R.styleable.CommonNoNetworkView_no_network_prompt);
-            if (!TextUtils.isEmpty(content)) {
-                setPrompt(content);
+            String prompt = typedArray.getString(R.styleable.NoNetworkView_prompt);
+            if (!TextUtils.isEmpty(prompt)) {
+                setPrompt(prompt);
             }
-            String settingText = typedArray.getString(R.styleable.CommonNoNetworkView_no_network_setting_text);
+            String settingText = typedArray.getString(R.styleable.NoNetworkView_setting_text);
             if (!TextUtils.isEmpty(settingText)) {
-                setSettingTitle(settingText);
+                setSettingText(settingText);
             }
         }
         typedArray.recycle();
@@ -126,10 +126,10 @@ public class NoNetworkView extends LinearLayout {
     /**
      * 设置文字
      *
-     * @param content
+     * @param prompt
      */
-    private void setPrompt(String content) {
-        mTvPrompt.setText(content);
+    private void setPrompt(String prompt) {
+        mTvPrompt.setText(prompt);
     }
 
     /**
@@ -137,7 +137,7 @@ public class NoNetworkView extends LinearLayout {
      *
      * @param resId
      */
-    private void setSettingTitle(@StringRes int resId) {
+    private void setSettingText(@StringRes int resId) {
         mBtnSetting.setText(resId);
     }
 
@@ -146,17 +146,119 @@ public class NoNetworkView extends LinearLayout {
      *
      * @param text
      */
-    private void setSettingTitle(String text) {
+    private void setSettingText(String text) {
         mBtnSetting.setText(text);
     }
-
 
     /**
      * 设置按钮事件
      *
      * @param listener
      */
-    private void setOnButtonClickListener(View.OnClickListener listener) {
+    private void setOnSettingClickListener(View.OnClickListener listener) {
         mSettingClickListener = listener;
+    }
+
+
+    /**
+     * 设置NoNetworkView是否可见
+     *
+     * @param visible
+     */
+    public void setVisible(boolean visible) {
+        setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    public static class Builder {
+        private NoNetworkView instance;
+
+        public Builder(Context context) {
+            this.instance = new NoNetworkView(context);
+        }
+
+        /**
+         * 设置图标
+         *
+         * @param resId
+         */
+        private Builder setIcon(@DrawableRes int resId) {
+            instance.setIcon(resId);
+            return this;
+        }
+
+        /**
+         * 设置图标
+         *
+         * @param drawable
+         */
+        private Builder Builder(Drawable drawable) {
+            instance.setIcon(drawable);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param resId
+         */
+        private Builder setPrompt(@StringRes int resId) {
+            instance.setPrompt(resId);
+            return this;
+        }
+
+        /**
+         * 设置文字
+         *
+         * @param prompt
+         */
+        private Builder setPrompt(String prompt) {
+            instance.setPrompt(prompt);
+            return this;
+        }
+
+        /**
+         * 设置设定标题
+         *
+         * @param resId
+         */
+        private Builder setSettingText(@StringRes int resId) {
+            instance.setSettingText(resId);
+            return this;
+        }
+
+        /**
+         * 设置设定标题
+         *
+         * @param text
+         */
+        private Builder setSettingText(String text) {
+            instance.setSettingText(text);
+            return this;
+        }
+
+        /**
+         * 设置按钮事件
+         *
+         * @param listener
+         */
+        private Builder setOnSettingClickListener(View.OnClickListener listener) {
+            instance.setOnSettingClickListener(listener);
+            return this;
+        }
+
+
+        /**
+         * 设置NoNetworkView是否可见
+         *
+         * @param visible
+         */
+        public Builder setVisible(boolean visible) {
+            instance.setVisible(visible);
+            return this;
+        }
+
+        public NoNetworkView create() {
+            return instance;
+        }
     }
 }

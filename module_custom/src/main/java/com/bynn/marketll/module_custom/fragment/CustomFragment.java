@@ -14,6 +14,7 @@ import com.bynn.common.bean.BannerBean;
 import com.bynn.common.bean.RecommendGoodsBean;
 import com.bynn.marketll.module_custom.CustomPresenter;
 import com.bynn.marketll.module_custom.R;
+import com.bynn.marketll.module_custom.R2;
 import com.bynn.marketll.module_custom.adapter.MenuAdapter;
 import com.bynn.marketll.module_custom.bean.MenuBean;
 import com.bynn.marketll.module_custom.bean.MenuResult;
@@ -30,7 +31,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 /**
@@ -39,12 +39,11 @@ import butterknife.Unbinder;
 @Route(path = CustomRoutePath.CUSTOM_FRAGMENT)
 public class CustomFragment extends BaseFragment {
 
-    @BindView(R.id.recyclerView)
+    @BindView(R2.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.frameLayout)
+    @BindView(R2.id.frameLayout)
     FrameLayout mFrameLayout;
 
-    private Unbinder mUnbinder;
     private MenuAdapter mMenuAdapter;
     private CustomPresenter mCustomPresenter;
     private Fragment mLastSelectedFragment;
@@ -76,15 +75,6 @@ public class CustomFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-    }
-
-    @Override
     public void onSuccess(Object successObj) {
         super.onSuccess(successObj);
         if (successObj instanceof MenuResult) {
@@ -101,17 +91,17 @@ public class CustomFragment extends BaseFragment {
         }
     }
 
-    @OnClick(R.id.iv_scan_qrcode)
+    @OnClick(R2.id.iv_scan_qrcode)
     public void onScanClicked() {
         showToast("扫码");
     }
 
-    @OnClick(R.id.tv_keyword)
+    @OnClick(R2.id.tv_keyword)
     public void onSearchClicked() {
         showToast("搜索");
     }
 
-    @OnClick(R.id.iv_news)
+    @OnClick(R2.id.iv_news)
     public void onNewsClicked() {
         showToast("消息");
     }

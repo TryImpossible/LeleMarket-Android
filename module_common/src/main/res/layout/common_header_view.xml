@@ -7,11 +7,11 @@
     android:gravity="center_vertical">
 
     <LinearLayout
-        android:id="@+id/ll_left"
+        android:id="@+id/ll_back_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_toRightOf="@id/fl_middle"
+        android:layout_toRightOf="@id/fl_title_layout"
         android:minWidth="@dimen/common_action_bar_height"
         android:minHeight="@dimen/common_action_bar_height"
         android:orientation="horizontal">
@@ -34,13 +34,13 @@
             android:layout_marginLeft="4dp"
             android:textColor="@color/common_text_normal"
             android:textSize="@dimen/common_text_normal_size"
-            android:visibility="visible"
+            android:visibility="gone"
             tools:text="上一页" />
 
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/fl_middle"
+        android:id="@+id/fl_title_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true">
@@ -56,13 +56,14 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/fl_right"
+        android:id="@+id/fl_menu_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_toLeftOf="@id/fl_middle"
+        android:layout_toLeftOf="@id/fl_title_layout"
         android:minWidth="@dimen/common_action_bar_height"
-        android:minHeight="@dimen/common_action_bar_height">
+        android:minHeight="@dimen/common_action_bar_height"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_menu"

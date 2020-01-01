@@ -1,91 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+
+<!--但是在布局中使用自定义属性时发现并不会自动提示声明好的属性，一直困惑了很久才发现自定义属性的名称必须和自定义view的类名一样才会有提示-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <attr name="icon" format="reference" />
+    <attr name="prompt" format="string" />
+
     <!--  BannerView  -->
-    <declare-styleable name="CommonBannerView">
+    <declare-styleable name="BannerView">
         <!--是否自动播放-->
-        <attr name="auto_play" format="boolean" tools:ignore="ResourceName" />
+        <attr name="auto_play" format="boolean" />
         <!--是否轮播-->
-        <attr name="loop" format="boolean" tools:ignore="ResourceName" />
+        <attr name="loop" format="boolean" />
     </declare-styleable>
 
     <!--  Indicator  -->
-    <declare-styleable name="CommonIndicator">
+    <declare-styleable name="Indicator">
         <!--是否显示-->
-        <attr name="visible" format="boolean" tools:ignore="ResourceName" />
+        <attr name="visible" format="boolean" />
         <!--单个大小-->
-        <attr name="item_size" format="dimension|reference" tools:ignore="ResourceName" />
+        <attr name="item_size" format="dimension|reference" />
         <!--颜色-->
-        <attr name="color" format="color|reference" tools:ignore="ResourceName" />
+        <attr name="color" format="color|reference" />
         <!--选中颜色-->
-        <attr name="checked_color" format="color|reference" tools:ignore="ResourceName" />
+        <attr name="checked_color" format="color|reference" />
         <!--边距-->
-        <attr name="item_margin" format="dimension|reference" tools:ignore="ResourceName" />
+        <attr name="item_margin" format="dimension|reference" />
         <!--数量-->
-        <attr name="count" format="integer" tools:ignore="ResourceName" />
+        <attr name="count" format="integer" />
     </declare-styleable>
 
     <!--  HeaderView  -->
-    <declare-styleable name="CommonHeaderView">
+    <declare-styleable name="HeaderView">
+        <!--是否显示返回-->
+        <attr name="back_visible" format="boolean" />
         <!--是否显示返回图标-->
-        <attr name="back_icon_visible" format="boolean" tools:ignore="ResourceName" />
+        <attr name="back_icon_visible" format="boolean" />
         <!--返回图标-->
-        <attr name="back_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="back_icon" format="reference" />
         <!--返回文案-->
-        <attr name="back_text" format="string" tools:ignore="ResourceName" />
+        <attr name="back_text" format="string" />
         <!--标题-->
-        <attr name="title" format="string" tools:ignore="ResourceName" />
+        <attr name="title" format="string" />
+        <!--是否显示菜单-->
+        <attr name="menu_visible" format="boolean" />
         <!--菜单图标-->
-        <attr name="menu_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="menu_icon" format="reference" />
         <!--菜单文案-->
-        <attr name="menu_text" format="string" tools:ignore="ResourceName" />
+        <attr name="menu_text" format="string" />
         <!--分隔线是否可见-->
-        <attr name="line_visible" format="boolean" tools:ignore="ResourceName" />
+        <attr name="line_visible" format="boolean" />
     </declare-styleable>
 
     <!--加载状态布局-->
-    <declare-styleable name="CommonLoadStateLayout">
+    <declare-styleable name="LoadStateLayout">
         <!--加载视图-->
-        <attr name="loading" format="reference" tools:ignore="ResourceName" />
+        <attr name="loading" format="reference" />
         <!--失败视图-->
-        <attr name="failure" format="reference" tools:ignore="ResourceName" />
+        <attr name="failure" format="reference" />
         <!--空视图-->
-        <attr name="empty" format="reference" tools:ignore="ResourceName" />
+        <attr name="empty" format="reference" />
         <!--无网络视图-->
-        <attr name="no_network" format="reference" tools:ignore="ResourceName" />
+        <attr name="no_network" format="reference" />
     </declare-styleable>
 
     <!--  LoadingView  -->
-    <declare-styleable name="CommonLoadingView">
+    <declare-styleable name="LoadingView">
         <!--提示文案-->
-        <attr name="loading_prompt" format="string" tools:ignore="ResourceName" />
+        <attr name="prompt" />
     </declare-styleable>
 
     <!--  EmptyView  -->
-    <declare-styleable name="CommonEmptyView">
+    <declare-styleable name="EmptyView">
         <!--图标-->
-        <attr name="empty_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="icon" />
         <!--提示文案-->
-        <attr name="empty_prompt" format="string" tools:ignore="ResourceName" />
+        <attr name="prompt" />
         <!--按钮标题-->
-        <attr name="empty_go_title" format="string" tools:ignore="ResourceName" />
+        <attr name="go_text" format="string" />
     </declare-styleable>
 
     <!--  FailureView  -->
-    <declare-styleable name="CommonFailureView">
+    <declare-styleable name="FailureView">
         <!--图标-->
-        <attr name="failure_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="icon" />
         <!--提示文案-->
-        <attr name="failure_prompt" format="string" tools:ignore="ResourceName" />
+        <attr name="prompt" />
     </declare-styleable>
 
     <!--  NoNetworkView  -->
-    <declare-styleable name="CommonNoNetworkView">
+    <declare-styleable name="NoNetworkView">
         <!--图标-->
-        <attr name="no_network_icon" format="reference" tools:ignore="ResourceName" />
+        <attr name="icon" />
         <!--提示文案-->
-        <attr name="no_network_prompt" format="string" tools:ignore="ResourceName" />
+        <attr name="prompt" />
         <!--按钮标题-->
-        <attr name="no_network_setting_text" format="string" tools:ignore="ResourceName" />
+        <attr name="setting_text" format="string" />
     </declare-styleable>
 
 </resources>

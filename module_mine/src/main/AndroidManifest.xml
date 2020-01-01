@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bynn.marketll.module_mine">
 
-    <application></application>
+    <application>
+        <activity
+            android:name=".activity.CustomerServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SeeMoreActivity"
+            android:screenOrientation="portrait" />
+    </application>
 </manifest>

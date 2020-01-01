@@ -14,6 +14,7 @@ import com.bynn.common.bean.RecommendGoodsBean;
 import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
+import com.bynn.marketll.module_home.R2;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
@@ -31,7 +32,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,10 +41,9 @@ import butterknife.Unbinder;
 public class NavInfoFragment extends BaseFragment {
     private static final String ID = "id";
 
-    @BindView(R.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.recyclerView)  RecyclerView       mRecyclerView;
+    @BindView(R2.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
+    @BindView(R2.id.recyclerView)  RecyclerView       mRecyclerView;
 
-    private Unbinder       mUnbinder;
     private HomePresenter  mHomePresenter;
     private GoodsAdapter   mAdapter;
     // 表示TopNav类型
@@ -98,15 +97,6 @@ public class NavInfoFragment extends BaseFragment {
             injectPresenter();
             initView();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-        super.onDestroy();
     }
 
     @Override

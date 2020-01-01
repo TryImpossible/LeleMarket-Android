@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.R;
@@ -30,6 +32,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
 
     protected final String TAG = this.getClass().getSimpleName();
 
+    protected Unbinder mUnbinder;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -60,6 +63,16 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
         super.setContentView(layoutResID);
         if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
             compatStatusBar();
+        }
+        mUnbinder = ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+            mUnbinder = null;
         }
     }
 

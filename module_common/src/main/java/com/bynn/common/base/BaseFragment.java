@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+import butterknife.Unbinder;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.R;
@@ -23,6 +24,7 @@ public class BaseFragment extends Fragment implements IBaseView {
     protected final String TAG = getClass().getSimpleName();
 
 //    private ProgressDialog mProgressDialog;
+    protected Unbinder mUnbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,15 +32,13 @@ public class BaseFragment extends Fragment implements IBaseView {
         ARouter.getInstance().inject(this);
     }
 
-    /**
-     * 透明状态栏
-     * 必须在setContentView下调用
-     */
-    protected void translucentStatusBar() {
-        QMUIStatusBarHelper.translucent(getActivity());
-//        if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
-//            compatStatusBar();
-//        }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+            mUnbinder = null;
+        }
     }
 
     @Override
@@ -115,9 +115,6 @@ public class BaseFragment extends Fragment implements IBaseView {
      * 网络不可用
      */
     protected void noNetwork() {
-        EmptyView emptyView = new EmptyView(getContext());
 
-        ViewGroup root = getActivity().findViewById(android.R.id.content);
-        root.addView(emptyView);
     }
 }

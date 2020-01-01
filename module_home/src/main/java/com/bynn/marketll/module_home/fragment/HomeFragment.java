@@ -49,7 +49,6 @@ public class HomeFragment extends BaseFragment {
     @BindView(R2.id.divider)        View      mDivider;
     @BindView(R2.id.viewPager)      ViewPager mViewPager;
 
-    private Unbinder                  mUnbinder;
     private HomePresenter             mHomePresenter;
     private List<String>              mTitleList;
     private List<Fragment>            mFragmentList;
@@ -78,15 +77,6 @@ public class HomeFragment extends BaseFragment {
         injectPresenter();
         loadData();
         return view;
-    }
-
-    @Override
-    public void onDestroy() {
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-        super.onDestroy();
     }
 
     private void injectPresenter() {

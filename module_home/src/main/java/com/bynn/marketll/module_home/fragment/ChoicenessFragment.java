@@ -13,6 +13,7 @@ import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.common.view.banner.BannerView;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
+import com.bynn.marketll.module_home.R2;
 import com.bynn.marketll.module_home.adapter.ChoicenessAdapter;
 import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
@@ -41,10 +42,9 @@ import butterknife.Unbinder;
 public class ChoicenessFragment extends BaseFragment {
     private static final String ID = "id";
 
-    @BindView(R.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.recyclerView)  RecyclerView       mRecyclerView;
+    @BindView(R2.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
+    @BindView(R2.id.recyclerView)  RecyclerView       mRecyclerView;
 
-    private Unbinder          mUnbinder;
     private HomePresenter     mHomePresenter;
     private ChoicenessAdapter mAdapter;
     // 表示TopNav类型
@@ -77,7 +77,7 @@ public class ChoicenessFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.home_fragment_choiceness, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -103,15 +103,6 @@ public class ChoicenessFragment extends BaseFragment {
                 bannerView.stopPlay();
             }
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (null != mUnbinder) {
-            mUnbinder.unbind();
-            mUnbinder = null;
-        }
-        super.onDestroy();
     }
 
     @Override
