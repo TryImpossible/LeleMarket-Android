@@ -1,6 +1,7 @@
 package com.bynn.marketll.module_mine.adapter;
 
-import android.graphics.drawable.Drawable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bynn.marketll.module_mine.R;
 import com.bynn.marketll.module_mine.bean.MineBean;
@@ -8,10 +9,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 public class MineAdapter extends BaseQuickAdapter<MineBean, BaseViewHolder> {
 
@@ -21,9 +18,9 @@ public class MineAdapter extends BaseQuickAdapter<MineBean, BaseViewHolder> {
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, MineBean item) {
-        Drawable drawable = ContextCompat.getDrawable(mContext, R.drawable.common_layout_selector);
-//        drawable.setColorFilter();
+        int position = helper.getAdapterPosition();
         helper.setText(R.id.tv_title, item.getTitle())
-                .setImageResource(R.id.iv_icon, item.getIcon());
+                .setImageResource(R.id.iv_icon, item.getIcon())
+                .setGone(R.id.divider, position == 4 || position == getData().size() - 1);
     }
 }

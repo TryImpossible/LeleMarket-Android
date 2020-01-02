@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">lib_qrcode</string>
+    <string name="toast_permission_camera_error">获取相机权限失败</string>
+</resources>
