@@ -132,4 +132,8 @@ public class BaseWebActivity extends BaseActivity {
     public void loadUrl(String url) {
         mWebView.loadUrl(url);
     }
+
+    public void loadData(String data, String mimeType, String encoding) {
+        mWebView.loadData(data, mimeType, encoding);
+    }
 }

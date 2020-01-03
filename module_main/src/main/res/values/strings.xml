@@ -10,4 +10,11 @@
 
     <string name="main_title_splash_logo">乐乐定制</string>
     <string name="main_label_splash_skip">跳过%ds</string>
+
+    <string name="main_label_back">返回</string>
+    <string name="main_label_scan_code">扫码</string>
+    <string name="main_label_album">相册</string>
+    <string name="main_toast_permission_camera">请打开相机权限</string>
+    <string name="main_toast_permission_sd">请打开SD卡权限</string>
+    <string name="main_toast_scan_fail">二维码识别失败</string>
 </resources>

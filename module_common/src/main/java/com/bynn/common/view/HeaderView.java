@@ -29,43 +29,43 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
     /**
      * 上下文
      */
-    private Context mContext;
+    private Context              mContext;
     /**
      * 左侧
      */
-    private LinearLayout mLlBack;
+    private LinearLayout         mLlBack;
     /**
      * 返回图标
      */
-    private ImageView mIvBackIcon;
+    private ImageView            mIvBackIcon;
     /**
      * 返回文案
      */
-    private TextView mTvBackText;
+    private TextView             mTvBackText;
     /**
      * 中间
      */
-    private FrameLayout mFlTitle;
+    private FrameLayout          mFlTitle;
     /**
      * 标题
      */
-    private TextView mTvTitleText;
+    private TextView             mTvTitleText;
     /**
      * 右侧
      */
-    private FrameLayout mFlMenu;
+    private FrameLayout          mFlMenu;
     /**
      * 菜单图标
      */
-    private ImageView mIvMenuIcon;
+    private ImageView            mIvMenuIcon;
     /**
      * 菜单文案
      */
-    private TextView mTvMenuText;
+    private TextView             mTvMenuText;
     /**
      * 底部分隔线
      */
-    private View mVLine;
+    private View                 mVLine;
     /**
      * 返回事件
      */
@@ -211,6 +211,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param text
      */
     public void setBackText(String text) {
+        mTvBackText.setVisibility(VISIBLE);
         mTvBackText.setText(text);
     }
 

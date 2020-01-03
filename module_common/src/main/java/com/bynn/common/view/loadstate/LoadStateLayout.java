@@ -22,47 +22,47 @@ public class LoadStateLayout extends FrameLayout {
     /**
      * 加载中
      */
-    public static final int LOADING = 1;
+    public static final int                   LOADING    = 1;
     /**
      * 加载成功
      */
-    public static final int SUCCESS = 2;
+    public static final int                   SUCCESS    = 2;
     /**
      * 加载失败，重试
      */
-    public static final int FAILURE = 3;
+    public static final int                   FAILURE    = 3;
     /**
      * 数据为空
      */
-    public static final int EMPTY = 4;
+    public static final int                   EMPTY      = 4;
     /**
      * 无网络
      */
-    public static final int NO_NETWORK = 5;
+    public static final int                   NO_NETWORK = 5;
     /**
      * 上下文
      */
-    private Context mContext;
+    private             Context               mContext;
     /**
      * 加载视图构造器
      */
-    private LoadingView.Builder mLoadingViewBuilder;
+    private             LoadingView.Builder   mLoadingViewBuilder;
     /**
      * 错误视图构造器
      */
-    private FailureView.Builder mFailureViewBuilder;
+    private             FailureView.Builder   mFailureViewBuilder;
     /**
      * 空视图构造器
      */
-    private EmptyView.Builder mEmptyViewBuilder;
+    private             EmptyView.Builder     mEmptyViewBuilder;
     /**
      * 无网络视图构造器
      */
-    private NoNetworkView.Builder mNoNetworkViewBuilder;
+    private             NoNetworkView.Builder mNoNetworkViewBuilder;
     /**
      * 上次加载状态，默认成功
      */
-    private int mLastState = SUCCESS;
+    private             int                   mLastState = SUCCESS;
 
     public LoadStateLayout(@NonNull Context context) {
         this(context, null);

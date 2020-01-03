@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ScanCodeActivity">
+
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@mipmap/common_bg_scan_mask"
+        app:layout_constraintBottom_toTopOf="@id/rl_capture_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@mipmap/common_bg_scan_mask"
+        app:layout_constraintBottom_toBottomOf="@id/rl_capture_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/rl_capture_layout"
+        app:layout_constraintTop_toTopOf="@id/rl_capture_layout" />
+
+    <RelativeLayout
+        android:id="@+id/rl_capture_layout"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:background="@mipmap/common_img_capture"
+        android:paddingVertical="@dimen/common_dp_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_capture_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/common_img_scan_code_line" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@mipmap/common_bg_scan_mask"
+        app:layout_constraintBottom_toBottomOf="@id/rl_capture_layout"
+        app:layout_constraintLeft_toRightOf="@id/rl_capture_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rl_capture_layout" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@mipmap/common_bg_scan_mask"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_capture_layout" />
+
+    <com.bynn.common.view.HeaderView
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:back_text="@string/main_label_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_black"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_scan_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/common_dp_12"
+            android:background="@color/common_transparent"
+            android:drawableTop="@mipmap/common_ic_scan_code_selected"
+            android:drawablePadding="@dimen/dp_4"
+            android:text="@string/main_label_scan_code"
+            android:textColor="@color/common_colorAccent"
+            android:textSize="@dimen/common_text_small_size" />
+
+        <Button
+            android:id="@+id/btn_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/common_dp_12"
+            android:background="@color/common_transparent"
+            android:drawableTop="@mipmap/common_ic_album_icon_normal"
+            android:drawablePadding="@dimen/dp_4"
+            android:text="@string/main_label_album"
+            android:textColor="@color/common_gray"
+            android:textSize="@dimen/common_text_small_size" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

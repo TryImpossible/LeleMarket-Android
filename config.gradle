@@ -40,6 +40,7 @@ ext {
             retrofit                     : "2.6.2",
             okhttp                       : "3.14.0",
             rxbus                        : "2.0.1",
+            rxpermissions                : "0.10.2",
 
             lombok                       : "1.18.10",
             "javax.annotation"           : "10.0-b28",
@@ -54,7 +55,8 @@ ext {
             "arouter-compiler"           : "1.2.2",
             "arouter-register"           : "1.0.2",
 
-            "zing"                       : "3.3.0"
+            "zing"                       : "3.3.0",
+            "picture_library"            : "v2.4.2",
     ]
 
     plugins = [
@@ -88,6 +90,7 @@ ext {
             "logging-interceptor"        : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
             okhttp                       : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
             rxbus                        : "com.hwangjr.rxbus:rxbus:${versions.rxbus}",
+            rxpermissions                : "com.github.tbruyelle:rxpermissions:${versions.rxpermissions}",
 
             lombok                       : "org.projectlombok:lombok:${versions.lombok}",
             "javax.annotation"           : "org.glassfish:javax.annotation:${versions["javax.annotation"]}",
@@ -103,6 +106,7 @@ ext {
             "arouter-api"                : "com.alibaba:arouter-api:${versions["arouter-api"]}",
             "arouter-compiler"           : "com.alibaba:arouter-compiler:${versions["arouter-compiler"]}",
 
-            "zing"                       : "com.google.zxing:core:${versions.zing}"
+            "zing"                       : "com.google.zxing:core:${versions.zing}",
+            "picture_library"            : "com.github.LuckSiege.PictureSelector:picture_library:${versions["picture_library"]}",
     ]
 }

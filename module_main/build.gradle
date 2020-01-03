@@ -72,4 +72,6 @@ dependencies {
 
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
+
+    implementation project(':lib_qrcode')
 }

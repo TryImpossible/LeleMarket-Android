@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.arouter.CustomRoutePath;
+import com.bynn.common.arouter.MainRoutePath;
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
 import com.bynn.common.bean.BannerBean;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,11 +45,11 @@ public class CustomFragment extends BaseFragment {
     @BindView(R2.id.recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R2.id.frameLayout)
-    FrameLayout mFrameLayout;
+    FrameLayout  mFrameLayout;
 
-    private MenuAdapter mMenuAdapter;
+    private MenuAdapter     mMenuAdapter;
     private CustomPresenter mCustomPresenter;
-    private Fragment mLastSelectedFragment;
+    private Fragment        mLastSelectedFragment;
 
     public static CustomFragment newInstance() {
 
@@ -93,7 +96,7 @@ public class CustomFragment extends BaseFragment {
 
     @OnClick(R2.id.iv_scan_qrcode)
     public void onScanClicked() {
-        showToast("扫码");
+        ARouter.getInstance().build(MainRoutePath.SCAN_CODE_ACTIVITY).navigation();
     }
 
     @OnClick(R2.id.tv_keyword)
@@ -140,6 +143,7 @@ public class CustomFragment extends BaseFragment {
 
     /**
      * 显示、隐藏Fragment
+     *
      * @param menuId
      */
     private void switchFragment(int menuId) {

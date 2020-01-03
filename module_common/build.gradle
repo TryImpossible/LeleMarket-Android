@@ -53,7 +53,7 @@ dependencies {
 
     testImplementation config.dependencies["junit"]
     androidTestImplementation config.dependencies["ext:junit"]
-    androidTestImplementation config.dependencies["espresso-core"]
+    androidTestImplementation config.dependencies["espresso-core"]\
 
     api config.dependencies["appcompat"]
     api config.dependencies["material"]
@@ -87,4 +87,6 @@ dependencies {
     api config.dependencies["SmartRefreshLayout"]
     api config.dependencies["SmartRefreshHeader"]
     api config.dependencies["BaseRecyclerViewAdapterHelper"]
+    api config.dependencies["rxpermissions"]
+    api config.dependencies["picture_library"]
 }

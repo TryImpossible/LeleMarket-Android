@@ -21,6 +21,6 @@ public class MineAdapter extends BaseQuickAdapter<MineBean, BaseViewHolder> {
         int position = helper.getAdapterPosition();
         helper.setText(R.id.tv_title, item.getTitle())
                 .setImageResource(R.id.iv_icon, item.getIcon())
-                .setGone(R.id.divider, position == 4 || position == getData().size() - 1);
+                .setGone(R.id.divider, position != 5 && position != getData().size());
     }
 }

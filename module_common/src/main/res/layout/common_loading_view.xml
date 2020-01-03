@@ -7,16 +7,16 @@
     android:orientation="vertical"
     android:padding="@dimen/common_activity_horizontal_margin">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/iv_refresh_loading"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/common_refresh_loading" />
 
     <TextView
         android:id="@+id/tv_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_activity_horizontal_margin"
         android:text="@string/common_label_loading_prompt"
         android:textColor="@color/common_text_light"
         android:textSize="@dimen/common_text_small_size" />

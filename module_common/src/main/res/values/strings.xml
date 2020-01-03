@@ -16,4 +16,5 @@
     <string name="common_label_failure_prompt">请点击屏幕，重新加载</string>
     <string name="common_label_no_network_prompt">网络出问题了</string>
     <string name="common_button_no_network_setting">去设定</string>
+
 </resources>

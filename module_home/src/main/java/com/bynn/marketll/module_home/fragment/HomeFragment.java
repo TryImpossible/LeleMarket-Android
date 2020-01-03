@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.arouter.HomeRoutePath;
+import com.bynn.common.arouter.MainRoutePath;
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
 import com.bynn.marketll.module_home.HomePresenter;
@@ -30,10 +31,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 /**
@@ -144,7 +145,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R2.id.iv_scan_qrcode)
     public void onScanClicked() {
-        showToast("扫码");
+        ARouter.getInstance().build(MainRoutePath.SCAN_CODE_ACTIVITY).navigation();
     }
 
     @OnClick(R2.id.tv_keyword)
