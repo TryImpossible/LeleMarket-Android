@@ -38,11 +38,11 @@
             android:id="@+id/tv_keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/common_dp_4"
             android:background="@null"
             android:focusable="false"
             android:hint="@string/common_hint_search_action_bar"
-            android:paddingVertical="6dp"
+            android:paddingVertical="@dimen/common_dp_6"
             android:textColor="@color/common_text_light"
             android:textSize="@dimen/common_text_small_size" />
     </LinearLayout>
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/common_layout_selector_round"
-        android:padding="10dp"
+        android:padding="@dimen/common_dp_10"
         android:src="@mipmap/common_ic_news"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

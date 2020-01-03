@@ -13,12 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MainAppTheme">
+        <!--        <activity android:name=".activity.SearchActivity" android:screenOrientation="portrait" />-->
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activity.ScanCodeActivity"
+            android:name=".activity.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MainAppTheme.Launcher">
             <intent-filter>
@@ -27,9 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--        <activity-->
-        <!--            android:name=".activity.ScanCodeActivity"-->
-        <!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".activity.ScanCodeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ScanCodeResultActivity"
             android:screenOrientation="portrait" />

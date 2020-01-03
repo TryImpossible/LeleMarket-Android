@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:textColor="@color/common_text_light"
+        android:textSize="@dimen/common_text_normal_size"
+        tools:text="最近搜索" />
+
+    <ImageView
+        android:id="@+id/iv_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/common_ic_back"
+        android:visibility="gone" />
+</RelativeLayout>

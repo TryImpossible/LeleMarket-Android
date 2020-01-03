@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_action_bar_height"
+        android:background="@color/common_white"
+        tools:context=".activity.SearchActivity">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/common_action_bar_height"
+            android:layout_height="@dimen/common_action_bar_height"
+            android:layout_gravity="center|center_horizontal"
+            android:minHeight="@dimen/common_action_bar_height"
+            android:scaleType="center"
+            android:src="@mipmap/common_ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/ll_edit"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/common_bg_solid_light_gray_radius_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iv_back"
+            app:layout_constraintRight_toLeftOf="@id/tv_cancel"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/common_ic_search" />
+
+            <EditText
+                android:id="@+id/et_keyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_dp_4"
+                android:background="@null"
+                android:hint="@string/common_hint_search_action_bar"
+                android:paddingVertical="@dimen/common_dp_6"
+                android:textColor="@color/common_text_light"
+                android:textSize="@dimen/common_text_small_size" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="@dimen/common_action_bar_height"
+            android:layout_height="@dimen/common_action_bar_height"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/common_text_light"
+            android:textSize="@dimen/common_text_small_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/ll_edit"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/common_include_divide_line" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

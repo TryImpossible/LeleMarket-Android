@@ -17,4 +17,7 @@
     <string name="main_toast_permission_camera">请打开相机权限</string>
     <string name="main_toast_permission_sd">请打开SD卡权限</string>
     <string name="main_toast_scan_fail">二维码识别失败</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
