@@ -21,12 +21,6 @@ public interface HomeApi {
     Observable<TopNavResult> sortHome();
 
     /**
-     * 热门搜索
-     */
-    @GET("/diyMall/searchGoods/getRecommand.do")
-    void getRecommand();
-
-    /**
      * 顶部导航，精选Tab
      */
     @POST("/diyMall/index/homeRevision2.do")

@@ -3,6 +3,8 @@ package com.bynn.marketll.module_home.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.bynn.common.bean.GoodsBean;
+
 import java.util.ArrayList;
 import java.util.List;
 

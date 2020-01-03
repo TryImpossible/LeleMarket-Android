@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bynn.marketll.module_main">
 
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -31,9 +30,9 @@
         <!--        <activity-->
         <!--            android:name=".activity.ScanCodeActivity"-->
         <!--            android:screenOrientation="portrait" />-->
-        <!--        <activity-->
-        <!--            android:name=".activity.ScanCodeResultActivity"-->
-        <!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".activity.ScanCodeResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -36,6 +36,8 @@ public class RecommendGoodsBean implements Parcelable {
     private String isSelf;
     private String title;
     private int    sort;
+    private int    isSale;
+    private String saleTitle;
 
     @Override
     public int describeContents() {
@@ -57,6 +59,8 @@ public class RecommendGoodsBean implements Parcelable {
         dest.writeString(this.isSelf);
         dest.writeString(this.title);
         dest.writeInt(this.sort);
+        dest.writeInt(this.isSale);
+        dest.writeString(this.saleTitle);
     }
 
     protected RecommendGoodsBean(Parcel in) {
@@ -73,6 +77,8 @@ public class RecommendGoodsBean implements Parcelable {
         this.isSelf = in.readString();
         this.title = in.readString();
         this.sort = in.readInt();
+        this.isSale = in.readInt();
+        this.saleTitle = in.readString();
     }
 
     public static final Creator<RecommendGoodsBean> CREATOR = new Creator<RecommendGoodsBean>() {

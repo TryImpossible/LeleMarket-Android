@@ -87,22 +87,22 @@ public class LoadStateLayout extends FrameLayout {
     }
 
     private void initLoadingViewBuilder() {
-        mLoadingViewBuilder = new LoadingView.Builder(mContext);
+        mLoadingViewBuilder = new LoadingView.Builder(mContext).setVisible(false);
         addView(mLoadingViewBuilder.create());
     }
 
     private void initFailureViewBuilder() {
-        mFailureViewBuilder = new FailureView.Builder(mContext);
+        mFailureViewBuilder = new FailureView.Builder(mContext).setVisible(false);
         addView(mFailureViewBuilder.create());
     }
 
     private void initEmptyViewBuilder() {
-        mEmptyViewBuilder = new EmptyView.Builder(mContext);
+        mEmptyViewBuilder = new EmptyView.Builder(mContext).setVisible(false);
         addView(mEmptyViewBuilder.create());
     }
 
     private void initNoNetworkViewBuilder() {
-        mNoNetworkViewBuilder = new NoNetworkView.Builder(mContext);
+        mNoNetworkViewBuilder = new NoNetworkView.Builder(mContext).setVisible(false);
         addView(mNoNetworkViewBuilder.create());
     }
 
@@ -136,9 +136,8 @@ public class LoadStateLayout extends FrameLayout {
 
         if (mLoadingViewBuilder == null) {
             initLoadingViewBuilder();
-        } else {
-            mLoadingViewBuilder.setVisible(true);
         }
+        mLoadingViewBuilder.setVisible(true);
         mLastState = LOADING;
     }
 
@@ -153,9 +152,8 @@ public class LoadStateLayout extends FrameLayout {
 
         if (mFailureViewBuilder == null) {
             initFailureViewBuilder();
-        } else {
-            mFailureViewBuilder.setVisible(true);
         }
+        mFailureViewBuilder.setVisible(true);
         mLastState = FAILURE;
     }
 
@@ -170,9 +168,8 @@ public class LoadStateLayout extends FrameLayout {
 
         if (mEmptyViewBuilder == null) {
             initEmptyViewBuilder();
-        } else {
-            mEmptyViewBuilder.setVisible(true);
         }
+        mEmptyViewBuilder.setVisible(true);
         mLastState = EMPTY;
     }
 
@@ -187,9 +184,8 @@ public class LoadStateLayout extends FrameLayout {
 
         if (mNoNetworkViewBuilder == null) {
             initNoNetworkViewBuilder();
-        } else {
-            mNoNetworkViewBuilder.setVisible(true);
         }
+        mNoNetworkViewBuilder.setVisible(true);
         mLastState = NO_NETWORK;
     }
 

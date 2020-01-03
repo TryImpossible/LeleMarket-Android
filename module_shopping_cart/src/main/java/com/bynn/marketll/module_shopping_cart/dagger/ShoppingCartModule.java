@@ -27,7 +27,7 @@ public class ShoppingCartModule {
 
     @ActivityScope
     @Provides
-    ShoppingCartApi provideHomeApi(Retrofit retrofit) {
+    ShoppingCartApi provideShoppingCartApi(Retrofit retrofit) {
         return retrofit.create(ShoppingCartApi.class);
     }
 

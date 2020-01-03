@@ -262,7 +262,8 @@ public class ScanCodeActivity extends BaseActivity implements ActivityImplement 
                     public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean) {
                             PictureSelector.create(ScanCodeActivity.this)
-                                    .openCamera(PictureMimeType.ofImage())
+                                    .openGallery(PictureMimeType.ofImage())
+                                    .isGif(false)
                                     .isCamera(false)
                                     .maxSelectNum(1)
                                     .forResult(REQUEST_FOR_PHOTO);
@@ -314,7 +315,7 @@ public class ScanCodeActivity extends BaseActivity implements ActivityImplement 
             mAnimation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0.0f,
                     Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT,
                     0.0f, Animation.RELATIVE_TO_PARENT, 1.0f);
-            mAnimation.setDuration(4500);
+            mAnimation.setDuration(4200);
             mAnimation.setRepeatCount(-1);
             mAnimation.setRepeatMode(Animation.RESTART);
         }
@@ -332,8 +333,8 @@ public class ScanCodeActivity extends BaseActivity implements ActivityImplement 
         try {
             CameraManager.get().openDriver(holder);
             Point point = CameraManager.get().getCameraResolution();
-            AtomicInteger width = new AtomicInteger(point.x);
-            AtomicInteger height = new AtomicInteger(point.y);
+            AtomicInteger width = new AtomicInteger(point.y);
+            AtomicInteger height = new AtomicInteger(point.x);
             int captureWidth = mRlCaptureLayout.getWidth() * width.get() / mClContainer.getWidth();
             int captureHeight = mRlCaptureLayout.getHeight() * height.get() / mClContainer.getHeight();
             setCaptureWidth(captureWidth);

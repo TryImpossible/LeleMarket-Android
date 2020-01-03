@@ -27,7 +27,7 @@ public class DiscoverModule {
 
     @ActivityScope
     @Provides
-    DiscoverApi provideHomeApi(Retrofit retrofit) {
+    DiscoverApi provideDiscoverApi(Retrofit retrofit) {
         return retrofit.create(DiscoverApi.class);
     }
 
