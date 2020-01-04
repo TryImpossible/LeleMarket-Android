@@ -7,7 +7,7 @@
     <color name="common_transparent">@android:color/transparent</color>
     <color name="common_white">@android:color/white</color>
     <color name="common_black">@android:color/black</color>
-    <color name="common_gray">#B7B7B7</color>
+    <color name="common_gray">#DADADA</color>
 
     <!--    灰色状态栏-->
     <!--    <color name="light_status_bg">#889B9B9B</color>-->

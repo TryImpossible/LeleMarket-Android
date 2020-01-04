@@ -4,5 +4,5 @@
     <corners android:radius="20dp" />
     <stroke
         android:width="@dimen/common_dp_1"
-        android:color="@color/common_text_light" />
+        android:color="@color/common_divide_line" />
 </shape>

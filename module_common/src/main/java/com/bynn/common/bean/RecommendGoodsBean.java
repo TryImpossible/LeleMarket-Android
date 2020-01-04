@@ -37,6 +37,7 @@ public class RecommendGoodsBean implements Parcelable {
     private String title;
     private int    sort;
     private int    isSale;
+    private String iconUrl;
     private String saleTitle;
 
     @Override
@@ -60,6 +61,7 @@ public class RecommendGoodsBean implements Parcelable {
         dest.writeString(this.title);
         dest.writeInt(this.sort);
         dest.writeInt(this.isSale);
+        dest.writeString(this.iconUrl);
         dest.writeString(this.saleTitle);
     }
 
@@ -78,6 +80,7 @@ public class RecommendGoodsBean implements Parcelable {
         this.title = in.readString();
         this.sort = in.readInt();
         this.isSale = in.readInt();
+        this.iconUrl = in.readString();
         this.saleTitle = in.readString();
     }
 

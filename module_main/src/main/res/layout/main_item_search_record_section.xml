@@ -23,6 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/common_ic_back"
-        android:visibility="gone" />
+        android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
+        android:paddingVertical="@dimen/common_dp_12"
+        android:src="@mipmap/main_ic_del"
+        android:visibility="gone"
+        tools:visibility="visible" />
 </RelativeLayout>

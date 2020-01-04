@@ -9,7 +9,7 @@
 
         <item name="android:windowBackground">@color/common_activity_background</item>
         <!--Button去掉边框-->
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
+<!--        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>-->
     </style>
 
     <style name="CommonMyDialog" parent="@android:style/Theme.Dialog">

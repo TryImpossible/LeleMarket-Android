@@ -45,6 +45,7 @@ public class MainModel {
      */
     public Observable<RecommendGoodsResult> getGoodsInfo(int page, String name) {
         FormBody params = new FormBody.Builder()
+                .add("userId", "9956133")
                 .add("page", String.valueOf(page))
                 .add("name", name)
                 .build();

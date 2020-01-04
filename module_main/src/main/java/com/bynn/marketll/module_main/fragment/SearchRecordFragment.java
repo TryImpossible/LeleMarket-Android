@@ -6,9 +6,11 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import com.bynn.common.base.BaseFragment;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
+import com.bynn.marketll.module_main.activity.SearchActivity;
 import com.bynn.marketll.module_main.adapter.SearchRecordAdapter;
 import com.bynn.marketll.module_main.bean.KeywordBean;
 import com.bynn.marketll.module_main.bean.KeywordResult;
@@ -26,6 +29,7 @@ import com.bynn.marketll.module_main.bean.SearchRecordBean;
 import com.bynn.marketll.module_main.dagger.DaggerMainComponent;
 import com.bynn.marketll.module_main.dagger.MainComponent;
 import com.bynn.marketll.module_main.dagger.MainModule;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +43,7 @@ public class SearchRecordFragment extends BaseFragment {
     RecyclerView mRecyclerView;
 
     private SearchRecordAdapter mAdapter;
-    private MainPresenter mMainPresenter;
+    private MainPresenter       mMainPresenter;
 
     public static SearchRecordFragment newInstance() {
 
@@ -92,6 +96,15 @@ public class SearchRecordFragment extends BaseFragment {
         data.add(new SearchRecordBean(true, "热门搜索"));
         data.add(new SearchRecordBean(true, "最近搜索"));
         mAdapter = new SearchRecordAdapter(data);
+        mAdapter.setOnKeywordClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = (String) v.getTag();
+                if (!TextUtils.isEmpty(keyword)) {
+                    ((SearchActivity) getActivity()).setKeyword(keyword);
+                }
+            }
+        });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
