@@ -79,7 +79,7 @@ public class SearchResultFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         mPage = 0;
-        mMainPresenter.getGoodsInfo(mPage, SearchActivity.sKeyword);
+        mMainPresenter.getGoodsInfo(mPage, ((SearchActivity)getActivity()).getKeyword());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class SearchResultFragment extends BaseFragment {
         super.onSuccess(successObj);
         if (successObj instanceof RecommendGoodsResult) {
             List<RecommendGoodsBean> data = ((RecommendGoodsResult) successObj).getData();
-            if (data == null || data.size() == 0) {
+            if (data == null) {
                 mRefreshLayout.setNoMoreData(true);
                 return;
             }
@@ -126,13 +126,13 @@ public class SearchResultFragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 mPage++;
-                mMainPresenter.getGoodsInfo(mPage, SearchActivity.sKeyword);
+                mMainPresenter.getGoodsInfo(mPage, ((SearchActivity)getActivity()).getKeyword());
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 mPage = 0;
-                mMainPresenter.getGoodsInfo(mPage, SearchActivity.sKeyword);
+                mMainPresenter.getGoodsInfo(mPage, ((SearchActivity)getActivity()).getKeyword());
             }
         });
 
@@ -167,6 +167,6 @@ public class SearchResultFragment extends BaseFragment {
      */
     public void startSearch() {
         mPage = 0;
-        mMainPresenter.getGoodsInfo(mPage, SearchActivity.sKeyword);
+        mMainPresenter.getGoodsInfo(mPage, ((SearchActivity)getActivity()).getKeyword());
     }
 }

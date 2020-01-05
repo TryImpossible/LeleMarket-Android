@@ -167,6 +167,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
         } else if (e instanceof ConnectException) {
             showToast("连接出错");
         } else {
+
             showToast("访问出错");
         }
     }

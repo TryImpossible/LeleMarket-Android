@@ -1,8 +1,13 @@
 package com.bynn.marketll.module_main.fragment;
 
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +23,7 @@ import android.view.ViewGroup;
 import com.bynn.common.base.BaseActivity;
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
+import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
@@ -107,6 +113,32 @@ public class SearchRecordFragment extends BaseFragment {
         });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+                int count = parent.getChildCount();
+                for (int i = 1; i < count; i++) {
+                    if (!mAdapter.getItem(i).isHeader) {
+                        continue;
+                    }
+                    View child = parent.getChildAt(i);
+                    Rect rect = new Rect(child.getLeft(), child.getTop()  - QMUIDisplayHelper.dp2px(getContext(), 4), child.getRight(), child.getTop());
+                    Paint paint = new Paint();
+                    paint.setColor(ContextCompat.getColor(getContext(), R.color.common_activity_background));
+                    c.drawRect(rect, paint);
+                }
+            }
+
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                int position = parent.getChildAdapterPosition(view);
+                if (mAdapter.getItem(position).isHeader && position != 0) {
+                    outRect.top = QMUIDisplayHelper.dp2px(getContext(), 4);
+                }
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
 
         mMainPresenter.getRecommand();

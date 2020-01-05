@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.bynn.common.base.BaseApplication;
 import com.bynn.common.base.BaseFragment;
+import com.bynn.common.exception.NetworkResultException;
 import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.R;
@@ -76,7 +77,12 @@ public class SearchKeywordFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mMainPresenter.getKeyword(SearchActivity.sKeyword);
+        mMainPresenter.getKeyword(((SearchActivity)getActivity()).getKeyword());
+    }
+
+    @Override
+    public void onFailure(NetworkResultException e) {
+        hideProgress();
     }
 
     @Override
@@ -84,7 +90,7 @@ public class SearchKeywordFragment extends BaseFragment {
         super.onSuccess(successObj);
         if (successObj instanceof KeywordResult) {
             List<KeywordBean> data = ((KeywordResult) successObj).getData();
-            if (data != null && data.size() > 0) {
+            if (data != null) {
                 mKeywordAdapter.setNewData(data);
             }
         }
@@ -139,6 +145,6 @@ public class SearchKeywordFragment extends BaseFragment {
      * 搜索，提供给外部调用
      */
     public void startSearch() {
-        mMainPresenter.getKeyword(SearchActivity.sKeyword);
+        mMainPresenter.getKeyword(((SearchActivity)getActivity()).getKeyword());
     }
 }

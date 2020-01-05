@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -31,10 +33,9 @@ public class NetworkModule {
     // 统一超时时间，单位秒
     private static final int DEFAULT_TIMEOUT = 60;
 
-    private Application          mApplication;
-    private Retrofit             mRetrofit;
+    private Retrofit mRetrofit;
     private OkHttpClient.Builder mBuilder;
-    private OkHttpClient         mOkHttpClient;
+    private OkHttpClient mOkHttpClient;
 
     public NetworkModule(Application application) {
 
@@ -84,7 +85,12 @@ public class NetworkModule {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                Log.i("retrofit", "retrofit" + message);
+                try {
+                    Log.e("OKHttp-----", URLDecoder.decode(message, "utf-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    Log.e("OKHttp-----", message);
+                }
             }
         });
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -106,13 +112,6 @@ public class NetworkModule {
     @Provides
     Retrofit provideRetrofit() {
         return mRetrofit;
-    }
-
-    @Singleton
-    @Provides
-    Gson provideGson() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        return gsonBuilder.create();
     }
 
 }

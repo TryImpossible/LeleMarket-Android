@@ -2,6 +2,7 @@ def config = rootProject.ext
 
 apply plugin: 'com.android.library'
 apply plugin: config.plugins.butterknife
+apply plugin: config.plugins.realm
 
 android {
     compileSdkVersion config.android.compileSdkVersion

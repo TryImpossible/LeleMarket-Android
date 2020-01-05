@@ -62,6 +62,7 @@ ext {
     plugins = [
             butterknife       : "com.jakewharton.butterknife",
             "arouter-register": "ccom.alibaba.arouter",
+            realm             : "realm-android"
     ]
 
     dependencies = [

@@ -1,6 +1,7 @@
 package com.bynn.common.dagger;
 
 import com.bynn.common.base.BaseApplication;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -19,4 +20,6 @@ public interface AppComponent {
     Retrofit getRetrofit();
 
     OkHttpClient.Builder getOKHttpClientBuilder();
+
+    Gson getGson();
 }

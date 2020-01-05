@@ -6,5 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
+    android:layout_marginBottom="@dimen/common_activity_horizontal_margin"
     app:itemSpacing="@dimen/common_dp_10"
     app:lineSpacing="@dimen/common_dp_10" />

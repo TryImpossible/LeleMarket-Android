@@ -2,8 +2,12 @@ package com.bynn.common.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.os.StrictMode;
 
 import androidx.multidex.MultiDex;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.common.BuildConfig;
@@ -13,6 +17,10 @@ import com.bynn.common.dagger.AppModule;
 import com.bynn.common.dagger.DaggerAppComponent;
 import com.bynn.common.dagger.NetworkModule;
 import com.bynn.common.utils.DensityHelp;
+import com.bynn.common.utils.SpanUtils;
+import com.google.gson.Gson;
+import com.hwangjr.rxbus.Bus;
+import com.hwangjr.rxbus.RxBus;
 import com.scwang.smartrefresh.header.WaterDropHeader;
 import com.scwang.smartrefresh.header.waterdrop.WaterDropView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -48,6 +56,23 @@ public class BaseApplication extends Application {
                     .build();
         }
         return sAppComponent;
+    }
+
+
+    public static Gson getGson() {
+        return getAppComponent().getGson();
+    }
+
+    public static Realm getRealm() {
+        return Realm.getDefaultInstance();
+    }
+
+    public static ARouter getARouter() {
+        return ARouter.getInstance();
+    }
+
+    public static Bus getRxBus() {
+        return RxBus.get();
     }
 
     //static 代码段可以防止内存泄露
@@ -86,6 +111,8 @@ public class BaseApplication extends Application {
         sContext = getApplicationContext();
         // 初始化屏幕密度
         DensityHelp.setDensity(sApplication);
+        // SpanUtils
+        SpanUtils.init(this);
         // 初始化Module类的Application
         initModulesApplication();
         // 初始化ARouter
@@ -94,6 +121,20 @@ public class BaseApplication extends Application {
         MultiDex.install(this);
         // 初始化Dagger AppComonpent
         initInjector();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            //7.0严格模式
+            StrictMode.VmPolicy.Builder builder =
+                    new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            builder.detectFileUriExposure();
+        }
+        initRelam();
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ARouter.getInstance().destroy();
     }
 
     private void initModulesApplication() {
@@ -129,9 +170,8 @@ public class BaseApplication extends Application {
                 .build();
     }
 
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-        ARouter.getInstance().destroy();
+    private void initRelam() {
+        Realm.init(this);
+        BaseRealm.setDefaultConfiguration();
     }
 }
