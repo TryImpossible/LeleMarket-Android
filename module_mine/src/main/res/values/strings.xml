@@ -1,5 +1,5 @@
 <resources>
-    <string name="mine_app_name">module_mine</string>
+    <string name="mine_app_name">mine</string>
 
     <string name="mine_label_login">请登录</string>
     <string name="mine_button_wait_pay">待付款</string>

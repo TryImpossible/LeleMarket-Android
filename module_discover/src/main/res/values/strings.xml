@@ -1,5 +1,5 @@
 <resources>
-    <string name="discover_app_name">module_discover</string>
+    <string name="discover_app_name">discover</string>
 
     <string name="discover_title_discover">发现</string>
 </resources>

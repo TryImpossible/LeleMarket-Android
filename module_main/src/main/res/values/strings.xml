@@ -1,6 +1,6 @@
 <resources>
     <!-- globals -->
-    <string name="main_app_name">module_main</string>
+    <string name="main_app_name">main</string>
 
     <string name="main_title_home">首页</string>
     <string name="main_title_discover">发现</string>

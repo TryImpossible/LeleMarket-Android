@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".activity.SeeMoreActivity">
 
-    <com.bynn.common.view.HeaderView
+    <com.bynn.lib_basic.view.HeaderView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/mine_title_see_more" />
@@ -58,7 +58,7 @@
             android:text="无网络" />
     </LinearLayout>
 
-    <com.bynn.common.view.loadstate.LoadStateLayout
+    <com.bynn.lib_basic.view.loadstate.LoadStateLayout
         android:id="@+id/loadStateLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -70,5 +70,5 @@
             android:layout_gravity="center"
             android:text="测试"
             android:textSize="30sp" />
-    </com.bynn.common.view.loadstate.LoadStateLayout>
+    </com.bynn.lib_basic.view.loadstate.LoadStateLayout>
 </LinearLayout>

@@ -2,14 +2,10 @@ package com.bynn.marketll.module_mine.dagger;
 
 import android.content.Context;
 
-import androidx.core.content.ContextCompat;
-
-import com.bynn.common.base.IBaseView;
-import com.bynn.common.dagger.ActivityScope;
+import com.bynn.lib_basic.interfaces.IBaseView;
+import com.bynn.lib_basic.dagger.ActivityScope;
 import com.bynn.marketll.module_mine.MineModel;
 import com.bynn.marketll.module_mine.network.MineApi;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

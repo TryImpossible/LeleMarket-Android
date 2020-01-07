@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="ShoppingAppTheme" parent="@style/CommonBaseAppTheme">
+    <style name="ShoppingAppTheme" parent="@style/BasicAppTheme">
         <!-- Customize your theme here. -->
 
     </style>

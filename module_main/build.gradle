@@ -6,6 +6,7 @@ if (config.isMoudleAsApp) {
     apply plugin: 'com.android.library'
 }
 apply plugin: config.plugins.butterknife
+apply plugin: config.plugins.realm
 
 android {
     compileSdkVersion config.android.compileSdkVersion
@@ -70,7 +71,8 @@ dependencies {
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]
 
-    api project(':module_common')
+    api project(':lib_basic')
+    implementation project(':module_common')
 
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]

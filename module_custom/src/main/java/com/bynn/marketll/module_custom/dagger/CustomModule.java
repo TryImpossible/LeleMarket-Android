@@ -2,8 +2,8 @@ package com.bynn.marketll.module_custom.dagger;
 
 import android.content.Context;
 
-import com.bynn.common.base.IBaseView;
-import com.bynn.common.dagger.ActivityScope;
+import com.bynn.lib_basic.interfaces.IBaseView;
+import com.bynn.lib_basic.dagger.ActivityScope;
 import com.bynn.marketll.module_custom.CustomModel;
 import com.bynn.marketll.module_custom.network.CustomApi;
 

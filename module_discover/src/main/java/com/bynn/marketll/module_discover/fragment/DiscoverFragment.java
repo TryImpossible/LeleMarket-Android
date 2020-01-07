@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bynn.common.arouter.DiscoverRoutePath;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
-import com.bynn.common.view.loadstate.LoadStateLayout;
+import com.bynn.common.router.DiscoverRoutePath;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.view.loadstate.LoadStateLayout;
 import com.bynn.marketll.module_discover.DiscoverPresenter;
 import com.bynn.marketll.module_discover.R;
 import com.bynn.marketll.module_discover.R2;
@@ -74,7 +74,7 @@ public class DiscoverFragment extends BaseFragment {
     }
 
     @Override
-    public void showProgress() {
+    public void showLoading() {
         mLoadStateLayout.showLoading();
     }
 

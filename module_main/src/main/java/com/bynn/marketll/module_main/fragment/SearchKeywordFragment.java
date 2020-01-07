@@ -16,10 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
-import com.bynn.common.exception.NetworkResultException;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.network.ResponseException;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
@@ -32,7 +32,6 @@ import com.bynn.marketll.module_main.dagger.MainComponent;
 import com.bynn.marketll.module_main.dagger.MainModule;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,12 +76,7 @@ public class SearchKeywordFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mMainPresenter.getKeyword(((SearchActivity)getActivity()).getKeyword());
-    }
-
-    @Override
-    public void onFailure(NetworkResultException e) {
-        hideProgress();
+        mMainPresenter.getKeyword(((SearchActivity) getActivity()).getKeyword());
     }
 
     @Override
@@ -123,7 +117,7 @@ public class SearchKeywordFragment extends BaseFragment {
                 super.onDraw(c, parent, state);
                 int count = parent.getChildCount();
                 Paint paint = new Paint();
-                paint.setColor(ContextCompat.getColor(getContext(), R.color.common_divide_line));
+                paint.setColor(ContextCompat.getColor(getContext(), R.color.basic_divide_line));
                 for (int i = 0; i < count - 1; i++) {
                     View child = parent.getChildAt(i);
                     c.drawRect(new Rect(child.getLeft() + QMUIDisplayHelper.dp2px(getContext(), 16), child.getBottom(), child.getRight(), child.getBottom() + QMUIDisplayHelper.dp2px(getContext(), 1)), paint);
@@ -145,6 +139,6 @@ public class SearchKeywordFragment extends BaseFragment {
      * 搜索，提供给外部调用
      */
     public void startSearch() {
-        mMainPresenter.getKeyword(((SearchActivity)getActivity()).getKeyword());
+        mMainPresenter.getKeyword(((SearchActivity) getActivity()).getKeyword());
     }
 }

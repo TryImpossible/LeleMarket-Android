@@ -56,38 +56,12 @@ dependencies {
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]\
 
-    api config.dependencies["appcompat"]
-    api config.dependencies["material"]
-    api config.dependencies["constraintlayout"]
-    api config.dependencies["legacy-support-v4"]
-    implementation config.dependencies["multidex"]
+    api project(':lib_basic')
 
-    api config.dependencies["butterknife"]
     annotationProcessor config.dependencies["butterknife-compiler"]
-
-    api config.dependencies["arouter-api"]
     annotationProcessor config.dependencies["arouter-compiler"]
-
-    api config.dependencies["rxandroid"]
-    api config.dependencies["rxjava"]
-    api config.dependencies["dagger"]
+    implementation config.dependencies["dagger"]
     annotationProcessor config.dependencies["dagger-compiler"]
-    api config.dependencies["retrofit"]
-    api config.dependencies["converter-gson"]
-    api config.dependencies["adapter-rxjava2"]
-    api config.dependencies["okhttp"]
-    api config.dependencies["logging-interceptor"]
-    api config.dependencies["rxbus"]
-
     compileOnly config.dependencies["lombok"]
     compileOnly config.dependencies["javax.annotation"]
-
-    api config.dependencies["glide"]
-    annotationProcessor config.dependencies["glide-compiler"]
-
-    api config.dependencies["SmartRefreshLayout"]
-    api config.dependencies["SmartRefreshHeader"]
-    api config.dependencies["BaseRecyclerViewAdapterHelper"]
-    api config.dependencies["rxpermissions"]
-    api config.dependencies["picture_library"]
 }

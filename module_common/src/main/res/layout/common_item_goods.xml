@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/common_layout_selector">
+    android:background="@drawable/basic_layout_selector">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/common_white"
-        android:paddingVertical="@dimen/common_dp_8">
+        android:background="@color/basic_white"
+        android:paddingVertical="@dimen/basic_dp_8">
 
         <ImageView
             android:id="@+id/iv_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/common_dp_8"
+            android:layout_marginHorizontal="@dimen/basic_dp_8"
             android:scaleType="fitCenter"
             app:layout_constraintDimensionRatio="W,2:3"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -28,11 +28,11 @@
             android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_4"
-            android:background="@color/common_colorAccent"
+            android:layout_marginTop="@dimen/basic_dp_4"
+            android:background="@color/basic_colorAccent"
             android:paddingHorizontal="3dp"
-            android:textColor="@color/common_white"
-            android:textSize="@dimen/common_text_normal_size"
+            android:textColor="@color/basic_white"
+            android:textSize="@dimen/basic_text_normal_size"
             app:layout_constraintLeft_toLeftOf="@id/iv_icon"
             app:layout_constraintTop_toBottomOf="@id/iv_icon"
             tools:text="@string/common_label_ketuyin" />
@@ -40,22 +40,23 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/common_divide_line_height"
-            android:layout_marginTop="@dimen/dp_4"
-            android:background="@color/common_divide_line"
+            android:layout_height="@dimen/basic_divide_line_height"
+            android:layout_marginTop="@dimen/basic_dp_4"
+            android:background="@color/basic_divide_line"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_type" />
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginTop="@dimen/basic_dp_4"
+            android:gravity="center"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/common_text_dark"
-            android:textSize="@dimen/common_text_normal_size"
+            android:textColor="@color/basic_text_dark"
+            android:textSize="@dimen/basic_text_normal_size"
             app:layout_constraintLeft_toLeftOf="@id/iv_icon"
             app:layout_constraintRight_toRightOf="@id/iv_icon"
             app:layout_constraintTop_toBottomOf="@id/divider"
@@ -65,11 +66,11 @@
             android:id="@+id/tv_custom_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginTop="@dimen/basic_dp_4"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/common_text_light"
-            android:textSize="@dimen/common_text_small_mini_size"
+            android:textColor="@color/basic_text_light"
+            android:textSize="@dimen/basic_text_small_mini_size"
             app:layout_constraintLeft_toLeftOf="@id/tv_name"
             app:layout_constraintRight_toRightOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
@@ -77,14 +78,14 @@
 
         <Button
             android:id="@+id/btn_custom"
-            style="@style/CommonMyButton"
+            style="@style/BasicMyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_dp_8"
+            android:layout_marginTop="@dimen/basic_dp_8"
             android:background="@drawable/common_bg_button_stroke_accent_radius_20"
             android:text="@string/common_label_start_customization"
-            android:textColor="@color/common_colorAccent"
-            android:textSize="@dimen/common_text_small_size"
+            android:textColor="@color/basic_colorAccent"
+            android:textSize="@dimen/basic_text_small_size"
             app:layout_constraintLeft_toLeftOf="@id/tv_custom_count"
             app:layout_constraintRight_toRightOf="@id/tv_custom_count"
             app:layout_constraintTop_toBottomOf="@id/tv_custom_count" />

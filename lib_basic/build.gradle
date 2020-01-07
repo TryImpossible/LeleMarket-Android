@@ -1,0 +1,95 @@
+def config = rootProject.ext
+
+apply plugin: 'com.android.library'
+apply plugin: config.plugins.butterknife
+apply plugin: config.plugins.realm
+
+android {
+    compileSdkVersion config.android.compileSdkVersion
+    buildToolsVersion config.android.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion config.android.minSdkVersion
+        targetSdkVersion config.android.targetSdkVersion
+        versionCode config.android.versionCode
+        versionName config.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+
+//        ndk {
+//            //设置支持的SO库架构
+//            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+//        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //指定jdk版本
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    resourcePrefix "basic_"
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation config.dependencies["junit"]
+    androidTestImplementation config.dependencies["ext:junit"]
+    androidTestImplementation config.dependencies["espresso-core"]\
+
+    api config.dependencies["appcompat"]
+    api config.dependencies["material"]
+    api config.dependencies["constraintlayout"]
+    api config.dependencies["legacy-support-v4"]
+    implementation config.dependencies["multidex"]
+
+    api config.dependencies["butterknife"]
+    annotationProcessor config.dependencies["butterknife-compiler"]
+
+    api config.dependencies["arouter-api"]
+    annotationProcessor config.dependencies["arouter-compiler"]
+
+    api config.dependencies["dagger"]
+    annotationProcessor config.dependencies["dagger-compiler"]
+    api config.dependencies["rxandroid"]
+    api config.dependencies["rxjava"]
+    api config.dependencies["retrofit"]
+    api config.dependencies["converter-gson"]
+    api config.dependencies["adapter-rxjava2"]
+    api config.dependencies["okhttp"]
+    api config.dependencies["logging-interceptor"]
+    api config.dependencies["rxbus"]
+    api config.dependencies["rxpermissions"]
+
+    compileOnly config.dependencies["lombok"]
+    compileOnly config.dependencies["javax.annotation"]
+
+    api config.dependencies["glide"]
+    annotationProcessor config.dependencies["glide-compiler"]
+
+    api config.dependencies["SmartRefreshLayout"]
+    api config.dependencies["SmartRefreshHeader"]
+    api config.dependencies["BaseRecyclerViewAdapterHelper"]
+    api config.dependencies["picture_library"]
+}

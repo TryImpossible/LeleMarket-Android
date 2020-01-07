@@ -3,9 +3,9 @@ package com.bynn.marketll.module_mine.activity;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bynn.common.arouter.MineRoutePath;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseWebActivity;
+import com.bynn.common.router.MineRoutePath;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.activity.BaseWebActivity;
 import com.bynn.marketll.module_mine.constants.MineConstants;
 
 @Route(path = MineRoutePath.CUSTOMER_SERVICE_ACTIVITY)

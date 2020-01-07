@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/basic_activity_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/basic_activity_horizontal_margin">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/basic_ic_net_error" />
+
+    <TextView
+        android:id="@+id/tv_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/basic_label_no_network_prompt"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_small_size" />
+
+    <Button
+        android:id="@+id/btn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/basic_dp_12"
+        android:background="@color/basic_colorAccent"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingHorizontal="@dimen/basic_dp_18"
+        android:paddingVertical="@dimen/basic_dp_4"
+        android:text="@string/basic_button_no_network_setting"
+        android:textColor="@color/basic_white"
+        android:textSize="@dimen/basic_text_small_size" />
+</LinearLayout>

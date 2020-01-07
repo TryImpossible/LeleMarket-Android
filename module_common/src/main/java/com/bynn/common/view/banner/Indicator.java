@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.bynn.common.R;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 
 public class Indicator extends LinearLayout {
     /**
@@ -77,8 +77,8 @@ public class Indicator extends LinearLayout {
         mVisible = true;
         // 默认6dp
         mItemSize = QMUIDisplayHelper.dp2px(mContext, 6);
-        mColor = ContextCompat.getColor(mContext, R.color.common_white);
-        mCheckedColor = ContextCompat.getColor(mContext, R.color.common_colorAccent);
+        mColor = ContextCompat.getColor(mContext, R.color.basic_white);
+        mCheckedColor = ContextCompat.getColor(mContext, R.color.basic_colorAccent);
         // 默认8dp
         mItemMargin = QMUIDisplayHelper.dp2px(mContext, 8);
         // 默认空
@@ -229,9 +229,9 @@ public class Indicator extends LinearLayout {
             mContext = context;
 
             // 默认白色
-            mColor = ContextCompat.getColor(mContext, R.color.common_white);
+            mColor = ContextCompat.getColor(mContext, R.color.basic_white);
             // 默认红色
-            mCheckedColor = ContextCompat.getColor(mContext, R.color.common_colorAccent);
+            mCheckedColor = ContextCompat.getColor(mContext, R.color.basic_colorAccent);
 
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mPaint.setStyle(Paint.Style.FILL);

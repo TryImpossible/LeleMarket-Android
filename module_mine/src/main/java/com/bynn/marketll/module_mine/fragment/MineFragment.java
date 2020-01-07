@@ -17,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bynn.common.arouter.LoginNavigationCallbackImpl;
-import com.bynn.common.arouter.MineRoutePath;
-import com.bynn.common.base.BaseFragment;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.common.router.LoginNavigationCallbackImpl;
+import com.bynn.common.router.MineRoutePath;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_mine.R;
 import com.bynn.marketll.module_mine.R2;
 import com.bynn.marketll.module_mine.adapter.MineAdapter;
@@ -32,7 +32,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 /**
@@ -151,7 +150,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
                 paint.setStyle(Paint.Style.FILL);
                 paint.setAntiAlias(false);
-                paint.setColor(ContextCompat.getColor(getContext(), R.color.common_divide_line));
+                paint.setColor(ContextCompat.getColor(getContext(), R.color.basic_divide_line));
 
                 int lineHeight = QMUIDisplayHelper.dp2px(getContext(), 1);
                 int count = parent.getChildCount();

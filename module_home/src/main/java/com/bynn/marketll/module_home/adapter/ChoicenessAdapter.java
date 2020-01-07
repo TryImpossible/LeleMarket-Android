@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.common.view.banner.BannerView;
 import com.bynn.common.view.banner.ScaleTransformer;
 import com.bynn.marketll.module_home.R;
@@ -46,7 +46,7 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
                 BannerView banner = helper.getView(R.id.banner);
                 banner.getViewPgaer().setPageMargin(QMUIDisplayHelper.dp2px(mContext, 16));
                 banner.getIndicator().setColor(Color.GRAY);
-                banner.getIndicator().setCheckedColor(ContextCompat.getColor(mContext, R.color.common_white));
+                banner.getIndicator().setCheckedColor(ContextCompat.getColor(mContext, R.color.basic_white));
                 banner.setImageList((List<String>) item.getItem());
                 banner.startPlay();
                 break;
@@ -63,14 +63,14 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
                     text.setText(bean.getName());
                     text.setTextColor(Color.RED);
                     text.setTextSize(11);
-                    text.setTextColor(ContextCompat.getColor(mContext, R.color.common_text_light));
+                    text.setTextColor(ContextCompat.getColor(mContext, R.color.basic_text_light));
                     ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.topMargin = QMUIDisplayHelper.dp2px(mContext, 4);
                     text.setLayoutParams(params);
 
                     LinearLayout layout = new LinearLayout(mContext);
                     layout.setLayoutParams(new ViewGroup.LayoutParams(QMUIDisplayHelper.getScreenWidth(mContext) / 4, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    layout.setBackgroundResource(R.drawable.common_layout_selector);
+                    layout.setBackgroundResource(R.drawable.basic_layout_selector);
                     layout.setOrientation(LinearLayout.VERTICAL);
                     layout.setGravity(Gravity.CENTER_HORIZONTAL);
                     layout.addView(image);

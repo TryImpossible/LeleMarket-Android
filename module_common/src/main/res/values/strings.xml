@@ -2,19 +2,10 @@
     <string name="common_app_name">common</string>
 
     <!-- view -->
-    <string name="common_label_progress_message">加载中...</string>
     <string name="common_hint_search_action_bar">请输入商品名称</string>
     <!--goods-->
     <string name="common_label_ketuyin">可图印</string>
     <string name="common_label_kekezhi">可刻字</string>
     <string name="common_label_already_custom_count">已定制%s件</string>
     <string name="common_label_start_customization">开始定制</string>
-    <!--loadstate-->
-    <string name="common_label_loading_prompt">加载中...</string>
-    <string name="common_label_empty_prompt">空空如也</string>
-    <string name="common_button_empty_go">去发现</string>
-    <string name="common_label_failure_prompt">请点击屏幕，重新加载</string>
-    <string name="common_label_no_network_prompt">网络出问题了</string>
-    <string name="common_button_no_network_setting">去设定</string>
-
 </resources>

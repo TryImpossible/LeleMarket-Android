@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
-        android:paddingVertical="@dimen/common_dp_12"
-        android:textColor="@color/common_text_light"
-        android:textSize="@dimen/common_text_normal_size"
+        android:paddingHorizontal="@dimen/basic_activity_horizontal_margin"
+        android:paddingVertical="@dimen/basic_dp_12"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_normal_size"
         tools:text="最近搜索" />
 
     <ImageView
@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
-        android:paddingVertical="@dimen/common_dp_12"
+        android:paddingHorizontal="@dimen/basic_activity_horizontal_margin"
+        android:paddingVertical="@dimen/basic_dp_12"
         android:src="@mipmap/main_ic_del"
         android:visibility="gone"
         tools:visibility="visible" />

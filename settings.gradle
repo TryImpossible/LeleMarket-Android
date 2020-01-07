@@ -1,2 +1,2 @@
-include ':app', ':module_common', ':module_main', ':module_home', ':module_discover', ':module_custom', ':module_shopping_cart', ':module_mine', ':lib_base', ':lib_qrcode'
+include ':app', 'module_main', ':module_common', ':module_home', ':module_discover', ':module_custom',':module_shopping_cart',':module_mine',':lib_basic', ':lib_qrcode'
 rootProject.name='LeleMarket'

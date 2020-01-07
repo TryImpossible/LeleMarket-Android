@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MineAppTheme" parent="@style/CommonBaseAppTheme">
+    <style name="MineAppTheme" parent="@style/BasicAppTheme">
         <!-- Customize your theme here. -->
     </style>
 

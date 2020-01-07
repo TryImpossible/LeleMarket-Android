@@ -1,6 +1,7 @@
 package com.bynn.marketll.module_main.network;
 
 import com.bynn.common.bean.RecommendGoodsResult;
+import com.bynn.common.constants.NetApiConstants;
 import com.bynn.marketll.module_main.bean.KeywordResult;
 
 import io.reactivex.Observable;
@@ -14,7 +15,7 @@ public interface MainApi {
     /**
      * 热门搜索
      */
-    @GET("/diyMall/searchGoods/getRecommand.do")
+    @GET(NetApiConstants.GET_RECOMMAND)
     Observable<KeywordResult> getRecommand();
 
     /**

@@ -7,11 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bynn.common.adapter.GoodsAdapter;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
 import com.bynn.common.bean.RecommendGoodsBean;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
@@ -26,10 +31,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -165,7 +166,10 @@ public class NavInfoFragment extends BaseFragment {
                     outRect.top = space;
                 }
                 if (position % 2 == 0) {
-                    outRect.right = space;
+                    outRect.right = space / 2;
+                }
+                if (position % 2 == 1) {
+                    outRect.left = space / 2;
                 }
                 outRect.bottom = space;
             }

@@ -37,7 +37,7 @@
         android:layout_width="270dp"
         android:layout_height="270dp"
         android:background="@mipmap/common_img_capture"
-        android:paddingVertical="@dimen/common_dp_4"
+        android:paddingVertical="@dimen/basic_dp_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -69,7 +69,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rl_capture_layout" />
 
-    <com.bynn.common.view.HeaderView
+    <com.bynn.basic.view.HeaderView
         android:id="@+id/header_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/common_black"
+        android:background="@color/basic_black"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -88,25 +88,25 @@
             android:id="@+id/btn_scan_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/common_dp_12"
-            android:background="@color/common_transparent"
+            android:layout_marginVertical="@dimen/basic_dp_12"
+            android:background="@color/basic_transparent"
             android:drawableTop="@mipmap/common_ic_scan_code_selected"
             android:drawablePadding="@dimen/dp_4"
             android:text="@string/main_label_scan_code"
-            android:textColor="@color/common_colorAccent"
-            android:textSize="@dimen/common_text_small_size" />
+            android:textColor="@color/basic_colorAccent"
+            android:textSize="@dimen/basic_text_small_size" />
 
         <Button
             android:id="@+id/btn_album"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/common_dp_12"
-            android:background="@color/common_transparent"
+            android:layout_marginVertical="@dimen/basic_dp_12"
+            android:background="@color/basic_transparent"
             android:drawableTop="@mipmap/common_ic_album_icon_normal"
             android:drawablePadding="@dimen/dp_4"
             android:text="@string/main_label_album"
-            android:textColor="@color/common_gray"
-            android:textSize="@dimen/common_text_small_size" />
+            android:textColor="@color/basic_gray"
+            android:textSize="@dimen/basic_text_small_size" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

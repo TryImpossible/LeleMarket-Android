@@ -1,16 +1,25 @@
 package com.bynn.marketll.module_main;
 
-import com.bynn.common.base.BasePresenter;
-import com.bynn.common.base.IBaseView;
 import com.bynn.common.bean.RecommendGoodsResult;
-import com.bynn.common.exception.NetworkResultException;
+import com.bynn.common.constants.NetApiConstants;
+import com.bynn.lib_basic.database.HttpDao;
+import com.bynn.lib_basic.network.ResponseObserver;
+import com.bynn.lib_basic.presenter.BasePresenter;
+import com.bynn.lib_basic.interfaces.IBaseView;
+import com.bynn.lib_basic.network.ResponseException;
+import com.bynn.lib_basic.utils.RxJavaUtils;
+import com.bynn.marketll.module_main.bean.KeywordBean;
 import com.bynn.marketll.module_main.bean.KeywordResult;
+import com.bynn.marketll.module_main.database.HistorySearchDao;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter {
@@ -29,31 +38,30 @@ public class MainPresenter extends BasePresenter {
      */
     public void getRecommand() {
         mMainModel.getRecommand()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<KeywordResult>() {
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<KeywordResult>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-                        addDisposable(d);
+                    public void onSuccess(KeywordResult data) {
+                        mIBaseView.onSuccess(data);
                     }
 
                     @Override
-                    public void onNext(KeywordResult keywordResult) {
-                        if (keywordResult.isSuccess()) {
-                            mIBaseView.onSuccess(keywordResult);
-                        } else {
-                            mIBaseView.onFailure(new NetworkResultException(keywordResult));
-                        }
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
                     }
+                });
+    }
 
+    /**
+     * 获取最近搜索
+     */
+    public void getHistorySearch() {
+        HistorySearchDao.findAll()
+                .compose(RxJavaUtils.applySchedulers(this))
+                .doOnNext(new Consumer<List<String>>() {
                     @Override
-                    public void onError(Throwable e) {
-                        mIBaseView.onError(e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    public void accept(List<String> strings) throws Exception {
+                        mIBaseView.onSuccess(strings);
                     }
                 });
     }
@@ -65,31 +73,16 @@ public class MainPresenter extends BasePresenter {
      */
     public void getKeyword(String name) {
         mMainModel.getKeyword(name)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<KeywordResult>() {
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<KeywordResult>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-                        addDisposable(d);
+                    public void onSuccess(KeywordResult data) {
+                        mIBaseView.onSuccess(data);
                     }
 
                     @Override
-                    public void onNext(KeywordResult keywordResult) {
-                        if (keywordResult.isSuccess()) {
-                            mIBaseView.onSuccess(keywordResult);
-                        } else {
-                            mIBaseView.onFailure(new NetworkResultException(keywordResult));
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mIBaseView.onError(e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
                     }
                 });
     }
@@ -102,31 +95,16 @@ public class MainPresenter extends BasePresenter {
      */
     public void getGoodsInfo(int page, String name) {
         mMainModel.getGoodsInfo(page, name)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<RecommendGoodsResult>() {
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<RecommendGoodsResult>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-                        addDisposable(d);
+                    public void onSuccess(RecommendGoodsResult data) {
+                        mIBaseView.onSuccess(data);
                     }
 
                     @Override
-                    public void onNext(RecommendGoodsResult recommendGoodsResult) {
-                        if (recommendGoodsResult.isSuccess()) {
-                            mIBaseView.onSuccess(recommendGoodsResult);
-                        } else {
-                            mIBaseView.onFailure(new NetworkResultException(recommendGoodsResult));
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mIBaseView.onError(e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
                     }
                 });
     }

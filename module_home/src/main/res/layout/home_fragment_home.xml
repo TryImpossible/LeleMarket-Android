@@ -13,16 +13,16 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/common_white"
+        android:background="@color/basic_white"
         android:visibility="gone"
         app:tabIndicatorFullWidth="false"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/common_colorAccent"
-        app:tabTextColor="@color/common_text_dark" />
+        app:tabSelectedTextColor="@color/basic_colorAccent"
+        app:tabTextColor="@color/basic_text_dark" />
 
     <include
         android:id="@+id/divider"
-        layout="@layout/common_include_divide_line"
+        layout="@layout/basic_include_divide_line"
         android:visibility="gone" />
 
     <androidx.viewpager.widget.ViewPager

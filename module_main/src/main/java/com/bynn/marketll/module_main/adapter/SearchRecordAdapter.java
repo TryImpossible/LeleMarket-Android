@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.bean.KeywordBean;
 import com.bynn.marketll.module_main.bean.SearchRecordBean;
@@ -51,7 +51,7 @@ public class SearchRecordAdapter extends BaseSectionMultiItemQuickAdapter<Search
                 keyword.setTag(name);
                 keyword.setPadding(left, top, left, top);
                 keyword.setTextSize(12);
-                keyword.setTextColor(ContextCompat.getColor(mContext, R.color.common_text_dark));
+                keyword.setTextColor(ContextCompat.getColor(mContext, R.color.basic_text_dark));
                 keyword.setBackground(ContextCompat.getDrawable(mContext, R.drawable.common_bg_button_solid_gray_radius_20));
                 keyword.setText(hotList.get(i).getName());
                 keyword.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +66,8 @@ public class SearchRecordAdapter extends BaseSectionMultiItemQuickAdapter<Search
                 flowLayout.addView(keyword);
             }
         } else if (type == SearchRecordBean.TYPE_HOSTORY) {
-            KeywordBean keyword = (KeywordBean) item.t;
-            helper.setText(R.id.tv_name, keyword.getName());
+            String keyword = (String) item.t;
+            helper.setText(R.id.tv_name, keyword);
         }
     }
 

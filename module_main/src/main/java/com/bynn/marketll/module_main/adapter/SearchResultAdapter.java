@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bynn.common.bean.RecommendGoodsBean;
-import com.bynn.common.utils.SpanUtils;
+import com.bynn.lib_basic.utils.SpanUtils;
 import com.bynn.marketll.module_main.R;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -28,11 +28,11 @@ public class SearchResultAdapter extends BaseQuickAdapter<RecommendGoodsBean, Ba
 
         String saleCount = String.format(mContext.getString(R.string.common_label_already_custom_count), item.getSell());
         SpannableStringBuilder strBuilder = new SpanUtils().append(saleCount.substring(0, 3))
-                .setForegroundColor(ContextCompat.getColor(mContext, R.color.common_text_dark))
+                .setForegroundColor(ContextCompat.getColor(mContext, R.color.basic_text_dark))
                 .append(saleCount.substring(3, saleCount.length() - 1))
-                .setForegroundColor(ContextCompat.getColor(mContext, R.color.common_colorAccent))
+                .setForegroundColor(ContextCompat.getColor(mContext, R.color.basic_colorAccent))
                 .append(saleCount.substring(saleCount.length() - 1))
-                .setForegroundColor(ContextCompat.getColor(mContext, R.color.common_text_dark))
+                .setForegroundColor(ContextCompat.getColor(mContext, R.color.basic_text_dark))
                 .create();
 
         helper.setText(R.id.tv_title, item.getSaleTitle())

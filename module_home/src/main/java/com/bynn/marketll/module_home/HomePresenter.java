@@ -1,9 +1,9 @@
 package com.bynn.marketll.module_home;
 
-import com.bynn.common.base.BasePresenter;
-import com.bynn.common.base.IBaseView;
-import com.bynn.common.bean.NetworkResult;
-import com.bynn.common.exception.NetworkResultException;
+import com.bynn.lib_basic.presenter.BasePresenter;
+import com.bynn.lib_basic.interfaces.IBaseView;
+import com.bynn.lib_basic.network.ResponseException;
+import com.bynn.lib_basic.network.ResponseResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
@@ -46,7 +46,7 @@ public class HomePresenter extends BasePresenter {
                         if (topNavResult.isSuccess()) {
                             mIBaseView.onSuccess(topNavResult);
                         } else {
-                            mIBaseView.onFailure(new NetworkResultException(topNavResult));
+                            mIBaseView.onFailure(new ResponseException(topNavResult));
                         }
                     }
 
@@ -82,7 +82,7 @@ public class HomePresenter extends BasePresenter {
                         if (choicenessResult.isSuccess()) {
                             mIBaseView.onSuccess(choicenessResult);
                         } else {
-                            mIBaseView.onFailure(new NetworkResultException(choicenessResult));
+                            mIBaseView.onFailure(new ResponseException(choicenessResult));
                         }
                     }
 
@@ -120,7 +120,7 @@ public class HomePresenter extends BasePresenter {
 
                     @Override
                     public void onNext(Object result) {
-                        NetworkResult networkResult = (NetworkResult) result;
+                        ResponseResult networkResult = (ResponseResult) result;
                         if (networkResult.isSuccess()) {
                             if (result instanceof NavInfoResult) {
                                 mIBaseView.onSuccess(NavInfoByPageResult.build((NavInfoResult) result));
@@ -128,7 +128,7 @@ public class HomePresenter extends BasePresenter {
                                 mIBaseView.onSuccess((NavInfoByPageResult) result);
                             }
                         } else {
-                            mIBaseView.onFailure(new NetworkResultException(networkResult));
+                            mIBaseView.onFailure(new ResponseException(networkResult));
                         }
                     }
 

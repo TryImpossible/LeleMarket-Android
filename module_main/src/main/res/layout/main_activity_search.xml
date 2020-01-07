@@ -8,18 +8,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_action_bar_height"
-        android:background="@color/common_white"
+        android:layout_height="@dimen/basic_action_bar_height"
+        android:background="@color/basic_white"
         tools:context=".activity.SearchActivity">
 
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/common_action_bar_height"
+            android:layout_height="@dimen/basic_action_bar_height"
             android:layout_gravity="center|center_horizontal"
-            android:paddingHorizontal="@dimen/common_dp_12"
+            android:paddingHorizontal="@dimen/basic_dp_12"
             android:scaleType="center"
-            android:src="@mipmap/common_ic_back"
+            android:src="@mipmap/basic_ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
             android:id="@+id/ll_input_keyword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/common_activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/basic_activity_horizontal_margin"
             android:background="@drawable/common_bg_solid_light_gray_radius_10"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -48,22 +48,22 @@
                 android:id="@+id/et_keyword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_dp_4"
+                android:layout_marginLeft="@dimen/basic_dp_4"
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/common_hint_search_action_bar"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:paddingVertical="@dimen/common_dp_8"
-                android:textColor="@color/common_text_light"
-                android:textSize="@dimen/common_text_small_size" />
+                android:paddingVertical="@dimen/basic_dp_8"
+                android:textColor="@color/basic_text_light"
+                android:textSize="@dimen/basic_text_small_size" />
 
             <ImageView
                 android:id="@+id/iv_close"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginLeft="@dimen/common_dp_4"
-                android:paddingHorizontal="@dimen/common_dp_4"
+                android:layout_marginLeft="@dimen/basic_dp_4"
+                android:paddingHorizontal="@dimen/basic_dp_4"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/main_ic_close"
                 android:visibility="gone" />
@@ -72,19 +72,19 @@
         <TextView
             android:id="@+id/tv_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/common_action_bar_height"
+            android:layout_height="@dimen/basic_action_bar_height"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/common_dp_12"
+            android:paddingHorizontal="@dimen/basic_dp_12"
             android:text="取消"
-            android:textColor="@color/common_text_light"
-            android:textSize="@dimen/common_text_small_size"
+            android:textColor="@color/basic_text_light"
+            android:textSize="@dimen/basic_text_small_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/ll_input_keyword"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include layout="@layout/common_include_divide_line" />
+    <include layout="@layout/basic_include_divide_line" />
 
     <FrameLayout
         android:id="@+id/frameLayout"

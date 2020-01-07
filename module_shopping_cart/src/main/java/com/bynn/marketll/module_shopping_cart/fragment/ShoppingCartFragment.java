@@ -6,15 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bynn.common.arouter.ShoppingCartRoutePath;
-import com.bynn.common.base.BaseFragment;
-import com.bynn.common.view.loadstate.EmptyView;
-import com.bynn.common.view.loadstate.LoadStateLayout;
+import com.bynn.common.router.ShoppingCartRoutePath;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.view.loadstate.EmptyView;
+import com.bynn.lib_basic.view.loadstate.LoadStateLayout;
 import com.bynn.marketll.module_shopping_cart.R;
 import com.bynn.marketll.module_shopping_cart.R2;
-
-import androidx.fragment.app.Fragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -2,9 +2,7 @@ package com.bynn.marketll.module_discover.activity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.bynn.common.base.BaseActivity;
+import com.bynn.lib_basic.activity.BaseActivity;
 import com.bynn.marketll.module_discover.R;
 import com.bynn.marketll.module_discover.fragment.DiscoverFragment;
 

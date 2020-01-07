@@ -7,12 +7,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bynn.common.arouter.HomeRoutePath;
-import com.bynn.common.arouter.MainRoutePath;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
+import com.bynn.common.router.HomeRoutePath;
+import com.bynn.common.router.MainRoutePath;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
@@ -25,12 +31,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

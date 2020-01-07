@@ -3,7 +3,7 @@
     package="com.bynn.marketll.module_home">
 
     <application
-        android:name="com.bynn.common.base.BaseApplication"
+        android:name="com.bynn.lib_basic.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/home_app_name"

@@ -1,29 +1,23 @@
 package com.bynn.marketll.module_main.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bynn.common.arouter.HomeRoutePath;
-import com.bynn.common.arouter.MainRoutePath;
-import com.bynn.common.base.BaseActivity;
+import com.bynn.common.router.MainRoutePath;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.activity.BaseActivity;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -84,7 +78,8 @@ public class SplashActivity extends BaseActivity {
 
                     @Override
                     public void onComplete() {
-                        ARouter.getInstance().build(MainRoutePath.MAIN_ACTIVITY).navigation();
+                        finish();
+                        BaseApplication.getARouter().build(MainRoutePath.MAIN_ACTIVITY).navigation();
                         // 开启按钮
                     }
                 });

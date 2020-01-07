@@ -1,7 +1,7 @@
 package com.bynn.marketll.module_shopping_cart;
 
-import com.bynn.common.base.BasePresenter;
-import com.bynn.common.base.IBaseView;
+import com.bynn.lib_basic.presenter.BasePresenter;
+import com.bynn.lib_basic.interfaces.IBaseView;
 
 import javax.inject.Inject;
 

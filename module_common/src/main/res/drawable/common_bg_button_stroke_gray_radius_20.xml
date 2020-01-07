@@ -3,6 +3,6 @@
     android:shape="rectangle">
     <corners android:radius="20dp" />
     <stroke
-        android:width="@dimen/common_dp_1"
-        android:color="@color/common_divide_line" />
+        android:width="@dimen/basic_dp_1"
+        android:color="@color/basic_divide_line" />
 </shape>

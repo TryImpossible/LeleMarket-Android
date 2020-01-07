@@ -12,16 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
 import com.bynn.common.bean.RecommendGoodsBean;
 import com.bynn.common.bean.RecommendGoodsResult;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
 import com.bynn.marketll.module_main.activity.SearchActivity;
-import com.bynn.marketll.module_main.adapter.SearchKeywordAdapter;
 import com.bynn.marketll.module_main.adapter.SearchResultAdapter;
 import com.bynn.marketll.module_main.dagger.DaggerMainComponent;
 import com.bynn.marketll.module_main.dagger.MainComponent;
@@ -83,8 +82,8 @@ public class SearchResultFragment extends BaseFragment {
     }
 
     @Override
-    public void hideProgress() {
-        super.hideProgress();
+    public void hideLoading() {
+        super.hideLoading();
         if (mRefreshLayout != null) {
             mRefreshLayout.finishRefresh();
             mRefreshLayout.finishLoadMore();

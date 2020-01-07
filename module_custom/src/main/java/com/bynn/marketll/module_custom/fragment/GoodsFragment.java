@@ -3,33 +3,25 @@ package com.bynn.marketll.module_custom.fragment;
 
 import android.graphics.Rect;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bynn.common.adapter.GoodsAdapter;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
 import com.bynn.common.bean.BannerBean;
 import com.bynn.common.bean.RecommendGoodsBean;
 import com.bynn.common.bean.RecommendGoodsResult;
-import com.bynn.common.qmui.QMUIDisplayHelper;
 import com.bynn.common.view.banner.BannerView;
 import com.bynn.common.view.banner.ScaleTransformer;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_custom.CustomPresenter;
 import com.bynn.marketll.module_custom.R;
 import com.bynn.marketll.module_custom.R2;
@@ -45,25 +37,28 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * create an instance of this fragment.
  */
 public class GoodsFragment extends BaseFragment {
-    private static final String MENU_ID = "menuId";
-    private static final String BANNER = "banner";
+    private static final String MENU_ID        = "menuId";
+    private static final String BANNER         = "banner";
     private static final String RECOMMENDGOODS = "recommendGoods";
 
     @BindView(R2.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
     @BindView(R2.id.recyclerView)
-    RecyclerView mRecyclerView;
+    RecyclerView       mRecyclerView;
 
-    private GoodsAdapter mGoodsAdapter;
+    private GoodsAdapter    mGoodsAdapter;
     private CustomPresenter mCustomPresenter;
     // 菜单id
-    private int mMenuId;
+    private int             mMenuId;
     //  页码从0 开始
-    private int mPage = 0;
+    private int             mPage = 0;
 
     public GoodsFragment() {
         // Required empty public constructor
@@ -110,8 +105,8 @@ public class GoodsFragment extends BaseFragment {
     }
 
     @Override
-    public void hideProgress() {
-        super.hideProgress();
+    public void hideLoading() {
+        super.hideLoading();
         if (null != mRefreshLayout) {
             mRefreshLayout.finishLoadMore();
         }
@@ -196,8 +191,17 @@ public class GoodsFragment extends BaseFragment {
                     if (position == 0) {
                         outRect.top = space;
                     }
-                    if (position == 0 || position % 2 == 1) {
+                    if (position == 0) {
                         outRect.left = space;
+                        outRect.right = space;
+                    }
+                    if (position > 0 && position % 2 == 1) {
+                        outRect.left = space;
+                        outRect.right = space / 2;
+                    }
+                    if (position > 0 && position % 2 == 0) {
+                        outRect.left = space / 2;
+                        outRect.right = space;
                     }
                 } else {
                     if ((int) position / 2 == 0) {
@@ -205,9 +209,13 @@ public class GoodsFragment extends BaseFragment {
                     }
                     if (position % 2 == 0) {
                         outRect.left = space;
+                        outRect.right = space / 2;
+                    }
+                    if (position % 2 == 1) {
+                        outRect.left = space / 2;
+                        outRect.right = space;
                     }
                 }
-                outRect.right = space;
                 outRect.bottom = space;
             }
         });

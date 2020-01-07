@@ -1,8 +1,8 @@
 package com.bynn.marketll.module_discover;
 
-import com.bynn.common.base.BasePresenter;
-import com.bynn.common.base.IBaseView;
-import com.bynn.common.exception.NetworkResultException;
+import com.bynn.lib_basic.presenter.BasePresenter;
+import com.bynn.lib_basic.interfaces.IBaseView;
+import com.bynn.lib_basic.network.ResponseException;
 import com.bynn.marketll.module_discover.bean.CommodityResult;
 
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ public class DiscoverPresenter extends BasePresenter {
      * @param page
      */
     public void getFindList(int page) {
-        mIBaseView.showProgress();
+        mIBaseView.showLoading();
         mCustomModel.getFindList(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -45,7 +45,7 @@ public class DiscoverPresenter extends BasePresenter {
                         if (commodityResult.isSuccess()) {
                             mIBaseView.onSuccess(commodityResult);
                         } else {
-                            mIBaseView.onFailure(new NetworkResultException(commodityResult));
+                            mIBaseView.onFailure(new ResponseException(commodityResult));
                         }
                     }
 

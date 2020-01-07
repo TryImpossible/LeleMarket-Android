@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="DiscoverAppTheme" parent="@style/CommonBaseAppTheme">
+    <style name="DiscoverAppTheme" parent="@style/BasicAppTheme">
         <!-- Customize your theme here. -->
 
     </style>

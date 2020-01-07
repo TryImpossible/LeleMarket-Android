@@ -1,0 +1,20 @@
+<resources>
+    <string name="basic_app_name">basic</string>
+
+    <!-- ProgressDialog -->
+    <string name="basic_label_progress_message">加载中...</string>
+    <!-- LoadStateLayout -->
+    <string name="basic_label_loading_prompt">加载中...</string>
+    <string name="basic_label_empty_prompt">空空如也</string>
+    <string name="basic_button_empty_go">去发现</string>
+    <string name="basic_label_failure_prompt">请点击屏幕，重新加载</string>
+    <string name="basic_label_no_network_prompt">网络出问题了</string>
+    <string name="basic_button_no_network_setting">去设定</string>
+
+    <string name="basic_connect_error">网络连接失败,请检查网络</string>
+    <string name="basic_connect_timeout">连接超时,请稍后再试</string>
+    <string name="basic_bad_network">服务器异常</string>
+    <string name="basic_parse_error">解析服务器响应数据失败</string>
+    <string name="basic_unknown_error">未知错误</string>
+    <string name="basic_response_return_error">服务器返回数据失败</string>
+</resources>

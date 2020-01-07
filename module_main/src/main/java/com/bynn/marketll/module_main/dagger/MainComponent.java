@@ -1,7 +1,7 @@
 package com.bynn.marketll.module_main.dagger;
 
-import com.bynn.common.dagger.ActivityScope;
-import com.bynn.common.dagger.AppComponent;
+import com.bynn.lib_basic.dagger.ActivityScope;
+import com.bynn.lib_basic.dagger.AppComponent;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.network.MainApi;
 

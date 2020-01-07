@@ -8,19 +8,19 @@
 
     <View
         android:id="@+id/block"
-        android:layout_marginVertical="@dimen/common_dp_8"
+        android:layout_marginVertical="@dimen/basic_dp_8"
         android:layout_width="3dp"
         android:layout_height="match_parent"
-        android:background="@color/common_colorAccent" />
+        android:background="@color/basic_colorAccent" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/common_dp_10"
+        android:padding="@dimen/basic_dp_10"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@color/common_text_light"
-        android:textSize="@dimen/common_text_normal_size"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_normal_size"
         tools:text="热门推荐" />
 </LinearLayout>

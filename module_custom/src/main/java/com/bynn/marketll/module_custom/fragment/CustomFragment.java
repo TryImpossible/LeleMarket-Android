@@ -6,14 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bynn.common.arouter.CustomRoutePath;
-import com.bynn.common.arouter.MainRoutePath;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
+import com.bynn.common.router.CustomRoutePath;
+import com.bynn.common.router.MainRoutePath;
 import com.bynn.common.bean.BannerBean;
 import com.bynn.common.bean.RecommendGoodsBean;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
 import com.bynn.marketll.module_custom.CustomPresenter;
 import com.bynn.marketll.module_custom.R;
 import com.bynn.marketll.module_custom.R2;
@@ -26,10 +30,6 @@ import com.bynn.marketll.module_custom.dagger.DaggerCustomComponent;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -128,6 +128,9 @@ public class CustomFragment extends BaseFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 int lastSelected = mMenuAdapter.getSelectedPosition();
+                if (position == lastSelected) {
+                    return;
+                }
                 mMenuAdapter.getItem(lastSelected).setSelected(false);
                 mMenuAdapter.notifyItemChanged(lastSelected);
 

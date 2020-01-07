@@ -2,7 +2,7 @@ package com.bynn.marketll.module_custom.activity;
 
 import android.os.Bundle;
 
-import com.bynn.common.base.BaseActivity;
+import com.bynn.lib_basic.activity.BaseActivity;
 import com.bynn.marketll.module_custom.R;
 import com.bynn.marketll.module_custom.fragment.CustomFragment;
 

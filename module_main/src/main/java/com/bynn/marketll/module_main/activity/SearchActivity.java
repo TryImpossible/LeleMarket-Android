@@ -8,11 +8,6 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -23,12 +18,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.bynn.common.base.BaseActivity;
-import com.bynn.common.qmui.QMUIDisplayHelper;
-import com.bynn.common.utils.SoftInputUtils;
+import com.bynn.lib_basic.activity.BaseActivity;
+import com.bynn.lib_basic.qmui.QMUIKeyboardHelper;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
-import com.bynn.marketll.module_main.adapter.SearchResultAdapter;
 import com.bynn.marketll.module_main.fragment.SearchKeywordFragment;
 import com.bynn.marketll.module_main.fragment.SearchRecordFragment;
 import com.bynn.marketll.module_main.fragment.SearchResultFragment;
@@ -80,7 +73,7 @@ public class SearchActivity extends BaseActivity {
         if (mSearchResultFragment == null) {
             finish();
         } else {
-            SoftInputUtils.hideSoftInput(getApplicationContext(), mEtKeyword);
+            QMUIKeyboardHelper.hideKeyboard(mEtKeyword);
             mEtKeyword.setFocusable(false);
 
             showBackIconAnima(null);
@@ -105,7 +98,7 @@ public class SearchActivity extends BaseActivity {
         mEtKeyword.setFocusable(true);
         mEtKeyword.setFocusableInTouchMode(true);
         mEtKeyword.requestFocus();
-        SoftInputUtils.showSoftInput(SearchActivity.this, mEtKeyword);
+        QMUIKeyboardHelper.showKeyboard(mEtKeyword, 30);
         mEtKeyword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -121,7 +114,7 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    SoftInputUtils.showSoftInput(SearchActivity.this, mEtKeyword);
+                    QMUIKeyboardHelper.showKeyboard(mEtKeyword, false);
                     hideBackIconAnima(new Runnable() {
                         @Override
                         public void run() {
@@ -182,7 +175,7 @@ public class SearchActivity extends BaseActivity {
                                 return;
                             }
 //                            saveSearchRecord(title);
-                            SoftInputUtils.hideSoftInput(getApplicationContext(), mEtKeyword);
+                            QMUIKeyboardHelper.hideKeyboard(mEtKeyword);
                             mEtKeyword.setFocusable(false);
                             showBackIconAnima(new Runnable() {
                                 @Override
@@ -209,7 +202,7 @@ public class SearchActivity extends BaseActivity {
      */
     public void setKeyword(String keyword) {
         if (mEtKeyword != null) {
-            SoftInputUtils.hideSoftInput(this, mEtKeyword);
+            QMUIKeyboardHelper.hideKeyboard(mEtKeyword);
 
             mEtKeyword.setFocusable(false);
             mEtKeyword.setText(keyword);

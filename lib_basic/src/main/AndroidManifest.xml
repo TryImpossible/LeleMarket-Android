@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bynn.lib_basic">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
+    <application android:networkSecurityConfig="@xml/basic_network_security_config">
+        <!-- 华为全面屏适配 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" /> <!-- Android官方全面屏适配 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.34" /> <!-- 小米全面屏适配 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
+        <activity
+            android:name=".activity.BaseWebActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

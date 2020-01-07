@@ -2,7 +2,7 @@
     package="com.bynn.marketll.module_shopping_cart">
 
     <application
-        android:name="com.bynn.common.base.BaseApplication"
+        android:name="com.bynn.lib_basic.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/shopping_app_name"

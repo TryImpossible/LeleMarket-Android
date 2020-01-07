@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bynn.common.arouter.MineRoutePath;
-import com.bynn.common.base.BaseActivity;
-import com.bynn.common.view.loadstate.LoadStateLayout;
+import com.bynn.common.router.MineRoutePath;
+import com.bynn.lib_basic.activity.BaseActivity;
+import com.bynn.lib_basic.view.loadstate.LoadStateLayout;
 import com.bynn.marketll.module_mine.R;
 import com.bynn.marketll.module_mine.R2;
 

@@ -7,13 +7,13 @@
     android:orientation="vertical"
     tools:context=".fragment.ShoppingCartFragment">
 
-    <com.bynn.common.view.HeaderView
+    <com.bynn.lib_basic.view.HeaderView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:back_visible="false"
         app:title="@string/shopping_title_shopping_cart" />
 
-    <com.bynn.common.view.loadstate.LoadStateLayout
+    <com.bynn.lib_basic.view.loadstate.LoadStateLayout
         android:id="@+id/loadStateLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"

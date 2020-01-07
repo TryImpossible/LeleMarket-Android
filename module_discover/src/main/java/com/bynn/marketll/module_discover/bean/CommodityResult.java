@@ -1,6 +1,6 @@
 package com.bynn.marketll.module_discover.bean;
 
-import com.bynn.common.bean.NetworkResult;
+import com.bynn.lib_basic.network.ResponseResult;
 
 import java.util.List;
 
@@ -9,6 +9,5 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CommodityResult extends NetworkResult {
-    private List<CommodityBean> data;
+public class CommodityResult extends ResponseResult<List<CommodityBean>> {
 }

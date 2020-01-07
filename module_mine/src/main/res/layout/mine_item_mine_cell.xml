@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/common_white"
+    android:background="@color/basic_white"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/common_layout_selector"
+        android:background="@drawable/basic_layout_selector"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/common_activity_horizontal_margin"
-        android:paddingVertical="@dimen/common_dp_10">
+        android:paddingHorizontal="@dimen/basic_activity_horizontal_margin"
+        android:paddingVertical="@dimen/basic_dp_10">
 
         <ImageView
             android:id="@+id/iv_icon"
@@ -26,11 +26,11 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/common_dp_12"
+            android:layout_marginHorizontal="@dimen/basic_dp_12"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:textColor="@color/common_text_normal"
-            android:textSize="@dimen/common_text_normal_size"
+            android:textColor="@color/basic_text_normal"
+            android:textSize="@dimen/basic_text_normal_size"
             tools:text="@string/mine_label_coupon" />
 
         <ImageView
@@ -38,14 +38,14 @@
             android:layout_height="wrap_content"
             android:scaleType="center"
             android:src="@mipmap/common_ic_right_arrow"
-            android:tint="@color/common_text_dark" />
+            android:tint="@color/basic_text_dark" />
     </LinearLayout>
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/common_activity_horizontal_margin"
-        android:background="@color/common_divide_line"
-        android:paddingLeft="@dimen/common_activity_horizontal_margin" />
+        android:layout_marginLeft="@dimen/basic_activity_horizontal_margin"
+        android:background="@color/basic_divide_line"
+        android:paddingLeft="@dimen/basic_activity_horizontal_margin" />
 </LinearLayout>

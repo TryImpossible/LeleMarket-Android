@@ -5,7 +5,7 @@
     android:id="@+id/handpick"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="@color/common_white"
-    android:paddingBottom="@dimen/common_activity_vertical_margin"
+    android:background="@color/basic_white"
+    android:paddingBottom="@dimen/basic_activity_vertical_margin"
     app:auto_play="false"
     app:loop="true" />

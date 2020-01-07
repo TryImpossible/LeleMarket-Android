@@ -3,8 +3,8 @@ package com.bynn.marketll.module_main.activity;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bynn.common.arouter.MainRoutePath;
-import com.bynn.common.base.BaseWebActivity;
+import com.bynn.common.router.MainRoutePath;
+import com.bynn.lib_basic.activity.BaseWebActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

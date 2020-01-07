@@ -64,7 +64,9 @@ dependencies {
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]
 
-    api project(':module_common')
+    api project(':lib_basic')
+    implementation project(':module_common')
+
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
     annotationProcessor config.dependencies["dagger-compiler"]

@@ -3,8 +3,8 @@ package com.bynn.common.sp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseSharedPreferences;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.sp.BaseSharedPreferences;
 
 public class AppSharedPre extends BaseSharedPreferences {
     private static volatile AppSharedPre sSharedPre;

@@ -21,7 +21,7 @@ public class MenuAdapter extends BaseQuickAdapter<MenuBean, BaseViewHolder> {
     protected void convert(@NonNull BaseViewHolder helper, MenuBean item) {
         helper.setVisible(R.id.block, item.isSelected())
                 .setText(R.id.tv_name, item.getName().substring(1))
-                .setTextColor(R.id.tv_name, ContextCompat.getColor(mContext, item.isSelected() ? R.color.common_colorAccent :R.color.common_text_light));
+                .setTextColor(R.id.tv_name, ContextCompat.getColor(mContext, item.isSelected() ? R.color.basic_colorAccent :R.color.basic_text_light));
     }
 
     public int getSelectedPosition() {

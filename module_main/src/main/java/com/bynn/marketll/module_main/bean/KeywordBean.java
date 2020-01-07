@@ -14,6 +14,9 @@ public class KeywordBean implements Parcelable {
     private String            name;
     private List<KeywordBean> keywords;
 
+    public KeywordBean() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -23,17 +26,16 @@ public class KeywordBean implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
-        dest.writeList(this.keywords);
+        dest.writeTypedList(this.keywords);
     }
 
     protected KeywordBean(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
-        this.keywords = new ArrayList<KeywordBean>();
-        in.readList(this.keywords, KeywordBean.class.getClassLoader());
+        this.keywords = in.createTypedArrayList(KeywordBean.CREATOR);
     }
 
-    public static final Parcelable.Creator<KeywordBean> CREATOR = new Parcelable.Creator<KeywordBean>() {
+    public static final Creator<KeywordBean> CREATOR = new Creator<KeywordBean>() {
         @Override
         public KeywordBean createFromParcel(Parcel source) {
             return new KeywordBean(source);

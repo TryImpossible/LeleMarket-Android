@@ -1,7 +1,7 @@
 package com.bynn.marketll.module_home.bean;
 
 import com.bynn.common.bean.BannerBean;
-import com.bynn.common.bean.NetworkResult;
+import com.bynn.lib_basic.network.ResponseResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ChoicenessResult extends NetworkResult {
-
-    private DataBean data;
+public class ChoicenessResult extends ResponseResult<ChoicenessResult.DataBean> {
 
     @Data
     @EqualsAndHashCode(callSuper = false)

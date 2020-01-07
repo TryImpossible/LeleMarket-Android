@@ -20,10 +20,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bynn.common.base.BaseActivity;
-import com.bynn.common.base.BaseApplication;
-import com.bynn.common.base.BaseFragment;
-import com.bynn.common.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.BaseApplication;
+import com.bynn.lib_basic.fragment.BaseFragment;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_main.MainPresenter;
 import com.bynn.marketll.module_main.R;
 import com.bynn.marketll.module_main.R2;
@@ -35,7 +34,6 @@ import com.bynn.marketll.module_main.bean.SearchRecordBean;
 import com.bynn.marketll.module_main.dagger.DaggerMainComponent;
 import com.bynn.marketll.module_main.dagger.MainComponent;
 import com.bynn.marketll.module_main.dagger.MainModule;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,8 +79,14 @@ public class SearchRecordFragment extends BaseFragment {
         super.onSuccess(successObj);
         if (successObj instanceof KeywordResult) {
             List<KeywordBean> data = ((KeywordResult) successObj).getData();
-            if (data != null && data.size() > 0) {
+            if (data != null) {
                 mAdapter.addData(1, new SearchRecordBean(data, SearchRecordBean.TYPE_HOT));
+            }
+        }
+        if (successObj instanceof List<?>) {
+            List<String> data = (List<String>) successObj;
+            for (String keyword : data) {
+                mAdapter.addData(new SearchRecordBean(keyword, SearchRecordBean.TYPE_HOSTORY));
             }
         }
     }
@@ -123,9 +127,9 @@ public class SearchRecordFragment extends BaseFragment {
                         continue;
                     }
                     View child = parent.getChildAt(i);
-                    Rect rect = new Rect(child.getLeft(), child.getTop()  - QMUIDisplayHelper.dp2px(getContext(), 4), child.getRight(), child.getTop());
+                    Rect rect = new Rect(child.getLeft(), child.getTop() - QMUIDisplayHelper.dp2px(getContext(), 4), child.getRight(), child.getTop());
                     Paint paint = new Paint();
-                    paint.setColor(ContextCompat.getColor(getContext(), R.color.common_activity_background));
+                    paint.setColor(ContextCompat.getColor(getContext(), R.color.basic_activity_background));
                     c.drawRect(rect, paint);
                 }
             }
@@ -142,5 +146,6 @@ public class SearchRecordFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
 
         mMainPresenter.getRecommand();
+        mMainPresenter.getHistorySearch();
     }
 }
