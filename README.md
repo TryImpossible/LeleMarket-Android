@@ -30,3 +30,6 @@
 ### 如何统一管理模块的dependencies
 
 ### 如何使用Relam数据库
+- 不同模块化间使用relam，会出现`xxx-is-not-part-of-the-schema-for-this-realm`，因此拆分出`database`模块，统一管理数据库操作
+
+### 拆分网络框架模块
