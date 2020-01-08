@@ -22,7 +22,7 @@ public class GoodsAdapter extends BaseQuickAdapter<RecommendGoodsBean, BaseViewH
     protected void convert(@NonNull BaseViewHolder helper, RecommendGoodsBean item) {
         ImageView icon = helper.getView(R.id.iv_icon);
         Glide.with(mContext)
-                .load(item.getIconUrl())
+                .load(item.getIcoUrl())
                 .into(icon);
         helper.setText(R.id.tv_type, mContext.getString(item.getType() == 1 ? R.string.common_label_ketuyin : R.string.common_label_kekezhi))
                 .setText(R.id.tv_name, item.getName())

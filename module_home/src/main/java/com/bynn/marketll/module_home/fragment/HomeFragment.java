@@ -145,12 +145,12 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R2.id.iv_scan_qrcode)
     public void onScanClicked() {
-        ARouter.getInstance().build(MainRoutePath.SCAN_CODE_ACTIVITY).navigation();
+        BaseApplication.getARouter().build(MainRoutePath.SCAN_CODE_ACTIVITY).navigation();
     }
 
     @OnClick(R2.id.tv_keyword)
     public void onSearchClicked() {
-        showToast("搜索");
+        BaseApplication.getARouter().build(MainRoutePath.SEARCH_ACTIVITY).navigation();
     }
 
     @OnClick(R2.id.iv_news)

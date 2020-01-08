@@ -101,8 +101,8 @@ public class NavInfoFragment extends BaseFragment {
     }
 
     @Override
-    public void hideProgress() {
-        super.hideProgress();
+    public void hideLoading() {
+        super.hideLoading();
         if (null != mRefreshLayout) {
             mRefreshLayout.finishRefresh();
             mRefreshLayout.finishLoadMore();

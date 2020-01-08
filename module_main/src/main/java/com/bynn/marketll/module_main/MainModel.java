@@ -25,13 +25,7 @@ public class MainModel {
     }
 
     public Observable<KeywordResult> getCacheRecommand() {
-        KeywordResult result = HttpDao.getCache(NetApiConstants.GET_RECOMMAND, KeywordResult.class);
-        return Observable.create(new ObservableOnSubscribe<KeywordResult>() {
-            @Override
-            public void subscribe(ObservableEmitter<KeywordResult> emitter) throws Exception {
-
-            }
-        });
+        return HttpDao.getCache(NetApiConstants.GET_RECOMMAND, KeywordResult.class);
     }
 
     /**
@@ -45,7 +39,7 @@ public class MainModel {
                     @Override
                     public void accept(KeywordResult keywordResponse) throws Exception {
                         if (keywordResponse.isSuccess()) {
-                            HttpDao.setCache(NetApiConstants.GET_RECOMMAND, keywordResponse);
+                            HttpDao.setCache(NetApiConstants.GET_RECOMMAND, keywordResponse).subscribe();
                         }
                     }
                 });
@@ -86,7 +80,7 @@ public class MainModel {
      * @return
      */
     public Observable<RecommendGoodsResult> getGoodsInfo(int page, String name) {
-        RecentSearchDao.insertOrUpdate(name);
+        RecentSearchDao.insertOrUpdate(name).subscribe();
         FormBody params = new FormBody.Builder()
                 .add("userId", "9956133")
                 .add("page", String.valueOf(page))

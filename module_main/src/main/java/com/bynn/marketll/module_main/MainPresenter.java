@@ -14,6 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -52,16 +53,25 @@ public class MainPresenter extends BasePresenter {
      */
     public void getRecentSearch() {
         mMainModel.getRecentSearch()
-                .doOnSubscribe(new Consumer<Disposable>() {
+                .subscribe(new Observer<List<String>>() {
                     @Override
-                    public void accept(Disposable disposable) throws Exception {
-                        addDisposable(disposable);
+                    public void onSubscribe(Disposable d) {
+                        addDisposable(d);
                     }
-                })
-                .subscribe(new Consumer<List<String>>() {
+
                     @Override
-                    public void accept(List<String> strings) throws Exception {
+                    public void onNext(List<String> strings) {
                         mIBaseView.onSuccess(strings);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }
@@ -71,20 +81,29 @@ public class MainPresenter extends BasePresenter {
      */
     public void delRecentSearch(ICallback callback) {
         mMainModel.delRecentSearch()
-                .doOnSubscribe(new Consumer<Disposable>() {
+                .subscribe(new Observer<Boolean>() {
                     @Override
-                    public void accept(Disposable disposable) throws Exception {
-                        addDisposable(disposable);
+                    public void onSubscribe(Disposable d) {
+                        addDisposable(d);
                     }
-                })
-                .subscribe(new Consumer<Boolean>() {
+
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
+                    public void onNext(Boolean aBoolean) {
                         if (callback != null) {
                             callback.onSuccess(aBoolean);
                         } else {
                             callback.onFailure(new Exception(String.valueOf(aBoolean)));
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }
