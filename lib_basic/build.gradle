@@ -2,7 +2,6 @@ def config = rootProject.ext
 
 apply plugin: 'com.android.library'
 apply plugin: config.plugins.butterknife
-apply plugin: config.plugins.realm
 
 android {
     compileSdkVersion config.android.compileSdkVersion
@@ -56,7 +55,7 @@ dependencies {
 
     testImplementation config.dependencies["junit"]
     androidTestImplementation config.dependencies["ext:junit"]
-    androidTestImplementation config.dependencies["espresso-core"]\
+    androidTestImplementation config.dependencies["espresso-core"]
 
     api config.dependencies["appcompat"]
     api config.dependencies["material"]

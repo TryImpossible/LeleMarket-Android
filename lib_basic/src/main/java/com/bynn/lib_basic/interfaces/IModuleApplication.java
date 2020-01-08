@@ -1,7 +1,5 @@
 package com.bynn.lib_basic.interfaces;
 
-import android.app.Application;
-
 import com.bynn.lib_basic.BaseApplication;
 
 /**
@@ -11,5 +9,4 @@ public interface IModuleApplication {
 
     void onCreate(BaseApplication application);
 
-    Application getAppliaction();
 }

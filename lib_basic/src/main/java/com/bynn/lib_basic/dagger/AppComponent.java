@@ -8,7 +8,6 @@ import com.hwangjr.rxbus.Bus;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import io.realm.Realm;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
@@ -27,8 +26,6 @@ public interface AppComponent {
     Retrofit getRetrofit();
 
     Gson getGson();
-
-    Realm getReaml();
 
     ARouter getARoute();
 

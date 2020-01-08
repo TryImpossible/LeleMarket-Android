@@ -1,7 +1,5 @@
 def config = rootProject.ext
-
 apply plugin: 'com.android.library'
-apply plugin: config.plugins.butterknife
 apply plugin: config.plugins.realm
 
 android {
@@ -16,20 +14,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-
-//        ndk {
-//            //设置支持的SO库架构
-//            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
-//        }
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath true
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
-
-        multiDexEnabled true
     }
 
     buildTypes {
@@ -45,8 +29,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    resourcePrefix "common_"
-
 }
 
 dependencies {
@@ -56,12 +38,7 @@ dependencies {
     androidTestImplementation config.dependencies["ext:junit"]
     androidTestImplementation config.dependencies["espresso-core"]\
 
-    implementation project(':lib_basic')
-
-    annotationProcessor config.dependencies["butterknife-compiler"]
-    annotationProcessor config.dependencies["arouter-compiler"]
-    implementation config.dependencies["dagger"]
-    annotationProcessor config.dependencies["dagger-compiler"]
-    compileOnly config.dependencies["lombok"]
     compileOnly config.dependencies["javax.annotation"]
+
+    implementation project(':lib_basic')
 }

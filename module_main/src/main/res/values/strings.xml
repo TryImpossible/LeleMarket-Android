@@ -19,4 +19,7 @@
     <string name="main_toast_scan_fail">二维码识别失败</string>
 
     <string name="main_button_custom">立即定制</string>
+
+    <string name="main_label_hot_search">热门搜索</string>
+    <string name="main_label_recent_search">最近搜索</string>
 </resources>

@@ -2,12 +2,18 @@ package com.bynn.marketll.module_main;
 
 import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.common.constants.NetApiConstants;
-import com.bynn.lib_basic.database.HttpDao;
+import com.bynn.lib_basic.interfaces.ICallback;
+import com.bynn.lib_basic.utils.RxJavaUtils;
 import com.bynn.marketll.module_main.bean.KeywordResult;
-import com.bynn.marketll.module_main.database.HistorySearchDao;
 import com.bynn.marketll.module_main.network.MainApi;
+import com.bynn.module_database.RecentSearchDao;
+import com.bynn.module_database.HttpDao;
+
+import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 import okhttp3.FormBody;
 
@@ -16,6 +22,16 @@ public class MainModel {
 
     public MainModel(MainApi api) {
         this.mApi = api;
+    }
+
+    public Observable<KeywordResult> getCacheRecommand() {
+        KeywordResult result = HttpDao.getCache(NetApiConstants.GET_RECOMMAND, KeywordResult.class);
+        return Observable.create(new ObservableOnSubscribe<KeywordResult>() {
+            @Override
+            public void subscribe(ObservableEmitter<KeywordResult> emitter) throws Exception {
+
+            }
+        });
     }
 
     /**
@@ -33,6 +49,20 @@ public class MainModel {
                         }
                     }
                 });
+    }
+
+    /**
+     * 获取最近搜索
+     */
+    public Observable<List<String>> getRecentSearch() {
+        return RecentSearchDao.findAll();
+    }
+
+    /**
+     * 删除最近搜索
+     */
+    public Observable<Boolean> delRecentSearch() {
+        return RecentSearchDao.deleteAll();
     }
 
     /**
@@ -56,20 +86,12 @@ public class MainModel {
      * @return
      */
     public Observable<RecommendGoodsResult> getGoodsInfo(int page, String name) {
-        HistorySearchDao.insertOrUpdate(name);
+        RecentSearchDao.insertOrUpdate(name);
         FormBody params = new FormBody.Builder()
                 .add("userId", "9956133")
                 .add("page", String.valueOf(page))
                 .add("name", name)
                 .build();
-        return mApi.getGoodsInfo(params)
-                .doOnNext(new Consumer<RecommendGoodsResult>() {
-                    @Override
-                    public void accept(RecommendGoodsResult recommendGoodsResult) throws Exception {
-                        if (recommendGoodsResult.isSuccess()) {
-
-                        }
-                    }
-                });
+        return mApi.getGoodsInfo(params);
     }
 }

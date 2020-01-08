@@ -1,26 +1,21 @@
 package com.bynn.marketll.module_main;
 
 import com.bynn.common.bean.RecommendGoodsResult;
-import com.bynn.common.constants.NetApiConstants;
-import com.bynn.lib_basic.database.HttpDao;
+import com.bynn.lib_basic.interfaces.IBaseView;
+import com.bynn.lib_basic.interfaces.ICallback;
 import com.bynn.lib_basic.network.ResponseObserver;
 import com.bynn.lib_basic.presenter.BasePresenter;
-import com.bynn.lib_basic.interfaces.IBaseView;
-import com.bynn.lib_basic.network.ResponseException;
 import com.bynn.lib_basic.utils.RxJavaUtils;
-import com.bynn.marketll.module_main.bean.KeywordBean;
 import com.bynn.marketll.module_main.bean.KeywordResult;
-import com.bynn.marketll.module_main.database.HistorySearchDao;
+import com.bynn.module_database.RecentSearchDao;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter extends BasePresenter {
     public static final int PAGE_SIZE = 10;
@@ -37,7 +32,7 @@ public class MainPresenter extends BasePresenter {
      * 获取热门推荐
      */
     public void getRecommand() {
-        mMainModel.getRecommand()
+        Observable.mergeDelayError(mMainModel.getCacheRecommand(), mMainModel.getRecommand())
                 .compose(RxJavaUtils.applySchedulers(this))
                 .subscribe(new ResponseObserver<KeywordResult>() {
                     @Override
@@ -55,13 +50,41 @@ public class MainPresenter extends BasePresenter {
     /**
      * 获取最近搜索
      */
-    public void getHistorySearch() {
-        HistorySearchDao.findAll()
-                .compose(RxJavaUtils.applySchedulers(this))
-                .doOnNext(new Consumer<List<String>>() {
+    public void getRecentSearch() {
+        mMainModel.getRecentSearch()
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        addDisposable(disposable);
+                    }
+                })
+                .subscribe(new Consumer<List<String>>() {
                     @Override
                     public void accept(List<String> strings) throws Exception {
                         mIBaseView.onSuccess(strings);
+                    }
+                });
+    }
+
+    /**
+     * 删除最近搜索
+     */
+    public void delRecentSearch(ICallback callback) {
+        mMainModel.delRecentSearch()
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        addDisposable(disposable);
+                    }
+                })
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (callback != null) {
+                            callback.onSuccess(aBoolean);
+                        } else {
+                            callback.onFailure(new Exception(String.valueOf(aBoolean)));
+                        }
                     }
                 });
     }

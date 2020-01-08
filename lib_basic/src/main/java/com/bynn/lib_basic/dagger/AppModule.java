@@ -12,7 +12,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.realm.Realm;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
@@ -60,12 +59,6 @@ public class AppModule {
     @Provides
     Gson provideGson() {
         return new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").serializeNulls().create();
-    }
-
-    @Singleton
-    @Provides
-    Realm provideRealm() {
-        return Realm.getDefaultInstance();
     }
 
     @Singleton

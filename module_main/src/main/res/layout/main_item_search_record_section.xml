@@ -27,5 +27,5 @@
         android:paddingVertical="@dimen/basic_dp_12"
         android:src="@mipmap/main_ic_del"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 </RelativeLayout>

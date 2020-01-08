@@ -1,4 +1,4 @@
-package com.bynn.lib_basic.database;
+package com.bynn.module_database;
 
 import io.realm.DynamicRealm;
 import io.realm.Realm;
@@ -14,14 +14,14 @@ public class BaseRealm {
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name(REALM_NAME)
                 .schemaVersion(REALM_VERSION)
-                .migration(new CustomRealmMigration())
+                .migration(new Migration())
                 // migration 与 delete 有冲突， 会优先执行delete
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);
     }
 
-    public static class CustomRealmMigration implements RealmMigration {
+    public static class Migration implements RealmMigration {
 
         @Override
         public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
@@ -30,7 +30,7 @@ public class BaseRealm {
 
         @Override
         public boolean equals(Object o) {
-            return o instanceof CustomRealmMigration;
+            return o instanceof Migration;
         }
 
         @Override

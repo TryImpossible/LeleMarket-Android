@@ -8,7 +8,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
-    <application android:networkSecurityConfig="@xml/basic_network_security_config">
+    <application
+        android:name=".BaseApplication"
+        android:networkSecurityConfig="@xml/basic_network_security_config">
         <!-- 华为全面屏适配 -->
         <meta-data
             android:name="android.notch_support"

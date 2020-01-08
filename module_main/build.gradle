@@ -6,7 +6,6 @@ if (config.isMoudleAsApp) {
     apply plugin: 'com.android.library'
 }
 apply plugin: config.plugins.butterknife
-apply plugin: config.plugins.realm
 
 android {
     compileSdkVersion config.android.compileSdkVersion
@@ -73,6 +72,8 @@ dependencies {
 
     api project(':lib_basic')
     implementation project(':module_common')
+    implementation project(':module_database')
+    implementation project(':lib_qrcode')
 
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
@@ -81,5 +82,4 @@ dependencies {
     compileOnly config.dependencies["lombok"]
     compileOnly config.dependencies["javax.annotation"]
 
-    implementation project(':lib_qrcode')
 }

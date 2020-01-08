@@ -77,7 +77,6 @@ public class SearchActivity extends BaseActivity {
             mEtKeyword.setFocusable(false);
 
             showBackIconAnima(null);
-            showBackIconAnima(null);
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             if (mLastShowFragment != null) {
@@ -114,6 +113,12 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
+                    if (mEtKeyword.getText().toString().trim().length() > 0) {
+                        mIvClose.setVisibility(View.VISIBLE);
+                    } else {
+                        mIvClose.setVisibility(View.GONE);
+                    }
+
                     QMUIKeyboardHelper.showKeyboard(mEtKeyword, false);
                     hideBackIconAnima(new Runnable() {
                         @Override

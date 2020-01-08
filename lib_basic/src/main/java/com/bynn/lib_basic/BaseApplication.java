@@ -8,12 +8,11 @@ import android.os.StrictMode;
 import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bynn.lib_basic.interfaces.IModuleApplication;
 import com.bynn.lib_basic.config.ModuleConfig;
 import com.bynn.lib_basic.dagger.AppComponent;
 import com.bynn.lib_basic.dagger.AppModule;
 import com.bynn.lib_basic.dagger.DaggerAppComponent;
-import com.bynn.lib_basic.database.BaseRealm;
+import com.bynn.lib_basic.interfaces.IModuleApplication;
 import com.bynn.lib_basic.utils.DensityHelp;
 import com.bynn.lib_basic.utils.SpanUtils;
 import com.bynn.lib_basic.utils.Utils;
@@ -28,8 +27,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-
-import io.realm.Realm;
 
 public class BaseApplication extends Application {
 
@@ -60,10 +57,6 @@ public class BaseApplication extends Application {
 
     public static Gson getGson() {
         return getAppComponent().getGson();
-    }
-
-    public static Realm getRealm() {
-        return getAppComponent().getReaml();
     }
 
     public static ARouter getARouter() {
@@ -129,7 +122,6 @@ public class BaseApplication extends Application {
             StrictMode.setVmPolicy(builder.build());
             builder.detectFileUriExposure();
         }
-        initRelam();
     }
 
     @Override
@@ -169,10 +161,5 @@ public class BaseApplication extends Application {
                 .appModule(new AppModule(this))
 //                .networkModule(new NetworkModule(this))
                 .build();
-    }
-
-    private void initRelam() {
-        Realm.init(this);
-        BaseRealm.setDefaultConfiguration();
     }
 }
