@@ -69,6 +69,7 @@ dependencies {
 
     api project(':lib_basic')
     implementation project(':module_common')
+    implementation project(':module_database')
     annotationProcessor config.dependencies["butterknife-compiler"]
     annotationProcessor config.dependencies["arouter-compiler"]
     annotationProcessor config.dependencies["dagger-compiler"]

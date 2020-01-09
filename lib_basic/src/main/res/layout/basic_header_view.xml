@@ -21,10 +21,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
-            android:layout_marginLeft="@dimen/basic_dp_10"
+            android:layout_marginLeft="@dimen/basic_dp_16"
             android:minHeight="@dimen/basic_action_bar_height"
             android:scaleType="center"
-            android:src="@mipmap/basic_ic_back" />
+            android:src="@mipmap/basic_ic_nav_back_gray" />
 
         <TextView
             android:id="@+id/tv_back"
@@ -63,7 +63,7 @@
         android:layout_toLeftOf="@id/fl_title_layout"
         android:minWidth="@dimen/basic_action_bar_height"
         android:minHeight="@dimen/basic_action_bar_height"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_menu"
@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:scaleType="center"
+            android:visibility="gone"
             tools:src="@mipmap/basic_ic_menu" />
 
         <TextView

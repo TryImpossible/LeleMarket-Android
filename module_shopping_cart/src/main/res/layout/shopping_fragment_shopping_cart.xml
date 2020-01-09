@@ -8,14 +8,102 @@
     tools:context=".fragment.ShoppingCartFragment">
 
     <com.bynn.lib_basic.view.HeaderView
+        android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:back_visible="false"
+        app:back_icon_visible="false"
         app:title="@string/shopping_title_shopping_cart" />
 
-    <com.bynn.lib_basic.view.loadstate.LoadStateLayout
-        android:id="@+id/loadStateLayout"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rccyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <!--    <com.bynn.lib_basic.view.loadstate.LoadStateLayout-->
+    <!--        android:id="@+id/loadStateLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="1"></com.bynn.lib_basic.view.loadstate.LoadStateLayout>-->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/basic_white"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/basic_divide_line_height"
+            android:background="@color/basic_divide_line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cb_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/basic_dp_10"
+            android:button="@drawable/shopping_checkbox"
+            android:drawablePadding="5dp"
+            android:paddingLeft="@dimen/basic_dp_10"
+            android:text="@string/shopping_label_all_select"
+            android:textColor="@color/basic_text_normal"
+            android:textSize="@dimen/basic_text_normal_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/basic_dp_16"
+            android:layout_marginTop="@dimen/basic_dp_4"
+            android:text="@string/shopping_label_settle"
+            android:textSize="@dimen/basic_text_small_size"
+            app:layout_constraintLeft_toRightOf="@id/cb_all"
+            app:layout_constraintRight_toLeftOf="@id/btn_settle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="合计:￥0.00" />
+
+        <TextView
+            android:id="@+id/tv_discount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/shopping_label_discount"
+            android:textColor="@color/basic_text_light"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/tv_total"
+            app:layout_constraintRight_toRightOf="@id/tv_total"
+            app:layout_constraintTop_toBottomOf="@id/tv_total"
+            tools:text="立减优惠:￥0.00" />
+
+        <Button
+            android:id="@+id/btn_settle"
+            style="@style/BasicMyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/basic_colorAccent"
+            android:paddingHorizontal="24dp"
+            android:text="@string/shopping_label_settle"
+            android:textColor="@color/basic_white"
+            android:textSize="@dimen/basic_text_normal_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

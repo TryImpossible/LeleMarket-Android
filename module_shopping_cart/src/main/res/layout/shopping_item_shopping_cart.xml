@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/basic_white"
+    android:paddingVertical="@dimen/basic_dp_10">
+
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/basic_dp_10"
+        android:src="@mipmap/shopping_ic_check_normal"
+        app:layout_constraintBottom_toBottomOf="@id/iv_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_image"
+        app:layout_constraintTop_toTopOf="@id/iv_image" />
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shopping_shape_rectangle_stroke_1"
+        android:scaleType="center"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_check"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/basic_dp_10"
+        android:singleLine="true"
+        android:textColor="@color/basic_text_normal"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintBottom_toTopOf="@id/ll_attribute"
+        app:layout_constraintLeft_toRightOf="@id/iv_image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_image"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="超薄背夹式移动电源" />
+
+    <LinearLayout
+        android:id="@+id/ll_attribute"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/basic_dp_4"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/tv_name"
+        app:layout_constraintRight_toRightOf="@id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name">
+
+        <TextView
+            android:id="@+id/tv_attribute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/basic_dp_10"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textColor="@color/basic_text_light"
+            android:textSize="@dimen/basic_text_small_size"
+            tools:text="粉色,iPhone5/5S/SE" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/shopping_ic_attribute_choice" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/basic_colorAccent"
+        android:textSize="@dimen/basic_text_small_size"
+        app:layout_constraintBottom_toBottomOf="@id/iv_reduce"
+        app:layout_constraintLeft_toLeftOf="@id/tv_name"
+        app:layout_constraintLeft_toRightOf="@id/iv_image"
+        app:layout_constraintTop_toTopOf="@id/iv_reduce"
+        tools:text="￥96.60" />
+
+    <ImageView
+        android:id="@+id/iv_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/basic_activity_background"
+        android:src="@mipmap/shopping_ic_order_details_plus"
+        app:layout_constraintBottom_toBottomOf="@id/iv_image"
+        app:layout_constraintRight_toRightOf="@id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginRight="@dimen/basic_dp_1"
+        android:background="@color/basic_activity_background"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/basic_dp_10"
+        android:textColor="@color/basic_text_dark"
+        android:textSize="@dimen/basic_text_small_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/iv_plus"
+        app:layout_constraintRight_toLeftOf="@id/iv_plus"
+        app:layout_constraintTop_toTopOf="@id/iv_plus"
+        tools:text="1" />
+
+    <ImageView
+        android:id="@+id/iv_reduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/basic_dp_1"
+        android:background="@color/basic_activity_background"
+        android:src="@mipmap/shopping_ic_order_details_reduce"
+        app:layout_constraintBottom_toBottomOf="@id/tv_num"
+        app:layout_constraintRight_toLeftOf="@id/tv_num"
+        app:layout_constraintTop_toTopOf="@id/tv_num" />
+</androidx.constraintlayout.widget.ConstraintLayout>

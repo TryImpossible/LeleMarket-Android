@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 
 import com.bynn.lib_basic.R;
 
@@ -25,43 +26,43 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
     /**
      * 上下文
      */
-    private Context              mContext;
+    private Context         mContext;
     /**
      * 左侧
      */
-    private LinearLayout         mLlBack;
+    private LinearLayout    mLlBack;
     /**
      * 返回图标
      */
-    private ImageView            mIvBackIcon;
+    private ImageView       mIvBackIcon;
     /**
      * 返回文案
      */
-    private TextView             mTvBackText;
+    private TextView        mTvBackText;
     /**
      * 中间
      */
-    private FrameLayout          mFlTitle;
+    private FrameLayout     mFlTitle;
     /**
      * 标题
      */
-    private TextView             mTvTitleText;
+    private TextView        mTvTitleText;
     /**
      * 右侧
      */
-    private FrameLayout          mFlMenu;
+    private FrameLayout     mFlMenu;
     /**
      * 菜单图标
      */
-    private ImageView            mIvMenuIcon;
+    private ImageView       mIvMenuIcon;
     /**
      * 菜单文案
      */
-    private TextView             mTvMenuText;
+    private TextView        mTvMenuText;
     /**
      * 底部分隔线
      */
-    private View                 mVLine;
+    private View            mVLine;
     /**
      * 返回事件
      */
@@ -171,7 +172,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param resId
      */
     public void setBackIcon(@DrawableRes int resId) {
-        mIvBackIcon.setImageResource(resId);
+        setBackIcon(ContextCompat.getDrawable(mContext, resId));
     }
 
     /**
@@ -198,7 +199,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param resId
      */
     public void setBackText(@StringRes int resId) {
-        mTvBackText.setText(resId);
+        setBackText(mContext.getString(resId));
     }
 
     /**
@@ -217,7 +218,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param resId
      */
     public void setTitleText(@StringRes int resId) {
-        mTvTitleText.setText(resId);
+        setTitleText(mContext.getString(resId));
     }
 
     /**
@@ -244,7 +245,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param resId
      */
     public void setMenuIcon(@DrawableRes int resId) {
-        mIvMenuIcon.setImageResource(resId);
+        setMenuIcon(ContextCompat.getDrawable(mContext, resId));
     }
 
     /**
@@ -253,6 +254,10 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param drawable
      */
     public void setMenuIcon(Drawable drawable) {
+        if (mTvMenuText.getVisibility() == VISIBLE) {
+            mTvMenuText.setVisibility(GONE);
+        }
+        mIvMenuIcon.setVisibility(VISIBLE);
         mIvMenuIcon.setImageDrawable(drawable);
     }
 
@@ -262,7 +267,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param resId
      */
     public void setMenuText(@StringRes int resId) {
-        mTvMenuText.setText(resId);
+        setMenuText(mContext.getString(resId));
     }
 
     /**
@@ -271,6 +276,10 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      * @param text
      */
     public void setMenuText(String text) {
+        if (mIvMenuIcon.getVisibility() == VISIBLE) {
+            mIvMenuIcon.setVisibility(GONE);
+        }
+        mTvMenuText.setVisibility(VISIBLE);
         mTvMenuText.setText(text);
     }
 
