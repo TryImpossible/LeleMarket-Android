@@ -9,7 +9,7 @@
 
         <item name="android:windowBackground">@color/basic_activity_background</item>
         <!-- Button去掉边框 -->
-<!--        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>-->
+        <!--        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>-->
     </style>
 
     <style name="BasicAppTheme.Launcher">
@@ -33,4 +33,16 @@
         <item name="android:minWidth">0dp</item>
         <item name="android:minHeight">0dp</item>
     </style>
+
+    <style name="Anim_fade">
+        <item name="android:windowAnimationStyle">@style/BasicBottomActvityAnimation</item>
+    </style>
+
+    <style name="BasicBottomActvityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/basic_in_from_down</item>
+<!--        <item name="android:activityOpenExitAnimation">@anim/basic_out_from_up</item>-->
+        <item name="android:activityCloseEnterAnimation">@anim/basic_out_from_up</item>
+<!--        <item name="android:activityCloseExitAnimation">@anim/basic_out_from_up</item>-->
+    </style>
+
 </resources>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/basic_dp_10"
         android:paddingVertical="@dimen/basic_dp_12"
-        android:src="@mipmap/shopping_ic_check_normal" />
+        android:src="@drawable/shopping_checkbox" />
 
     <TextView
         android:id="@+id/tv_name"

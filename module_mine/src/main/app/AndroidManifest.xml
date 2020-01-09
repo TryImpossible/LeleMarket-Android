@@ -12,6 +12,7 @@
         android:theme="@style/MineAppTheme">
         <activity
             android:name=".activity.LoginActivity"
+            android:theme="@style/Anim_fade"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MineCouponActivity"

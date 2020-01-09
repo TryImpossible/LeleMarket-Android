@@ -1,16 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/basic_white"
     android:orientation="vertical"
     tools:context=".activity.LoginActivity">
 
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="@dimen/basic_action_bar_height"
+        android:layout_height="@dimen/basic_action_bar_height"
+        android:layout_marginTop="@dimen/basic_dp_12"
+        android:scaleType="center"
+        android:src="@mipmap/mine_ic_login_cancel"
+        android:tint="@android:color/darker_gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_default_header"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/basic_dp_6"
+        android:src="@mipmap/mine_ic_user_default_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_close" />
+
     <TextView
+        android:id="@+id/tv_no_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/basic_dp_10"
+        android:text="未登录"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_default_header" />
+
+
+    <ImageView
+        android:id="@+id/iv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:src="@mipmap/mine_ic_login_phone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_area_code"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_area_code" />
+
+    <TextView
+        android:id="@+id/tv_area_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:paddingLeft="@dimen/basic_dp_12"
+        android:text="+86"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintBottom_toBottomOf="@id/et_phone"
+        app:layout_constraintLeft_toRightOf="@id/iv_phone"
+        app:layout_constraintTop_toTopOf="@id/et_phone" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="24dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="输入手机号"
+        android:paddingVertical="@dimen/basic_dp_8"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintLeft_toRightOf="@id/tv_area_code"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_no_login" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/basic_divide_line_height"
+        android:background="@color/basic_divide_line"
+        app:layout_constraintLeft_toLeftOf="@id/tv_area_code"
+        app:layout_constraintRight_toRightOf="@id/et_phone"
+        app:layout_constraintTop_toBottomOf="@id/et_phone" />
+
+    <ImageView
+        android:id="@+id/iv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:src="@mipmap/mine_ic_login_message"
+        app:layout_constraintBottom_toBottomOf="@id/et_verification_code"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/et_verification_code" />
+
+    <EditText
+        android:id="@+id/et_verification_code"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="12dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="输入手机号"
+        android:paddingVertical="@dimen/basic_dp_8"
+        android:textColor="@color/basic_text_light"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintLeft_toRightOf="@id/iv_message"
+        app:layout_constraintRight_toLeftOf="@id/tv_send_code"
+        app:layout_constraintTop_toBottomOf="@id/line1" />
+
+    <TextView
+        android:id="@+id/tv_send_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:background="@color/basic_colorAccent"
+        android:paddingHorizontal="@dimen/basic_dp_4"
+        android:paddingVertical="@dimen/basic_dp_6"
+        android:text="发送验证码"
+        android:textColor="@color/basic_white"
+        android:textSize="@dimen/basic_text_small_size"
+        app:layout_constraintBottom_toBottomOf="@id/et_verification_code"
+        app:layout_constraintLeft_toRightOf="@id/et_verification_code"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/et_verification_code" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/basic_divide_line_height"
+        android:background="@color/basic_divide_line"
+        app:layout_constraintLeft_toLeftOf="@id/et_verification_code"
+        app:layout_constraintRight_toRightOf="@id/tv_send_code"
+        app:layout_constraintTop_toBottomOf="@id/et_verification_code" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/basic_colorAccent"
+        android:gravity="center"
         android:text="登录"
-        android:textSize="30sp" />
-</LinearLayout>
+        android:textColor="@color/basic_white"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintLeft_toLeftOf="@id/iv_message"
+        app:layout_constraintRight_toRightOf="@id/line2"
+        app:layout_constraintTop_toBottomOf="@id/line2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/basic_dp_12"
+        android:src="@mipmap/mine_bg_login_line_left"
+        app:layout_constraintBottom_toBottomOf="@id/tv_quick_login"
+        app:layout_constraintRight_toLeftOf="@id/tv_quick_login"
+        app:layout_constraintTop_toTopOf="@id/tv_quick_login" />
+
+    <TextView
+        android:id="@+id/tv_quick_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="一键登录"
+        android:textColor="@color/basic_text_normal"
+        android:textSize="@dimen/basic_text_big_size"
+        app:layout_constraintBottom_toTopOf="@id/iv_qq"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/basic_dp_12"
+        android:src="@mipmap/mine_bg_login_line_right"
+        app:layout_constraintBottom_toBottomOf="@id/tv_quick_login"
+        app:layout_constraintLeft_toRightOf="@id/tv_quick_login"
+        app:layout_constraintTop_toTopOf="@id/tv_quick_login" />
+
+    <ImageView
+        android:id="@+id/iv_wechat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/basic_dp_18"
+        android:src="@mipmap/mine_ic_login_wechat"
+        app:layout_constraintBottom_toTopOf="@id/tv_wechat"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_qq" />
+
+    <TextView
+        android:id="@+id/tv_wechat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="微信"
+        android:textColor="@color/basic_text_normal"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintBottom_toBottomOf="@id/tv_qq"
+        app:layout_constraintLeft_toLeftOf="@id/iv_wechat"
+        app:layout_constraintRight_toRightOf="@id/iv_wechat" />
+
+    <ImageView
+        android:id="@+id/iv_qq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/basic_dp_18"
+        android:src="@mipmap/mine_ic_login_qq"
+        app:layout_constraintBottom_toTopOf="@id/tv_qq"
+        app:layout_constraintLeft_toRightOf="@id/iv_wechat"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_qq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:text="QQ"
+        android:textColor="@color/basic_text_normal"
+        android:textSize="@dimen/basic_text_normal_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/iv_qq"
+        app:layout_constraintRight_toRightOf="@id/iv_qq" />
+</androidx.constraintlayout.widget.ConstraintLayout>

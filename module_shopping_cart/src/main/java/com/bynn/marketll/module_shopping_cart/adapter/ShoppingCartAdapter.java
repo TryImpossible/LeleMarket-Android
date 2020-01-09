@@ -1,6 +1,7 @@
 package com.bynn.marketll.module_shopping_cart.adapter;
 
 import android.text.SpannableStringBuilder;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
