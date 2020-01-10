@@ -18,4 +18,12 @@
     <string name="mine_title_see_more">更多</string>
     <string name="mine_title_coupon">我的礼券</string>
 
+    <string name="mine_lable_no_login">未登录</string>
+    <string name="mine_hint_phone">请输入手机号</string>
+    <string name="mine_hint_message">短信验证码</string>
+    <string name="mine_button_send_code">发送验证码</string>
+    <string name="mine_button_login">登录</string>
+    <string name="mine_label_quick_login">一键登录</string>
+    <string name="mine_label_wechat">微信</string>
+    <string name="mine_label_qq">QQ</string>
 </resources>

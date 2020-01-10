@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/basic_dp_16"
             android:layout_marginTop="@dimen/basic_dp_4"
-            android:text="@string/shopping_label_settle"
+            android:text="@string/shopping_label_total"
             android:textSize="@dimen/basic_text_small_size"
             app:layout_constraintLeft_toRightOf="@id/cb_all"
             app:layout_constraintRight_toLeftOf="@id/btn_settle"

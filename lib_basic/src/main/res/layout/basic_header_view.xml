@@ -32,10 +32,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="4dp"
+            android:maxWidth="80dp"
+            android:singleLine="true"
             android:textColor="@color/basic_text_normal"
             android:textSize="@dimen/basic_text_normal_size"
             android:visibility="gone"
-            tools:text="上一页" />
+            tools:text="返回" />
 
     </LinearLayout>
 
@@ -50,6 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:maxWidth="180dp"
+            android:singleLine="true"
             android:textColor="@color/basic_text_dark"
             android:textSize="@dimen/basic_text_title_size"
             tools:text="标题" />
@@ -79,6 +83,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:maxWidth="100dp"
+            android:singleLine="true"
+            android:paddingRight="@dimen/basic_dp_16"
             android:textColor="@color/basic_text_normal"
             android:textSize="@dimen/basic_text_normal_size"
             android:visibility="gone"

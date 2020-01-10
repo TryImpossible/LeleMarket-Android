@@ -10,6 +10,8 @@
         <item name="android:windowBackground">@color/basic_activity_background</item>
         <!-- Button去掉边框 -->
         <!--        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>-->
+        <!-- 设置Activity入场、出场动画 -->
+        <!--        <item name="android:windowAnimationStyle">@style/BasicAnimationActivity</item>-->
     </style>
 
     <style name="BasicAppTheme.Launcher">
@@ -34,15 +36,25 @@
         <item name="android:minHeight">0dp</item>
     </style>
 
-    <style name="Anim_fade">
-        <item name="android:windowAnimationStyle">@style/BasicBottomActvityAnimation</item>
+    <style name="BasicAppTheme.Login" parent="BasicAppTheme">
+        <item name="android:windowAnimationStyle">@style/BasicDownInUpOutActvityAnimation</item>
     </style>
 
-    <style name="BasicBottomActvityAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/basic_in_from_down</item>
-<!--        <item name="android:activityOpenExitAnimation">@anim/basic_out_from_up</item>-->
-        <item name="android:activityCloseEnterAnimation">@anim/basic_out_from_up</item>
-<!--        <item name="android:activityCloseExitAnimation">@anim/basic_out_from_up</item>-->
+    <style name="BasicDownInUpOutActvityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/basic_push_down_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/basic_push_down_out</item>
+    </style>
+
+    <!--Activity进场、出场动画-->
+    <style name="BasicLeftInRightOutAnimationActivity" parent="@android:style/Animation.Activity">
+        <!--用于设置打开新的Activity并进入新的Activity展示的动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/basic_slide_in_right</item>
+        <!--用于设置打开新的Activity并销毁之前的Activity展示的动画-->
+        <item name="android:activityOpenExitAnimation">@anim/basic_slide_out_left</item>
+        <!--用于设置关闭当前Activity进入上一个Activity展示的动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/basic_slide_in_left</item>
+        <!--用于设置关闭当前Activity时展示的动画-->
+        <item name="android:activityCloseExitAnimation">@anim/basic_slide_out_right</item>
     </style>
 
 </resources>

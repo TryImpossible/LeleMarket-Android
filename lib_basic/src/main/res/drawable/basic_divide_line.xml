@@ -4,3 +4,7 @@
     <solid android:color="@color/basic_divide_line" />
     <size android:height="@dimen/basic_divide_line_height" />
 </shape>
+
+<!--    rect_radius_[_tl_tr_bl_br]_colorSolid[light]_colorStroke[dark]-->
+<!--    ovalName_size1_[size2]_solidColor_strokeColor-->
+<!--    sel_shapeName_radius_[stroke]_[tl_tr_bl_br]_normalSolidColor_pressedSolidColor-->

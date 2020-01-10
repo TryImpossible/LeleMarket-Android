@@ -20,7 +20,11 @@ public class LoginInterceptorImpl implements IInterceptor {
             callback.onContinue(postcard);
         } else {
             switch (postcard.getPath()) {
+                case MineRoutePath.ORDER_ACTIVITY:
                 case MineRoutePath.MINE_COUPON_ACTIVITY:
+                case MineRoutePath.MINE_WORK_ACTIVITY:
+                case MineRoutePath.MINE_FRIENDS_ACTIVITY:
+                case MineRoutePath.ADDRESS_ACTIVITY:
                     callback.onInterrupt(null);
                     break;
                 default:

@@ -10,10 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MineAppTheme">
+        <activity android:name=".activity.LoadStateLayoutActivity"></activity>
+        <activity android:name=".activity.OrderActivity" />
+        <activity android:name=".activity.MineFriendsActivity" />
+        <activity android:name=".activity.MineWorkActivity" />
+        <activity android:name=".activity.AddressActivity" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/Anim_fade"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/BasicAppTheme.Login" />
         <activity
             android:name=".activity.MineCouponActivity"
             android:screenOrientation="portrait" />

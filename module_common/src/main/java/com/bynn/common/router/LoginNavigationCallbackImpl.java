@@ -19,7 +19,7 @@ public class LoginNavigationCallbackImpl implements NavigationCallback {
 
     @Override
     public void onArrival(Postcard postcard) {
-       // 跳转成功
+        // 跳转成功
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LoginNavigationCallbackImpl implements NavigationCallback {
         String path = postcard.getPath();
         Bundle bundle = postcard.getExtras();
         ARouter.getInstance()
-                .build(MineRoutePath.MINE_LOGIN_ACTIVITY)
+                .build(MineRoutePath.LOGIN_ACTIVITY)
                 .with(bundle)
                 .withString("targetPath", path)
                 .navigation();

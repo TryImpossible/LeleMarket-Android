@@ -65,7 +65,7 @@
                 android:layout_marginLeft="@dimen/basic_dp_4"
                 android:paddingHorizontal="@dimen/basic_dp_4"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/main_ic_close"
+                android:src="@mipmap/common_ic_close"
                 android:visibility="gone" />
         </LinearLayout>
 

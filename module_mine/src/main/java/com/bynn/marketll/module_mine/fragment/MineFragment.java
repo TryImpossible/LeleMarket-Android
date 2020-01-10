@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -17,8 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.bynn.common.router.LoginNavigationCallbackImpl;
+import com.bynn.common.router.MainRoutePath;
 import com.bynn.common.router.MineRoutePath;
+import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.fragment.BaseFragment;
 import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_mine.R;
@@ -72,16 +78,23 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btn_wait_pay) {
+        if (id == R.id.tv_login || id == R.id.iv_default_header) {
+            BaseApplication.getARouter().build(MineRoutePath.LOGIN_ACTIVITY).navigation();
+        } else {
+            if (id == R.id.btn_wait_pay) {
 
-        } else if (id == R.id.btn_wait_delivery) {
+            } else if (id == R.id.btn_wait_delivery) {
 
-        } else if (id == R.id.btn_wait_take_delivery) {
+            } else if (id == R.id.btn_wait_take_delivery) {
 
-        } else if (id == R.id.btn_wait_comment) {
+            } else if (id == R.id.btn_wait_comment) {
 
-        } else if (id == R.id.btn_all_orders) {
+            } else if (id == R.id.btn_all_orders) {
 
+            }
+            BaseApplication.getARouter()
+                    .build(MineRoutePath.ORDER_ACTIVITY)
+                    .navigation(getActivity(), new LoginNavigationCallbackImpl());
         }
     }
 
@@ -101,15 +114,40 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (position) {
                     case 0:
-                        ARouter.getInstance()
+                        BaseApplication.getARouter()
                                 .build(MineRoutePath.MINE_COUPON_ACTIVITY)
                                 .navigation(getActivity(), new LoginNavigationCallbackImpl());
                         break;
+                    case 1:
+                        BaseApplication.getARouter()
+                                .build(MineRoutePath.MINE_WORK_ACTIVITY)
+                                .navigation(getActivity(), new LoginNavigationCallbackImpl());
+                        break;
+                    case 2:
+                        BaseApplication.getARouter()
+                                .build(MineRoutePath.MINE_FRIENDS_ACTIVITY)
+                                .navigation(getActivity(), new LoginNavigationCallbackImpl());
+                        break;
+                    case 3:
+                        BaseApplication.getARouter()
+                                .build(MineRoutePath.ADDRESS_ACTIVITY)
+                                .navigation(getActivity(), new LoginNavigationCallbackImpl());
+                        break;
                     case 4:
-                        ARouter.getInstance().build(MineRoutePath.CUSTOMER_SERVICE_ACTIVITY).navigation();
+                        BaseApplication.getARouter()
+                                .build(MineRoutePath.CUSTOMER_SERVICE_ACTIVITY)
+                                .navigation();
+                        break;
+                    case 5:
+                        BaseApplication.getARouter()
+//                                .build(MainRoutePath.SCAN_CODE_ACTIVITY)
+                                .build(MineRoutePath.LOAD_STATE_LAYOUT_ACTIVITY)
+                                .navigation();
                         break;
                     case 6:
-                        ARouter.getInstance().build(MineRoutePath.SEE_MORE_ACTIVITY).navigation();
+                        BaseApplication.getARouter()
+                                .build(MineRoutePath.SEE_MORE_ACTIVITY)
+                                .navigation();
                         break;
                     default:
                         break;
@@ -117,6 +155,15 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             }
         });
         View headerView = LayoutInflater.from(getContext()).inflate(R.layout.mine_item_mine_header, null, false);
+        headerView.findViewById(R.id.tv_login).setOnClickListener(this);
+
+        ImageView defaultHeader = headerView.findViewById(R.id.iv_default_header);
+        Glide.with(this)
+                .load(R.mipmap.mine_ic_user_default_header)
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(defaultHeader);
+        defaultHeader.setOnClickListener(this);
+
         headerView.findViewById(R.id.btn_wait_pay).setOnClickListener(this);
         headerView.findViewById(R.id.btn_wait_delivery).setOnClickListener(this);
         headerView.findViewById(R.id.btn_wait_take_delivery).setOnClickListener(this);
