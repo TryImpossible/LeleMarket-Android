@@ -8,6 +8,7 @@
     tools:context=".activity.SeeMoreActivity">
 
     <com.bynn.lib_basic.view.HeaderView
+        android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/mine_title_see_more" />

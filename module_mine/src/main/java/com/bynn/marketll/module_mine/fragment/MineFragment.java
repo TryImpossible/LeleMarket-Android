@@ -38,6 +38,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -73,6 +74,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         mUnbinder = ButterKnife.bind(this, view);
         initView();
         return view;
+    }
+
+    @OnClick(R2.id.ib_news)
+    public void onNewsClick() {
+        BaseApplication.getARouter().build(MineRoutePath.LOAD_STATE_LAYOUT_ACTIVITY).navigation();
     }
 
     @Override
@@ -140,8 +146,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                         break;
                     case 5:
                         BaseApplication.getARouter()
-//                                .build(MainRoutePath.SCAN_CODE_ACTIVITY)
-                                .build(MineRoutePath.LOAD_STATE_LAYOUT_ACTIVITY)
+                                .build(MainRoutePath.SCAN_CODE_ACTIVITY)
                                 .navigation();
                         break;
                     case 6:

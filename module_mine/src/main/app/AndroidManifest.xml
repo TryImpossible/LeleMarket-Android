@@ -10,11 +10,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MineAppTheme">
-        <activity android:name=".activity.LoadStateLayoutActivity"></activity>
-        <activity android:name=".activity.OrderActivity" />
-        <activity android:name=".activity.MineFriendsActivity" />
-        <activity android:name=".activity.MineWorkActivity" />
-        <activity android:name=".activity.AddressActivity" />
+        <activity
+            android:name=".activity.NormalWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoadStateLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MineFriendsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MineWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AddressActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"

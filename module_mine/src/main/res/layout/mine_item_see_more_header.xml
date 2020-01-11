@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingVertical="28dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_app_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/mine_ic_app_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/basic_dp_6"
+        android:text="@string/mine_label_app_name"
+        android:textColor="@color/basic_text_normal"
+        android:textSize="@dimen/basic_text_normal_size" />
+
+    <TextView
+        android:id="@+id/tv_version_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/basic_dp_10"
+        android:textColor="@color/basic_text_normal"
+        android:textSize="@dimen/basic_text_small_size"
+        tools:text="V 1.0.0" />
+</LinearLayout>

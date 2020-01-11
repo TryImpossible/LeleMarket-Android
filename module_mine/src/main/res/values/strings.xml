@@ -16,6 +16,16 @@
     <string name="mine_label_see_more">更多</string>
 
     <string name="mine_title_see_more">更多</string>
+    <string name="mine_label_app_name">乐乐定制</string>
+    <string name="mine_label_push_setting">推送消息设置</string>
+    <string name="mine_label_feedback">意见反馈</string>
+    <string name="mine_label_cheer_us">为我们加油</string>
+    <string name="mine_label_about_us">关于我们</string>
+    <string name="mine_label_business_cooperation">商务合作</string>
+    <string name="mine_label_copyright_statement">版权/责任声明</string>
+    <string name="mine_label_clear_cache">清理缓存</string>
+
+
     <string name="mine_title_coupon">我的礼券</string>
 
     <string name="mine_lable_no_login">未登录</string>

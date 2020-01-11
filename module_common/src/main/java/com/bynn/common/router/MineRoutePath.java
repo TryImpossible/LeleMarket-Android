@@ -24,4 +24,6 @@ public class MineRoutePath {
 
     public static final String LOAD_STATE_LAYOUT_ACTIVITY = PREFIX + "LoadStateLayoutActivity";
 
+    public static final String NORMAL_WEB_ACTIVITY = PREFIX + "NormalWebActivity";
+
 }
