@@ -1,5 +1,6 @@
 package com.bynn.marketll.module_home.network;
 
+import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
@@ -37,4 +38,13 @@ public interface HomeApi {
      */
     @POST("/diyMall/index/topNavInfoByPage.do")
     Observable<NavInfoByPageResult> topNavInfoByPage(@Body FormBody body);
+
+    /**
+     * 手机壳定制
+     * @param moduleId
+     * @param page
+     * @return
+     */
+    @GET("/diyMall/appModule/getById.do")
+    Observable<AppModuleResult> getAppModuleById(@Query(value = "moduleId") int moduleId, @Query(value = "page") int page);
 }

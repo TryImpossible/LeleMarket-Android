@@ -115,7 +115,7 @@ public class ProductCommentFragment extends BaseFragment {
         });
         mWebView.setWebChromeClient(new WebChromeClient());
 
-        mWebView.loadUrl("https://www.baidu.com/");
+        mWebView.loadUrl("https://api.51app.cn/diyMall/v3.0.0/comment.html?id=456&goodsType=0");
     }
 
     private void handleWebUrl(WebView view, String url) {

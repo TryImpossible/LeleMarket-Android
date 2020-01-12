@@ -2,20 +2,16 @@ package com.bynn.marketll.module_home.adapter;
 
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-
 import com.bumptech.glide.Glide;
 import com.bynn.common.bean.BannerBean;
-import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.common.view.banner.BannerView;
 import com.bynn.common.view.banner.ScaleTransformer;
+import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.CustomizationBean;
@@ -26,6 +22,9 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.android.material.internal.FlowLayout;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<ChoicenessBean, BaseViewHolder> {
 
@@ -117,26 +116,28 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
                 Glide.with(mContext)
                         .load(bean.getImgUrl())
                         .into(bigIamge);
+                helper.addOnClickListener(R.id.iv_big_image);
 
                 ImageView goodsImage1 = (ImageView) helper.getView(R.id.iv_goods_image1);
                 Glide.with(mContext)
                         .load(bean.getGoods().get(0).getImgUrl())
                         .into(goodsImage1);
-                helper.setText(R.id.tv_goods_name1, bean.getGoods().get(0).getParam1());
+                helper.setText(R.id.tv_goods_name1, bean.getGoods().get(0).getParam1())
+                        .addOnClickListener(R.id.iv_goods_image1, R.id.btn_goods_custom1);
 
                 ImageView goodsImage2 = (ImageView) helper.getView(R.id.iv_goods_image2);
                 Glide.with(mContext)
                         .load(bean.getGoods().get(1).getImgUrl())
                         .into(goodsImage2);
-                helper.setText(R.id.tv_goods_name2, bean.getGoods().get(1).getParam1());
-
+                helper.setText(R.id.tv_goods_name2, bean.getGoods().get(1).getParam1())
+                        .addOnClickListener(R.id.iv_goods_image2, R.id.btn_goods_custom2);
 
                 ImageView goodsImage3 = (ImageView) helper.getView(R.id.iv_goods_image3);
                 Glide.with(mContext)
                         .load(bean.getGoods().get(2).getImgUrl())
                         .into(goodsImage3);
-                helper.setText(R.id.tv_goods_name3, bean.getGoods().get(2).getParam1());
-
+                helper.setText(R.id.tv_goods_name3, bean.getGoods().get(2).getParam1())
+                        .addOnClickListener(R.id.iv_goods_image3, R.id.btn_goods_custom3);
                 break;
             default:
                 break;

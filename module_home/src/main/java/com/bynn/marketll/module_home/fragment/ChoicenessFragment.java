@@ -24,6 +24,7 @@ import com.bynn.marketll.module_home.bean.HandpickBean;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -172,6 +173,24 @@ public class ChoicenessFragment extends BaseFragment {
                     BaseApplication.getARouter()
                             .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
                             .navigation();
+                }
+            }
+        });
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.iv_big_image) {
+                    if (position == 5) {
+                        BaseApplication.getARouter()
+                                .build(HomeRoutePath.APP_MODULE_ACTIVITY)
+                                .navigation();
+                    }
+                } else if (view.getId() == R.id.iv_goods_image1) {
+
+                } else if (view.getId() == R.id.iv_goods_image2) {
+
+                } else if (view.getId() == R.id.iv_goods_image3) {
+
                 }
             }
         });

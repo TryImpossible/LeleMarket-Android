@@ -1,9 +1,12 @@
 package com.bynn.marketll.module_home;
 
-import com.bynn.lib_basic.presenter.BasePresenter;
 import com.bynn.lib_basic.interfaces.IBaseView;
 import com.bynn.lib_basic.network.ResponseException;
+import com.bynn.lib_basic.network.ResponseObserver;
 import com.bynn.lib_basic.network.ResponseResult;
+import com.bynn.lib_basic.presenter.BasePresenter;
+import com.bynn.lib_basic.utils.RxJavaUtils;
+import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
@@ -140,6 +143,28 @@ public class HomePresenter extends BasePresenter {
                     @Override
                     public void onComplete() {
 
+                    }
+                });
+    }
+
+    /**
+     * 获取手机壳定制
+     *
+     * @param moduleId
+     * @param page
+     */
+    public void getAppModuleById(int moduleId, int page) {
+        mHomeModel.getAppModuleById(moduleId, page)
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<AppModuleResult>() {
+                    @Override
+                    public void onSuccess(AppModuleResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
                     }
                 });
     }

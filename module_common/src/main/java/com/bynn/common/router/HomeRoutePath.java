@@ -8,4 +8,5 @@ public class HomeRoutePath {
 
     public static final String PRODUCT_INTRODUCTION_ACTIVITY = PREFIX + "ProductIntroductionActivity";
 
+    public static final String APP_MODULE_ACTIVITY = PREFIX + "AppModuleActivity";
 }
