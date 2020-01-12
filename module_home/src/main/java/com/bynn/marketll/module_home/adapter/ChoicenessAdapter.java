@@ -2,6 +2,7 @@ package com.bynn.marketll.module_home.adapter;
 
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,12 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.bynn.common.bean.BannerBean;
 import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.common.view.banner.BannerView;
 import com.bynn.common.view.banner.ScaleTransformer;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.CustomizationBean;
+import com.bynn.marketll.module_home.bean.HandpickBean;
 import com.bynn.marketll.module_home.bean.MidNavBean;
 import com.chad.library.adapter.base.BaseSectionMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -43,11 +46,20 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
     protected void convert(@NonNull BaseViewHolder helper, ChoicenessBean item) {
         switch (helper.getItemViewType()) {
             case ChoicenessBean.BANNER:
+                List<BannerBean> banners = (List<BannerBean>) item.getItem();
                 BannerView banner = helper.getView(R.id.banner);
                 banner.getViewPgaer().setPageMargin(QMUIDisplayHelper.dp2px(mContext, 16));
                 banner.getIndicator().setColor(Color.GRAY);
                 banner.getIndicator().setCheckedColor(ContextCompat.getColor(mContext, R.color.basic_white));
-                banner.setImageList((List<String>) item.getItem());
+                banner.setOnItemClickListener(new BannerView.OnItemClickListener() {
+                    @Override
+                    public void OnClick(int position) {
+                        if (mBannerClickListener != null) {
+                            mBannerClickListener.onClick(banners.get(position), position);
+                        }
+                    }
+                });
+                banner.setImageList(BannerBean.getBannerImageList(banners));
                 banner.startPlay();
                 break;
             case ChoicenessBean.MIDNVA:
@@ -80,6 +92,7 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
                 }
                 break;
             case ChoicenessBean.HANDPICK:
+                List<HandpickBean> handpicks = (List<HandpickBean>) item.getItem();
                 BannerView handPick = helper.getView(R.id.handpick);
                 handPick.getIndicator().setVisible(false);
                 // 禁止裁剪子视图
@@ -87,7 +100,15 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
                 handPick.getViewPgaer().setPadding(QMUIDisplayHelper.dp2px(mContext, 16), 0, QMUIDisplayHelper.dp2px(mContext, 70), 0);
                 handPick.getViewPgaer().setOffscreenPageLimit(3);
                 handPick.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
-                handPick.setImageList((List<String>) item.getItem(), QMUIDisplayHelper.dp2px(mContext, 10));
+                handPick.setOnItemClickListener(new BannerView.OnItemClickListener() {
+                    @Override
+                    public void OnClick(int position) {
+                        if (mBannerClickListener != null) {
+                            mBannerClickListener.onClick(handpicks.get(position), position);
+                        }
+                    }
+                });
+                handPick.setImageList(HandpickBean.getHandPickImageList(handpicks), QMUIDisplayHelper.dp2px(mContext, 10));
                 break;
             case ChoicenessBean.CUSTOMIZATION:
                 CustomizationBean bean = (CustomizationBean) item.getItem();
@@ -122,4 +143,13 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
         }
     }
 
+    private OnBannerClickListener mBannerClickListener;
+
+    public void setOnBannerClickListener(OnBannerClickListener listener) {
+        mBannerClickListener = listener;
+    }
+
+    public interface OnBannerClickListener {
+        void onClick(Object obj, int position);
+    }
 }

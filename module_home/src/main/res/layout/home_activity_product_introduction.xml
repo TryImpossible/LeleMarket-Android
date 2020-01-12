@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ProductIntroductionActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_footer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/basic_action_bar_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/basic_action_bar_height"
+            android:layout_height="@dimen/basic_action_bar_height"
+            android:layout_alignParentLeft="true"
+            android:scaleType="center"
+            android:src="@mipmap/home_ic_nav_back_gray_normal" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_centerInParent="true"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/basic_colorAccent"
+            app:tabSelectedTextColor="@color/basic_text_dark"
+            app:tabTextColor="@color/basic_text_normal">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详情" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评价" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="@dimen/basic_action_bar_height"
+            android:layout_height="@dimen/basic_action_bar_height"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:src="@mipmap/home_ic_nav_share_gray_noraml" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/basic_divide_line_height"
+        android:background="@color/basic_divide_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id="@+id/btn_customer_service"
+            style="@style/BasicMyButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/basic_white"
+            android:drawableTop="@mipmap/home_ic_customer_service"
+            android:padding="@dimen/basic_dp_2"
+            android:text="客服"
+            android:textColor="@color/basic_text_normal"
+            android:textSize="@dimen/basic_text_small_size" />
+
+        <Button
+            android:id="@+id/btn_shopping_cart"
+            style="@style/BasicMyButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/basic_dp_1"
+            android:layout_weight="1"
+            android:background="@color/basic_white"
+            android:drawableTop="@mipmap/home_ic_shopping_cart"
+            android:padding="@dimen/basic_dp_2"
+            android:text="购物车"
+            android:textColor="@color/basic_text_normal"
+            android:textSize="@dimen/basic_text_small_size" />
+
+        <Button
+            android:id="@+id/btn_add_shopping_cart"
+            style="@style/BasicMyButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#FFFFCBCC"
+            android:text="加入购物车"
+            android:textColor="@color/basic_colorAccent"
+            android:textSize="@dimen/basic_text_normal_size" />
+
+        <Button
+            android:id="@+id/btn_buy"
+            style="@style/BasicMyButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/basic_colorAccent"
+            android:text="立即购买"
+            android:textColor="@color/basic_white"
+            android:textSize="@dimen/basic_text_normal_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_start_custom"
+        style="@style/BasicMyButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/basic_colorAccent"
+        android:text="开启定制之旅"
+        android:textColor="@color/basic_white"
+        android:textSize="@dimen/basic_text_normal_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

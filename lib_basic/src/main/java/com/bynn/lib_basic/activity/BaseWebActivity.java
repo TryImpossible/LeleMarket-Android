@@ -91,6 +91,8 @@ public class BaseWebActivity extends BaseActivity {
         webSettings.setBuiltInZoomControls(true);
         // 支持缩放
         webSettings.setSupportZoom(true);
+        // 允许本地在存储
+        webSettings.setDomStorageEnabled(true);
 
         //主要用于平板，针对特定屏幕代码调整分辨率
         DisplayMetrics metrics = new DisplayMetrics();

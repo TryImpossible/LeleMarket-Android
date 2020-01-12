@@ -3,6 +3,9 @@ package com.bynn.common.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -18,9 +21,9 @@ public class BannerBean implements Parcelable {
      * sys : all
      */
 
-    private int    id;
+    private int id;
     private String imgUrl;
-    private int    type;
+    private int type;
     private String about;
     private String title;
     private String cont;
@@ -63,4 +66,12 @@ public class BannerBean implements Parcelable {
             return new BannerBean[size];
         }
     };
+
+    public static List<String> getBannerImageList(List<BannerBean> banners) {
+        List<String> list = new ArrayList<>();
+        for (BannerBean bean : banners) {
+            list.add(bean.getImgUrl());
+        }
+        return list;
+    }
 }

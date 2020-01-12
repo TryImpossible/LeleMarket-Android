@@ -3,6 +3,9 @@ package com.bynn.marketll.module_home.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -20,14 +23,14 @@ public class HandpickBean implements Parcelable {
      * url :
      */
 
-    private int    id;
+    private int id;
     private String imgUrl;
     private String param1;
     private String param2;
     private String param3;
-    private int    type;
-    private int    pid;
-    private int    module;
+    private int type;
+    private int pid;
+    private int module;
     private String url;
 
     @Override
@@ -71,4 +74,12 @@ public class HandpickBean implements Parcelable {
             return new HandpickBean[size];
         }
     };
+
+    public static List<String> getHandPickImageList(List<HandpickBean> handpick) {
+        List<String> list = new ArrayList<>();
+        for (HandpickBean bean : handpick) {
+            list.add(bean.getImgUrl());
+        }
+        return list;
+    }
 }

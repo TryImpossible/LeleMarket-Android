@@ -13,7 +13,7 @@
     <!--    <color name="light_status_bg">#889B9B9B</color>-->
     <color name="basic_light_status_backgroud">@android:color/white</color>
 
-    <color name="basic_activity_background">#F5F5F5</color>
+    <color name="basic_activity_background">#F7F7F7</color>
 
     <color name="basic_text_dark">#000000</color>
     <color name="basic_text_normal">#333333</color>

@@ -57,4 +57,9 @@
         <item name="android:activityCloseExitAnimation">@anim/basic_slide_out_right</item>
     </style>
 
+    <style name="BasicBottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/basic_push_down_in</item>
+        <item name="android:windowExitAnimation">@anim/basic_push_down_out</item>
+    </style>
+
 </resources>

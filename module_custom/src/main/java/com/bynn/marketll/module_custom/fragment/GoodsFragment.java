@@ -148,11 +148,6 @@ public class GoodsFragment extends BaseFragment {
         }
         ArrayList<BannerBean> bannerBeans = getArguments().getParcelableArrayList(BANNER);
         if (null != bannerBeans) {
-            List<String> imageList = new ArrayList<>();
-            for (BannerBean bean : bannerBeans) {
-                imageList.add(bean.getImgUrl());
-            }
-
             BannerView BannerView = new BannerView(getContext());
             BannerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, QMUIDisplayHelper.dp2px(getContext(), 100)));
             BannerView.setAutoPlay(false);
@@ -164,7 +159,13 @@ public class GoodsFragment extends BaseFragment {
             BannerView.getViewPgaer().setPadding(0, 0, QMUIDisplayHelper.dp2px(getContext(), 50), 0);
             BannerView.getViewPgaer().setOffscreenPageLimit(3);
             BannerView.getViewPgaer().setPageTransformer(false, new ScaleTransformer());
-            BannerView.setImageList(imageList);
+            BannerView.setOnItemClickListener(new BannerView.OnItemClickListener() {
+                @Override
+                public void OnClick(int position) {
+
+                }
+            });
+            BannerView.setImageList(BannerBean.getBannerImageList(bannerBeans));
             mGoodsAdapter.addHeaderView(BannerView);
         }
 

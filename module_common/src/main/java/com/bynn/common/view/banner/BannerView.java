@@ -38,11 +38,11 @@ public class BannerView extends FrameLayout {
     /**
      * 上下文
      */
-    private Context      mContext;
+    private Context mContext;
     /**
      * ViewPager,实现图片切换
      */
-    private ViewPager    mViewPager;
+    private ViewPager mViewPager;
     /**
      * PagerAdapter
      */
@@ -52,25 +52,29 @@ public class BannerView extends FrameLayout {
      */
     private List<String> mImageList;
     /**
+     * 图片点击listener
+     */
+    private OnItemClickListener mItemClickListener;
+    /**
      * 上次选中的位置
      */
-    private int          mLastPosition;
+    private int mLastPosition;
     /**
      * rxjava避免内存泄露，这里直接理解为清除定时器
      */
-    private Disposable   mDisposable;
+    private Disposable mDisposable;
     /**
      * 是否自动播放
      */
-    private boolean      mIsAutoPlay;
+    private boolean mIsAutoPlay;
     /**
      * 是否循环播放
      */
-    private boolean      mIsLoop;
+    private boolean mIsLoop;
     /**
      * 指示器
      */
-    private Indicator    mIndicator;
+    private Indicator mIndicator;
 
     public BannerView(Context context) {
         this(context, null);
@@ -136,21 +140,30 @@ public class BannerView extends FrameLayout {
             public Object instantiateItem(@NonNull ViewGroup container, int position) {
                 // 初始化时，往容器中添加图片
 
-                position = position % length; // 计算实际的位置
+                int index = position % length; // 计算实际的位置
                 ImageView imageView = new ImageView(mContext);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                imageView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mItemClickListener != null) {
+                            mItemClickListener.OnClick(index);
+                        }
+                    }
+                });
                 container.addView(imageView);
 
                 if (roundingRadius > 0) {
                     RoundedCorners roundedCorners = new RoundedCorners(roundingRadius);
                     RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
                     Glide.with(mContext)
-                            .load(mImageList.get(position))
+                            .load(mImageList.get(index))
                             .apply(options)
                             .into(imageView);
                 } else {
                     Glide.with(mContext)
-                            .load(mImageList.get(position))
+                            .load(mImageList.get(index))
                             .into(imageView);
                 }
                 return imageView;
@@ -344,5 +357,21 @@ public class BannerView extends FrameLayout {
      */
     public Indicator getIndicator() {
         return mIndicator;
+    }
+
+    /**
+     * 设置每项的点击监听
+     *
+     * @param listener
+     */
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mItemClickListener = listener;
+    }
+
+    /**
+     * 每项点击事件
+     */
+    public interface OnItemClickListener {
+        void OnClick(int position);
     }
 }

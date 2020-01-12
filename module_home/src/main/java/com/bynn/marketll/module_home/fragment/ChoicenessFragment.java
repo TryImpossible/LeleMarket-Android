@@ -7,11 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.bynn.common.bean.BannerBean;
+import com.bynn.common.router.HomeRoutePath;
 import com.bynn.common.view.banner.BannerView;
 import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.fragment.BaseFragment;
@@ -23,6 +20,7 @@ import com.bynn.marketll.module_home.adapter.ChoicenessAdapter;
 import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.CustomizationBean;
+import com.bynn.marketll.module_home.bean.HandpickBean;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
@@ -33,6 +31,10 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,14 +44,16 @@ import butterknife.ButterKnife;
 public class ChoicenessFragment extends BaseFragment {
     private static final String ID = "id";
 
-    @BindView(R2.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
-    @BindView(R2.id.recyclerView)  RecyclerView       mRecyclerView;
+    @BindView(R2.id.refreshLayout)
+    SmartRefreshLayout mRefreshLayout;
+    @BindView(R2.id.recyclerView)
+    RecyclerView mRecyclerView;
 
-    private HomePresenter     mHomePresenter;
+    private HomePresenter mHomePresenter;
     private ChoicenessAdapter mAdapter;
     // 表示TopNav类型
-    private int               mId;
-    private boolean           mIsLoadedData = false;
+    private int mId;
+    private boolean mIsLoadedData = false;
 
     public static ChoicenessFragment newInstance(int id) {
 
@@ -120,10 +124,10 @@ public class ChoicenessFragment extends BaseFragment {
             ChoicenessResult.DataBean data = ((ChoicenessResult) successObj).getData();
             if (null != data) {
                 List<ChoicenessBean> list = new ArrayList<>();
-                list.add(new ChoicenessBean(ChoicenessBean.BANNER, data.getBannerImageList()));
+                list.add(new ChoicenessBean(ChoicenessBean.BANNER, data.getBanners()));
                 list.add(new ChoicenessBean(ChoicenessBean.MIDNVA, data.getMidNav()));
                 list.add(new ChoicenessBean(true, getString(R.string.home_label_enable_customization)));
-                list.add(new ChoicenessBean(ChoicenessBean.HANDPICK, data.getHandPickImageList()));
+                list.add(new ChoicenessBean(ChoicenessBean.HANDPICK, data.getHandpick()));
                 list.add(new ChoicenessBean(true, getString(R.string.home_label_customization_recommend)));
                 for (CustomizationBean bean : data.getCustomization()) {
                     list.add(new ChoicenessBean(ChoicenessBean.CUSTOMIZATION, bean));
@@ -156,6 +160,21 @@ public class ChoicenessFragment extends BaseFragment {
         mRefreshLayout.setEnableLoadMore(false);
 
         mAdapter = new ChoicenessAdapter(new ArrayList<>());
+        mAdapter.setOnBannerClickListener(new ChoicenessAdapter.OnBannerClickListener() {
+            @Override
+            public void onClick(Object obj, int position) {
+                if (obj instanceof BannerBean) {
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
+                            .navigation();
+                }
+                if (obj instanceof HandpickBean) {
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
+                            .navigation();
+                }
+            }
+        });
 
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {

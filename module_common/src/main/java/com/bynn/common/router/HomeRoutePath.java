@@ -6,4 +6,6 @@ public class HomeRoutePath {
 
     public static final String HOME_FRAGMENT = PREFIX + "HomeFragment";
 
+    public static final String PRODUCT_INTRODUCTION_ACTIVITY = PREFIX + "ProductIntroductionActivity";
+
 }
