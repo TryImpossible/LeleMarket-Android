@@ -7,6 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bynn.common.bean.BannerBean;
 import com.bynn.common.router.HomeRoutePath;
 import com.bynn.common.view.banner.BannerView;
@@ -21,6 +26,7 @@ import com.bynn.marketll.module_home.bean.ChoicenessBean;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.CustomizationBean;
 import com.bynn.marketll.module_home.bean.HandpickBean;
+import com.bynn.marketll.module_home.bean.MidNavBean;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
@@ -31,11 +37,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -162,6 +163,45 @@ public class ChoicenessFragment extends BaseFragment {
         mRefreshLayout.setEnableLoadMore(false);
 
         mAdapter = new ChoicenessAdapter(new ArrayList<>());
+        mAdapter.setOnMidNavClickListener(new ChoicenessAdapter.OnMidNavClickListener() {
+            @Override
+            public void onClick(MidNavBean bean, int position) {
+                if (position == 0) {
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.ACTIVITIES_AREA_ACTIVITY)
+                            .withString("url", bean.getAbout())
+                            .navigation();
+                }
+                if (position == 1) {
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.DISCOVER_GOODS_THINGS_ACTIVITY)
+                            .navigation();
+                }
+                if (position == 2) {
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.DAILY_SELECT_ACTIVITY)
+                            .withString("url", bean.getAbout())
+                            .navigation();
+                }
+                if (position > 2 && position < 6) {
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
+                            .navigation();
+                }
+                if (position == 6 || position == 7) {
+                    String url = bean.getAbout();
+                    String params = url.substring(url.lastIndexOf("?") + 1);
+                    int type = Integer.parseInt(params.split("&")[0].split("=")[1]);
+                    int id = Integer.parseInt(params.split("&")[1].split("=")[1]);
+
+                    BaseApplication.getARouter()
+                            .build(HomeRoutePath.SPECIAL_INFO_ACTIVITY)
+                            .withInt("id", id)
+                            .withInt("type", type)
+                            .navigation();
+                }
+            }
+        });
         mAdapter.setOnBannerClickListener(new ChoicenessAdapter.OnBannerClickListener() {
             @Override
             public void onClick(Object obj, int position) {
@@ -191,7 +231,7 @@ public class ChoicenessFragment extends BaseFragment {
                         } else {
                             BaseApplication.getARouter()
                                     .build(HomeRoutePath.SPECIAL_INFO_ACTIVITY)
-                                    .withInt("id", data.getId())
+                                    .withInt("id", data.getPid())
                                     .withInt("type", 3)
                                     .navigation();
                         }

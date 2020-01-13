@@ -2,6 +2,7 @@ package com.bynn.marketll.module_home.adapter;
 
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,6 +85,14 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
                     layout.setBackgroundResource(R.drawable.basic_layout_selector);
                     layout.setOrientation(LinearLayout.VERTICAL);
                     layout.setGravity(Gravity.CENTER_HORIZONTAL);
+                    layout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mMidNavClickListener != null) {
+                                mMidNavClickListener.onClick(bean, ((List<MidNavBean>) item.getItem()).indexOf(bean));
+                            }
+                        }
+                    });
                     layout.addView(image);
                     layout.addView(text);
 
@@ -152,5 +161,15 @@ public class ChoicenessAdapter extends BaseSectionMultiItemQuickAdapter<Choicene
 
     public interface OnBannerClickListener {
         void onClick(Object obj, int position);
+    }
+
+    private OnMidNavClickListener mMidNavClickListener;
+
+    public void setOnMidNavClickListener(OnMidNavClickListener listener) {
+        mMidNavClickListener = listener;
+    }
+
+    public interface OnMidNavClickListener {
+        void onClick(MidNavBean bean, int position);
     }
 }

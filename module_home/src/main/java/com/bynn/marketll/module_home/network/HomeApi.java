@@ -1,7 +1,10 @@
 package com.bynn.marketll.module_home.network;
 
+import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
+import com.bynn.marketll.module_home.bean.GoodsTypeBean;
+import com.bynn.marketll.module_home.bean.GoodsTypeResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
 import com.bynn.marketll.module_home.bean.SpecialInfoResult;
@@ -57,6 +60,24 @@ public interface HomeApi {
      * @param type
      * @return
      */
-    @GET("/diyMall/index/specialInfo.do?id=19&type=3")
+    @GET("/diyMall/index/specialInfo.do")
     Observable<SpecialInfoResult> getSpecialInfo(@Query(value = "id") int id, @Query(value = "type") int type);
+
+    /**
+     * 发现好物，获取好物类型
+     *
+     * @return
+     */
+    @POST("/diyMall/findGoods/load.do")
+    Observable<GoodsTypeResult> getGoodsType();
+
+    /**
+     * 发现好物，根据类型获取物品数据
+     *
+     * @param id
+     * @param page
+     * @return
+     */
+    @POST("/diyMall/findGoods/getGoods.do")
+    Observable<RecommendGoodsResult> getGoods(@Query(value = "id") int id, @Query(value = "page") int page);
 }

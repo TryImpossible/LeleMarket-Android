@@ -1,7 +1,9 @@
 package com.bynn.marketll.module_home;
 
+import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
+import com.bynn.marketll.module_home.bean.GoodsTypeResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
 import com.bynn.marketll.module_home.bean.SpecialInfoResult;
@@ -81,5 +83,25 @@ public class HomeModel {
      */
     public Observable<SpecialInfoResult> getSpecialInfo(int id, int type) {
         return mApi.getSpecialInfo(id, type);
+    }
+
+    /**
+     * 发现好物，获取好物类型
+     *
+     * @return
+     */
+    public Observable<GoodsTypeResult> getGoodsType() {
+        return mApi.getGoodsType();
+    }
+
+    /**
+     * 发现好物，根据类型获取物品数据
+     *
+     * @param id
+     * @param page
+     * @return
+     */
+    public Observable<RecommendGoodsResult> getGoods(int id, int page) {
+        return mApi.getGoods(id, page);
     }
 }

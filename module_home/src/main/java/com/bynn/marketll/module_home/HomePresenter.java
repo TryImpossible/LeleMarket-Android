@@ -1,5 +1,6 @@
 package com.bynn.marketll.module_home;
 
+import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.lib_basic.interfaces.IBaseView;
 import com.bynn.lib_basic.network.ResponseException;
 import com.bynn.lib_basic.network.ResponseObserver;
@@ -8,6 +9,7 @@ import com.bynn.lib_basic.presenter.BasePresenter;
 import com.bynn.lib_basic.utils.RxJavaUtils;
 import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
+import com.bynn.marketll.module_home.bean.GoodsTypeResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
 import com.bynn.marketll.module_home.bean.SpecialInfoResult;
@@ -182,6 +184,47 @@ public class HomePresenter extends BasePresenter {
                 .subscribe(new ResponseObserver<SpecialInfoResult>() {
                     @Override
                     public void onSuccess(SpecialInfoResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
+                    }
+                });
+    }
+
+    /**
+     * 发现好物，获取好物类型
+     */
+    public void getGoodsType() {
+        mHomeModel.getGoodsType()
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<GoodsTypeResult>() {
+                    @Override
+                    public void onSuccess(GoodsTypeResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
+                    }
+                });
+    }
+
+    /**
+     * 发现好物，根据类型获取物品数据
+     *
+     * @param id
+     * @param page
+     */
+    public void getGoods(int id, int page) {
+        mHomeModel.getGoods(id, page)
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<RecommendGoodsResult>() {
+                    @Override
+                    public void onSuccess(RecommendGoodsResult data) {
                         mIBaseView.onSuccess(data);
                     }
 

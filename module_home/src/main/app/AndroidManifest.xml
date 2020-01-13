@@ -11,6 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/HomeAppTheme">
         <activity
+            android:name=".activity.ActivitiesAreaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DiscoverGoodThingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DailySelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.SpecialInfoActivity"
             android:screenOrientation="portrait" />
         <activity
