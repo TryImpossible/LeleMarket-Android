@@ -5,10 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ProductFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:alpha="0.3"
+        android:background="@mipmap/home_bg_nav_gray_gradient"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/basic_action_bar_height" />
+    </LinearLayout>
 
 </FrameLayout>

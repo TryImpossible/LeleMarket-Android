@@ -4,6 +4,7 @@ import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
+import com.bynn.marketll.module_home.bean.SpecialInfoResult;
 import com.bynn.marketll.module_home.bean.TopNavResult;
 
 import io.reactivex.Observable;
@@ -41,10 +42,21 @@ public interface HomeApi {
 
     /**
      * 手机壳定制
+     *
      * @param moduleId
      * @param page
      * @return
      */
     @GET("/diyMall/appModule/getById.do")
     Observable<AppModuleResult> getAppModuleById(@Query(value = "moduleId") int moduleId, @Query(value = "page") int page);
+
+    /**
+     * 其它定制
+     *
+     * @param id
+     * @param type
+     * @return
+     */
+    @GET("/diyMall/index/specialInfo.do?id=19&type=3")
+    Observable<SpecialInfoResult> getSpecialInfo(@Query(value = "id") int id, @Query(value = "type") int type);
 }

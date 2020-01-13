@@ -4,25 +4,25 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bumptech.glide.Glide;
+import com.bynn.common.adapter.GoodsAdapter;
+import com.bynn.common.bean.BannerBean;
 import com.bynn.common.bean.RecommendGoodsBean;
 import com.bynn.common.router.HomeRoutePath;
+import com.bynn.common.view.banner.BannerView;
 import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.activity.BaseActivity;
 import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
-import com.bynn.marketll.module_home.adapter.AppModuleAdapter;
-import com.bynn.marketll.module_home.bean.AppModuleBean;
-import com.bynn.marketll.module_home.bean.AppModuleResult;
+import com.bynn.marketll.module_home.bean.SpecialInfoResult;
 import com.bynn.marketll.module_home.dagger.DaggerHomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeComponent;
 import com.bynn.marketll.module_home.dagger.HomeModule;
@@ -36,25 +36,29 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@Route(path = HomeRoutePath.APP_MODULE_ACTIVITY)
-public class AppModuleActivity extends BaseActivity {
+@Route(path = HomeRoutePath.SPECIAL_INFO_ACTIVITY)
+public class SpecialInfoActivity extends BaseActivity {
 
     @BindView(R2.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
     @BindView(R2.id.recyclerView)
     RecyclerView       mRecyclerView;
 
-    private HomePresenter    mHomePresenter;
-    private AppModuleAdapter mModuleAdapter;
-    private ImageView        mHeaderImage;
-    // TODO: 先传固定值，不知道哪里的
-    private int              moduleId = 1;
-    private int              mPage    = 0;
+    private BannerView mBannerView;
+    private TextView   mTvTitle;
+    private TextView   mTvDesc;
+
+    private int           mId;
+    private int           mType;
+    private HomePresenter mHomePresenter;
+    private GoodsAdapter  mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity_app_module);
+        setContentView(R.layout.home_activity_special_info);
+        mId = getIntent().getIntExtra("id", -1);
+        mType = getIntent().getIntExtra("type", -1);
         mUnbinder = ButterKnife.bind(this);
         translucentStatusBar();
         injectPresenter();
@@ -72,28 +76,20 @@ public class AppModuleActivity extends BaseActivity {
     @Override
     public void onSuccess(Object successObj) {
         super.onSuccess(successObj);
-        if (successObj instanceof AppModuleResult) {
-            AppModuleResult.DataBean dataBean = ((AppModuleResult) successObj).getData();
-            List<AppModuleBean> list = new ArrayList<>();
+        if (successObj instanceof SpecialInfoResult) {
+            SpecialInfoResult.DataBean dataBean = ((SpecialInfoResult) successObj).getData();
             if (dataBean != null) {
-                if (dataBean.getModuleInfo() != null) {
-                    Glide.with(this)
-                            .load(dataBean.getModuleInfo().getImgUrl())
-                            .into(mHeaderImage);
+                List<BannerBean> banners = dataBean.getBanners();
+                if (banners != null && banners.size() > 0) {
+                    mBannerView.setImageList(BannerBean.getBannerImageList(banners));
+                    mTvTitle.setText(banners.get(0).getTitle());
+                    mTvDesc.setText(banners.get(0).getCont());
                 }
-                if (dataBean.getIosGoods() != null && dataBean.getIosGoods().size() > 0) {
-                    list.add(new AppModuleBean(true, getString(R.string.home_lable_ios_customization)));
-                    for (RecommendGoodsBean bean : dataBean.getIosGoods()) {
-                        list.add(new AppModuleBean(bean));
-                    }
+
+                List<RecommendGoodsBean> goods = dataBean.getRecommendGoods();
+                if (goods != null && goods.size() > 0) {
+                    mAdapter.setNewData(goods);
                 }
-                if (dataBean.getAndroidGoods() != null && dataBean.getAndroidGoods().size() > 0) {
-                    list.add(new AppModuleBean(true, getString(R.string.home_lable_android_customization)));
-                    for (RecommendGoodsBean bean : dataBean.getAndroidGoods()) {
-                        list.add(new AppModuleBean(bean));
-                    }
-                }
-                mModuleAdapter.setNewData(list);
             }
         }
     }
@@ -108,17 +104,19 @@ public class AppModuleActivity extends BaseActivity {
     }
 
     private void initView() {
-        mModuleAdapter = new AppModuleAdapter(new ArrayList<>());
-        View headerView = LayoutInflater.from(this).inflate(R.layout.home_item_app_module_header, null);
-        mHeaderImage = headerView.findViewById(R.id.image);
-        mModuleAdapter.addHeaderView(headerView);
+        mAdapter = new GoodsAdapter(new ArrayList<>());
+        View headerView = LayoutInflater.from(this).inflate(R.layout.home_item_special_info_header, null);
+        mBannerView = headerView.findViewById(R.id.bannerView);
+        mTvTitle = headerView.findViewById(R.id.tv_title);
+        mTvDesc = headerView.findViewById(R.id.tv_desc);
+        mAdapter.addHeaderView(headerView);
 
-        mRecyclerView.setAdapter(mModuleAdapter);
+        mRecyclerView.setAdapter(mAdapter);
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                if (position == 0 || (mModuleAdapter.getItem(position - 1) != null && mModuleAdapter.getItem(position - 1).isHeader)) {
+                if (position == 0) {
                     return 2;
                 } else {
                     return 1;
@@ -131,23 +129,15 @@ public class AppModuleActivity extends BaseActivity {
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
                 int position = parent.getChildAdapterPosition(view);
-                if (position < mModuleAdapter.getIosSectionPosition() + 2) {
+                int space = QMUIDisplayHelper.dp2px(SpecialInfoActivity.this, 6);
+                if (position < 1) {
                     return;
                 }
-                int space = QMUIDisplayHelper.dp2px(AppModuleActivity.this, 6);
                 if (position % 2 == 0) {
-                    if (position > mModuleAdapter.getAndroidSectionPosition()) {
-                        outRect.left = space / 2;
-                    } else {
-                        outRect.right = space / 2;
-                    }
+                    outRect.left = space / 2;
                 }
                 if (position % 2 == 1) {
-                    if (position > mModuleAdapter.getAndroidSectionPosition()) {
-                        outRect.right = space / 2;
-                    } else {
-                        outRect.left = space / 2;
-                    }
+                    outRect.right = space / 2;
                 }
                 outRect.bottom = space;
             }
@@ -156,11 +146,11 @@ public class AppModuleActivity extends BaseActivity {
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                mPage = 0;
-                mHomePresenter.getAppModuleById(moduleId, mPage);
+                mHomePresenter.getSpecialInfo(mId, mType);
             }
         });
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.autoRefresh();
     }
+
 }

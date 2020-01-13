@@ -10,13 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/HomeAppTheme">
-        <activity android:name=".activity.AppModuleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".activity.SpecialInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AppModuleActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ProductIntroductionActivity"
             android:screenOrientation="portrait" />

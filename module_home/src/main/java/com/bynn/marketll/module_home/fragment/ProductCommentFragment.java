@@ -16,17 +16,16 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
-import com.bynn.lib_basic.activity.BaseWebActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import com.bynn.lib_basic.fragment.BaseFragment;
-import com.bynn.lib_basic.qmui.QMUINotchHelper;
 import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
 import com.bynn.lib_basic.qmui.webview.QMUIWebView;
 import com.bynn.lib_basic.qmui.webview.QMUIWebViewClient;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
 
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -67,9 +66,6 @@ public class ProductCommentFragment extends BaseFragment {
 
     public void initNotch() {
         int top = QMUIStatusBarHelper.getStatusbarHeight(getContext());
-        if (QMUINotchHelper.hasNotch(getActivity())) {
-            top += QMUINotchHelper.getSafeInsetTop(getActivity());
-        }
         mHeader.setPadding(0, top,0,0);
     }
 

@@ -5,6 +5,6 @@
     <string name="home_label_customization_recommend">定制推荐</string>
     <string name="home_label_go_customization">去定制</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_lable_ios_customization">ios手机壳定制专区</string>
+    <string name="home_lable_android_customization">安卓手机壳定制专区</string>
 </resources>

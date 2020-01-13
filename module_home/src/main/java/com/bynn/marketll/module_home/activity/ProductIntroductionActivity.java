@@ -7,10 +7,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bynn.common.router.HomeRoutePath;
 import com.bynn.lib_basic.activity.BaseActivity;
-import com.bynn.lib_basic.qmui.QMUINotchHelper;
 import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
@@ -23,13 +30,6 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -101,9 +101,6 @@ public class ProductIntroductionActivity extends BaseActivity {
 
     public void initNotch() {
         int top = QMUIStatusBarHelper.getStatusbarHeight(this);
-        if (QMUINotchHelper.hasNotch(this)) {
-            top += QMUINotchHelper.getSafeInsetTop(this);
-        }
         ((ViewGroup.MarginLayoutParams) mRlHeader.getLayoutParams()).topMargin = top;
     }
 

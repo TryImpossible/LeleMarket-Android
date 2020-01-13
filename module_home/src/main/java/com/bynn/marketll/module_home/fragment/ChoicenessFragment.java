@@ -36,6 +36,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -48,13 +49,13 @@ public class ChoicenessFragment extends BaseFragment {
     @BindView(R2.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
     @BindView(R2.id.recyclerView)
-    RecyclerView mRecyclerView;
+    RecyclerView       mRecyclerView;
 
-    private HomePresenter mHomePresenter;
+    private HomePresenter     mHomePresenter;
     private ChoicenessAdapter mAdapter;
     // 表示TopNav类型
-    private int mId;
-    private boolean mIsLoadedData = false;
+    private int               mId;
+    private boolean           mIsLoadedData = false;
 
     public static ChoicenessFragment newInstance(int id) {
 
@@ -179,18 +180,34 @@ public class ChoicenessFragment extends BaseFragment {
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (view.getId() == R.id.iv_big_image) {
-                    if (position == 5) {
+                ChoicenessBean bean = mAdapter.getItem(position);
+                if (bean.getItemType() == ChoicenessBean.CUSTOMIZATION) {
+                    CustomizationBean data = (CustomizationBean) bean.getItem();
+                    if (view.getId() == R.id.iv_big_image) {
+                        if (position == 5) {
+                            BaseApplication.getARouter()
+                                    .build(HomeRoutePath.APP_MODULE_ACTIVITY)
+                                    .navigation();
+                        } else {
+                            BaseApplication.getARouter()
+                                    .build(HomeRoutePath.SPECIAL_INFO_ACTIVITY)
+                                    .withInt("id", data.getId())
+                                    .withInt("type", 3)
+                                    .navigation();
+                        }
+                    } else if (view.getId() == R.id.iv_goods_image1) {
                         BaseApplication.getARouter()
-                                .build(HomeRoutePath.APP_MODULE_ACTIVITY)
+                                .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
+                                .navigation();
+                    } else if (view.getId() == R.id.iv_goods_image2) {
+                        BaseApplication.getARouter()
+                                .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
+                                .navigation();
+                    } else if (view.getId() == R.id.iv_goods_image3) {
+                        BaseApplication.getARouter()
+                                .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
                                 .navigation();
                     }
-                } else if (view.getId() == R.id.iv_goods_image1) {
-
-                } else if (view.getId() == R.id.iv_goods_image2) {
-
-                } else if (view.getId() == R.id.iv_goods_image3) {
-
                 }
             }
         });

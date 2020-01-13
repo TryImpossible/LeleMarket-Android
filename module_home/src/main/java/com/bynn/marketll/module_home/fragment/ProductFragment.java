@@ -2,23 +2,28 @@ package com.bynn.marketll.module_home.fragment;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import butterknife.ButterKnife;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
 
 import com.bynn.lib_basic.fragment.BaseFragment;
-import com.bynn.lib_basic.qmui.QMUINotchHelper;
+import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
 import com.bynn.marketll.module_home.R;
-import com.bynn.marketll.module_home.activity.ProductIntroductionActivity;
+import com.bynn.marketll.module_home.R2;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProductFragment extends BaseFragment {
+
+    @BindView(R2.id.header)
+    LinearLayout mHeader;
 
     public static ProductFragment newInstance() {
 
@@ -45,22 +50,9 @@ public class ProductFragment extends BaseFragment {
         return view;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        ((ProductIntroductionActivity) getActivity()).resetHeaderStyle(true);
-//    }
-//
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-//        super.onHiddenChanged(hidden);
-//        if (!hidden) {
-//            ((ProductIntroductionActivity) getActivity()).resetHeaderStyle(true);
-//        }
-//    }
-
     public void initNotch() {
-
+        int top = QMUIStatusBarHelper.getStatusbarHeight(getContext());
+        mHeader.setPadding(0, top,0,0);
     }
 
     private void initView() {

@@ -10,6 +10,7 @@ import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
+import com.bynn.marketll.module_home.bean.SpecialInfoResult;
 import com.bynn.marketll.module_home.bean.TopNavResult;
 
 import javax.inject.Inject;
@@ -159,6 +160,28 @@ public class HomePresenter extends BasePresenter {
                 .subscribe(new ResponseObserver<AppModuleResult>() {
                     @Override
                     public void onSuccess(AppModuleResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
+                    }
+                });
+    }
+
+    /**
+     * 其它定制
+     *
+     * @param id
+     * @param type
+     */
+    public void getSpecialInfo(int id, int type) {
+        mHomeModel.getSpecialInfo(id, type)
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<SpecialInfoResult>() {
+                    @Override
+                    public void onSuccess(SpecialInfoResult data) {
                         mIBaseView.onSuccess(data);
                     }
 

@@ -4,10 +4,12 @@ import com.bynn.marketll.module_home.bean.AppModuleResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
+import com.bynn.marketll.module_home.bean.SpecialInfoResult;
 import com.bynn.marketll.module_home.bean.TopNavResult;
 import com.bynn.marketll.module_home.network.HomeApi;
 
 import androidx.annotation.NonNull;
+
 import io.reactivex.Observable;
 import okhttp3.FormBody;
 
@@ -61,11 +63,23 @@ public class HomeModel {
 
     /**
      * 获取手机壳定制
+     *
      * @param moduleId
      * @param page
      * @return
      */
     public Observable<AppModuleResult> getAppModuleById(int moduleId, int page) {
         return mApi.getAppModuleById(moduleId, page);
+    }
+
+    /**
+     * 其它定制
+     *
+     * @param id
+     * @param type
+     * @return
+     */
+    public Observable<SpecialInfoResult> getSpecialInfo(int id, int type) {
+        return mApi.getSpecialInfo(id, type);
     }
 }
