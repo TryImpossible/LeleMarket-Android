@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,17 +8,26 @@
     tools:context=".activity.DiscoverGoodThingsActivity">
 
     <com.bynn.lib_basic.view.HeaderView
+        android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/basic_white"
+        android:visibility="gone"
+        app:tabIndicatorFullWidth="false"
+        app:tabSelectedTextColor="@color/basic_colorAccent"
+        app:tabTextColor="@color/basic_text_normal"
+        tools:visibility="visible" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="gone"
+        tools:visibility="visible" />
 </LinearLayout>

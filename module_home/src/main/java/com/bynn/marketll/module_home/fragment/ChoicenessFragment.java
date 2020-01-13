@@ -175,6 +175,7 @@ public class ChoicenessFragment extends BaseFragment {
                 if (position == 1) {
                     BaseApplication.getARouter()
                             .build(HomeRoutePath.DISCOVER_GOODS_THINGS_ACTIVITY)
+                            .withString("title", bean.getName())
                             .navigation();
                 }
                 if (position == 2) {

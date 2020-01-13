@@ -8,4 +8,5 @@
     <string name="common_label_kekezhi">可刻字</string>
     <string name="common_label_already_custom_count">已定制%s件</string>
     <string name="common_label_start_customization">开始定制</string>
+    <string name="common_label_already_sell_count">已销售%s件</string>
 </resources>
