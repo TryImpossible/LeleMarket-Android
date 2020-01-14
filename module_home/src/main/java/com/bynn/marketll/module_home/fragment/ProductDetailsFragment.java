@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.fragment.BaseFragment;
 import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
 import com.bynn.lib_basic.qmui.webview.QMUIWebView;
@@ -34,15 +35,27 @@ import butterknife.ButterKnife;
  */
 public class ProductDetailsFragment extends BaseFragment {
 
+    private static final String KEY_ID   = "id";
+    private static final String KEY_TYPE = "type";
+
     @BindView(R2.id.header)
     LinearLayout mHeader;
     @BindView(R2.id.webview)
-    QMUIWebView mWebView;
+    QMUIWebView  mWebView;
 
-    public static ProductDetailsFragment newInstance() {
-        
+    private int     mId;
+    private int     mType;
+    private String  mUrl;
+    // 是否加载过数据
+    private boolean mIsLoadedData;
+
+
+    public static ProductDetailsFragment newInstance(int id, int type) {
+
         Bundle args = new Bundle();
-        
+        args.putInt(KEY_ID, id);
+        args.putInt(KEY_TYPE, type);
+
         ProductDetailsFragment fragment = new ProductDetailsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -64,9 +77,19 @@ public class ProductDetailsFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!mIsLoadedData) {
+            loadData();
+            mIsLoadedData = true;
+        }
+    }
+
+
     public void initNotch() {
         int top = QMUIStatusBarHelper.getStatusbarHeight(getContext());
-        mHeader.setPadding(0, top,0,0);
+        mHeader.setPadding(0, top, 0, 0);
     }
 
     private void initView() {
@@ -110,8 +133,6 @@ public class ProductDetailsFragment extends BaseFragment {
             }
         });
         mWebView.setWebChromeClient(new WebChromeClient());
-
-        mWebView.loadUrl("https://api.51app.cn/diyMall/v3.0.0/diyDetails.html?id=456&type=4");
     }
 
     private void handleWebUrl(WebView view, String url) {
@@ -128,5 +149,20 @@ public class ProductDetailsFragment extends BaseFragment {
         } else {
             view.loadUrl(url);
         }
+    }
+
+    private void loadData() {
+        mId = getArguments().getInt(KEY_ID);
+        mType = getArguments().getInt(KEY_TYPE);
+    }
+
+    /**
+     * H5方式加载
+     *
+     * @param url
+     */
+    public void setUrl(String url) {
+        mUrl = url;
+        mWebView.loadUrl(mUrl);
     }
 }

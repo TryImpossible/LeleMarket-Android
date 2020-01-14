@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/basic_activity_horizontal_margin"
-            android:background="@drawable/common_bg_solid_light_gray_radius_10"
+            android:background="@drawable/common_bg_solid_light_gray_radius_18"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="8dp"

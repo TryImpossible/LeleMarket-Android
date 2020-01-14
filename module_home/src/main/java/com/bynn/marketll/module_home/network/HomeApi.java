@@ -1,9 +1,11 @@
 package com.bynn.marketll.module_home.network;
 
+import com.bynn.common.bean.GoodsResult;
 import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.marketll.module_home.bean.AppModuleResult;
+import com.bynn.marketll.module_home.bean.ChartParamResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
-import com.bynn.marketll.module_home.bean.GoodsTypeBean;
+import com.bynn.marketll.module_home.bean.GoodsPropertyResult;
 import com.bynn.marketll.module_home.bean.GoodsTypeResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
@@ -15,6 +17,8 @@ import okhttp3.FormBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface HomeApi {
@@ -80,4 +84,34 @@ public interface HomeApi {
      */
     @POST("/diyMall/findGoods/getGoods.do")
     Observable<RecommendGoodsResult> getGoods(@Query(value = "id") int id, @Query(value = "page") int page);
+
+    /**
+     * 获取指定的商品
+     *
+     * @param id
+     * @param type
+     * @param userId
+     * @return
+     */
+    @POST("/diyMall/commodity/goods.do")
+    Observable<GoodsResult> getPointGoods(@Query(value = "id") int id, @Query(value = "type") int type, @Query(value = "userId") int userId);
+
+    /**
+     * 产品Banner、分享标题和分享logo、商品H5、详情H5、评价H5
+     *
+     * @param type
+     * @param id
+     * @return
+     */
+    @GET("/diyMall/commodity/chartParam2/{type}/{id}.do")
+    Observable<ChartParamResult> chartParam2(@Path("type") int type, @Path("id") int id);
+
+    /**
+     * 产品属性，规格
+     *
+     * @param id
+     * @return
+     */
+    @GET("/diyMall/commodity/goodsProperty/1/{id}.do")
+    Observable<GoodsPropertyResult> goodsProperty(@Path("id") int id);
 }

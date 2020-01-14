@@ -1,8 +1,11 @@
 package com.bynn.marketll.module_home;
 
+import com.bynn.common.bean.GoodsResult;
 import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.marketll.module_home.bean.AppModuleResult;
+import com.bynn.marketll.module_home.bean.ChartParamResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
+import com.bynn.marketll.module_home.bean.GoodsPropertyResult;
 import com.bynn.marketll.module_home.bean.GoodsTypeResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
@@ -103,5 +106,38 @@ public class HomeModel {
      */
     public Observable<RecommendGoodsResult> getGoods(int id, int page) {
         return mApi.getGoods(id, page);
+    }
+
+    /**
+     * 获取指定的商品
+     *
+     * @param id
+     * @param type
+     * @param userId
+     * @return
+     */
+    public Observable<GoodsResult> getPointGood(int id, int type, int userId) {
+        return mApi.getPointGoods(id, type, userId);
+    }
+
+    /**
+     * 产品Banner、分享标题和分享logo、商品H5、详情H5、评价H5
+     *
+     * @param type
+     * @param id
+     * @return
+     */
+    public Observable<ChartParamResult> chartParam2(int type, int id) {
+        return mApi.chartParam2(type, id);
+    }
+
+    /**
+     * 产品属性，规格
+     *
+     * @param id
+     * @return
+     */
+    public Observable<GoodsPropertyResult> goodsProperty(int id) {
+        return mApi.goodsProperty(id);
     }
 }

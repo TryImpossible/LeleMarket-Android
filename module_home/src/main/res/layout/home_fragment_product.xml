@@ -1,21 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProductFragment">
 
-    <LinearLayout
-        android:id="@+id/header"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.3"
-        android:background="@mipmap/home_bg_nav_gray_gradient"
-        android:orientation="horizontal">
+        app:elevation="0dp">
 
-        <View
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/basic_action_bar_height" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-</FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.bynn.common.view.banner.BannerView
+                    android:id="@+id/bannerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:auto_play="false"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="W,1:1.2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loop="false" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetEndWithActions="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.3"
+                    android:background="@mipmap/home_bg_nav_gray_gradient"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/basic_action_bar_height" />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/basic_white">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/basic_dp_12"
+                    android:paddingVertical="@dimen/basic_dp_10"
+                    android:textColor="@color/basic_text_normal"
+                    android:textSize="@dimen/basic_text_normal_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="智能蓝牙音响灯" />
+
+                <TextView
+                    android:id="@+id/tv_now_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/basic_colorAccent"
+                    android:textSize="@dimen/basic_text_normal_size"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_name"
+                    app:layout_constraintRight_toLeftOf="@id/tv_ori_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    tools:text="￥89.00" />
+
+                <TextView
+                    android:id="@+id/tv_ori_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/basic_dp_8"
+                    android:textColor="@color/basic_text_light"
+                    android:textSize="@dimen/basic_text_small_size"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_now_price"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_now_price"
+                    app:layout_constraintLeft_toRightOf="@id/tv_now_price"
+                    app:layout_constraintRight_toLeftOf="@id/tv_custom_count"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    tools:text=" ￥129.00" />
+
+                <TextView
+                    android:id="@+id/tv_custom_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/basic_dp_12"
+                    android:textColor="@color/basic_text_light"
+                    android:textSize="@dimen/basic_text_small_size"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_ori_price"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintLeft_toRightOf="@id/tv_ori_price"
+                    app:layout_constraintRight_toLeftOf="@id/tv_postage"
+                    app:layout_constraintTop_toTopOf="@id/tv_ori_price"
+                    tools:text="已定制1023件" />
+
+                <TextView
+                    android:id="@+id/tv_postage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/basic_dp_12"
+                    android:textColor="@color/basic_text_light"
+                    android:textSize="@dimen/basic_text_small_size"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_custom_count"
+                    app:layout_constraintLeft_toRightOf="@id/tv_custom_count"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_custom_count"
+                    tools:text="免快递费" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/basic_divide_line_height"
+                    android:layout_marginTop="@dimen/basic_dp_10"
+                    android:background="@color/basic_divide_line"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_now_price"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_now_price" />
+
+                <TextView
+                    android:id="@+id/tv_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/basic_dp_10"
+                    android:textColor="@color/basic_text_light"
+                    android:textSize="@dimen/basic_text_normal_size"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_now_price"
+                    app:layout_constraintRight_toRightOf="@id/tv_postage"
+                    app:layout_constraintTop_toBottomOf="@id/divider"
+                    tools:text="促销 爱上生活，爱上定制" />
+
+                <View
+                    android:id="@+id/space"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/basic_dp_6"
+                    android:background="@color/basic_activity_background"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_activity" />
+
+                <LinearLayout
+                    android:id="@+id/ll_params"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/basic_white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/basic_dp_12"
+                    android:paddingVertical="@dimen/basic_dp_10"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/space">
+
+                    <TextView
+                        android:id="@+id/tv_params"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/basic_dp_12"
+                        android:layout_weight="1"
+                        android:text="@string/home_lable_choose_material"
+                        android:textColor="@color/basic_text_light"
+                        android:textSize="@dimen/basic_text_normal_size" />
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@mipmap/common_ic_right_arrow" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/basic_activity_background"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/basic_dp_2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_params">
+
+                    <Button
+                        style="@style/BasicMyButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/home_ic_like_selected"
+                        android:drawablePadding="@dimen/basic_dp_8"
+                        android:gravity="center"
+                        android:text="@string/home_lable_recommond_for_you"
+                        android:textColor="@color/basic_text_light"
+                        android:textSize="@dimen/basic_text_normal_size" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

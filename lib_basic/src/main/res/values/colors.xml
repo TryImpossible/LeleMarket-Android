@@ -10,8 +10,8 @@
     <color name="basic_gray">#DADADA</color>
 
     <!--    灰色状态栏-->
-    <!--    <color name="light_status_bg">#889B9B9B</color>-->
-    <color name="basic_light_status_backgroud">@android:color/white</color>
+    <color name="basic_dark_status_background">#889B9B9B</color>
+    <color name="basic_light_status_background">@android:color/white</color>
 
     <color name="basic_activity_background">#F7F7F7</color>
 

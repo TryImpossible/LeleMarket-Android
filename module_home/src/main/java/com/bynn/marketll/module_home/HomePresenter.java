@@ -1,5 +1,6 @@
 package com.bynn.marketll.module_home;
 
+import com.bynn.common.bean.GoodsResult;
 import com.bynn.common.bean.RecommendGoodsResult;
 import com.bynn.lib_basic.interfaces.IBaseView;
 import com.bynn.lib_basic.network.ResponseException;
@@ -8,7 +9,9 @@ import com.bynn.lib_basic.network.ResponseResult;
 import com.bynn.lib_basic.presenter.BasePresenter;
 import com.bynn.lib_basic.utils.RxJavaUtils;
 import com.bynn.marketll.module_home.bean.AppModuleResult;
+import com.bynn.marketll.module_home.bean.ChartParamResult;
 import com.bynn.marketll.module_home.bean.ChoicenessResult;
+import com.bynn.marketll.module_home.bean.GoodsPropertyResult;
 import com.bynn.marketll.module_home.bean.GoodsTypeResult;
 import com.bynn.marketll.module_home.bean.NavInfoByPageResult;
 import com.bynn.marketll.module_home.bean.NavInfoResult;
@@ -225,6 +228,72 @@ public class HomePresenter extends BasePresenter {
                 .subscribe(new ResponseObserver<RecommendGoodsResult>() {
                     @Override
                     public void onSuccess(RecommendGoodsResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
+                    }
+                });
+    }
+
+    /**
+     * 获取指定的商品
+     *
+     * @param id
+     * @param type
+     * @param userId
+     */
+    public void getPointGood(int id, int type, int userId) {
+        mHomeModel.getPointGood(id, type, userId)
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<GoodsResult>() {
+                    @Override
+                    public void onSuccess(GoodsResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
+                    }
+                });
+    }
+
+    /**
+     * 产品Banner、分享标题和分享logo、商品H5、详情H5、评价H5
+     *
+     * @param type
+     * @param id
+     */
+    public void chartParam2(int type, int id) {
+        mHomeModel.chartParam2(type, id)
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<ChartParamResult>() {
+                    @Override
+                    public void onSuccess(ChartParamResult data) {
+                        mIBaseView.onSuccess(data);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        mIBaseView.onFailure(e);
+                    }
+                });
+    }
+
+    /**
+     * 产品属性，规格
+     *
+     * @param id
+     */
+    public void goodsProperty(int id) {
+        mHomeModel.goodsProperty(id)
+                .compose(RxJavaUtils.applySchedulers(this))
+                .subscribe(new ResponseObserver<GoodsPropertyResult>() {
+                    @Override
+                    public void onSuccess(GoodsPropertyResult data) {
                         mIBaseView.onSuccess(data);
                     }
 

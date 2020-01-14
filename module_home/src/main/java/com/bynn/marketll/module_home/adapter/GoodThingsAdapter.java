@@ -32,7 +32,7 @@ public class GoodThingsAdapter extends BaseQuickAdapter<RecommendGoodsBean, Base
                 .append(String.format("￥%.1f", item.getNow_price()))
                 .setFontSize(15, true)
                 .setForegroundColor(ContextCompat.getColor(mContext, R.color.basic_colorAccent))
-                .append(String.format("  ￥%.1f", item.getOrg_price()))
+                .append(String.format("￥%.1f", item.getOrg_price()))
                 .setFontSize(12, true)
                 .setForegroundColor(ContextCompat.getColor(mContext, R.color.basic_text_light))
                 .setStrikethrough()

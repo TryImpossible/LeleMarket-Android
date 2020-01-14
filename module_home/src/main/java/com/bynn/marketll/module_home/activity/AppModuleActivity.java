@@ -1,5 +1,6 @@
 package com.bynn.marketll.module_home.activity;
 
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.bynn.common.router.HomeRoutePath;
 import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.activity.BaseActivity;
 import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.view.HeaderView;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
 import com.bynn.marketll.module_home.R2;
@@ -39,10 +41,9 @@ import butterknife.ButterKnife;
 @Route(path = HomeRoutePath.APP_MODULE_ACTIVITY)
 public class AppModuleActivity extends BaseActivity {
 
-    @BindView(R2.id.refreshLayout)
-    SmartRefreshLayout mRefreshLayout;
-    @BindView(R2.id.recyclerView)
-    RecyclerView       mRecyclerView;
+    @BindView(R2.id.headerView)    HeaderView         mHeaderView;
+    @BindView(R2.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
+    @BindView(R2.id.recyclerView)  RecyclerView       mRecyclerView;
 
     private HomePresenter    mHomePresenter;
     private AppModuleAdapter mModuleAdapter;
@@ -108,6 +109,8 @@ public class AppModuleActivity extends BaseActivity {
     }
 
     private void initView() {
+//        mHeaderView.setBackgroundColor(Color.BLACK);
+
         mModuleAdapter = new AppModuleAdapter(new ArrayList<>());
         View headerView = LayoutInflater.from(this).inflate(R.layout.home_item_app_module_header, null);
         mHeaderImage = headerView.findViewById(R.id.image);

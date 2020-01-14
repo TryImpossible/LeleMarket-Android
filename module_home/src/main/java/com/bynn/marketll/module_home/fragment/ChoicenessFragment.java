@@ -207,8 +207,11 @@ public class ChoicenessFragment extends BaseFragment {
             @Override
             public void onClick(Object obj, int position) {
                 if (obj instanceof BannerBean) {
+                    BannerBean bean = (BannerBean) obj;
                     BaseApplication.getARouter()
                             .build(HomeRoutePath.PRODUCT_INTRODUCTION_ACTIVITY)
+                            .withInt("id", Integer.parseInt(bean.getAbout()))
+                            .withInt("type", bean.getType())
                             .navigation();
                 }
                 if (obj instanceof HandpickBean) {

@@ -13,15 +13,10 @@ import androidx.core.content.ContextCompat;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bynn.lib_basic.R;
 import com.bynn.lib_basic.interfaces.IBaseView;
-import com.bynn.lib_basic.network.ResponseException;
 import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
 import com.bynn.lib_basic.utils.DensityHelp;
 import com.bynn.lib_basic.utils.ToastUtils;
 import com.bynn.lib_basic.view.ProgressDialog;
-
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -43,25 +38,19 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
-        if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
-            compatStatusBar();
-        }
+        setStatusBarLightMode();
     }
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         super.setContentView(view, params);
-        if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
-            compatStatusBar();
-        }
+        setStatusBarLightMode();
     }
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
-            compatStatusBar();
-        }
+        setStatusBarLightMode();
         mUnbinder = ButterKnife.bind(this);
     }
 
@@ -85,18 +74,34 @@ public class BaseActivity extends AppCompatActivity implements IBaseView {
 //        }
     }
 
+    protected void setStatusBarLightMode() {
+        if (!QMUIStatusBarHelper.setStatusBarLightMode(this)) {
+            compatStatusBar(true);
+        }
+    }
+
+    protected void setStatusBarDarkMode() {
+        if (!QMUIStatusBarHelper.setStatusBarDarkMode(this)) {
+            compatStatusBar(false);
+        }
+    }
+
     /**
      * 兼容StatusBar
      */
-    protected void compatStatusBar() {
+    protected void compatStatusBar(boolean isLight) {
+        int colorResId = R.color.basic_light_status_background;
+        if (!isLight) {
+            colorResId = R.color.basic_dark_status_background;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.basic_light_status_backgroud));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, colorResId));
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             ViewGroup contentView = (ViewGroup) findViewById(android.R.id.content);
             View statusBarView = new View(this);
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, QMUIStatusBarHelper.getStatusbarHeight(this));
-            statusBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.basic_light_status_backgroud));
+            statusBarView.setBackgroundColor(ContextCompat.getColor(this, colorResId));
             contentView.addView(statusBarView, layoutParams);
         }
     }
