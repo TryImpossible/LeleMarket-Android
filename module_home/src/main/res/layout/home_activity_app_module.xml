@@ -17,21 +17,21 @@
             android:layout_height="match_parent" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <com.bynn.lib_basic.view.HeaderView
-        android:id="@+id/headerView"
+    <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/basic_black"
+        android:alpha="0.3"
+        android:background="@mipmap/home_bg_nav_gray_gradient"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/basic_action_bar_height"
-        android:scaleType="fitXY"
-        android:src="@mipmap/home_bg_nav_gray_gradient"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.bynn.lib_basic.view.HeaderView
+            android:id="@+id/headerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/basic_transparent" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

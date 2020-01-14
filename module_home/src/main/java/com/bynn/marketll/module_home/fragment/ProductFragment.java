@@ -27,6 +27,7 @@ import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.fragment.BaseFragment;
 import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
 import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
+import com.bynn.lib_basic.utils.ColorUtils;
 import com.bynn.lib_basic.utils.LogUtils;
 import com.bynn.lib_basic.utils.SpanUtils;
 import com.bynn.marketll.module_home.HomePresenter;
@@ -54,32 +55,45 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class ProductFragment extends BaseFragment {
-    private static final String KEY_ID   = "id";
+    private static final String KEY_ID = "id";
     private static final String KEY_TYPE = "type";
 
-    @BindView(R2.id.appBarLayout)    AppBarLayout mAppBarLayout;
-    @BindView(R2.id.bannerView)      BannerView   mBannerView;
-    @BindView(R2.id.toolbar)         Toolbar      mToolbar;
-    @BindView(R2.id.header)          LinearLayout mHeader;
-    @BindView(R2.id.tv_name)         TextView     mTvName;
-    @BindView(R2.id.tv_now_price)    TextView     mTvNowPrice;
-    @BindView(R2.id.tv_ori_price)    TextView     mTvOriPrice;
-    @BindView(R2.id.tv_custom_count) TextView     mTvCustomCount;
-    @BindView(R2.id.tv_postage)      TextView     mTvPostage;
-    @BindView(R2.id.tv_activity)     TextView     mTvActivity;
-    @BindView(R2.id.ll_params)       LinearLayout mLlParams;
-    @BindView(R2.id.tv_params)       TextView     mTvParams;
-    @BindView(R2.id.recyclerView)    RecyclerView mRecyclerView;
+    @BindView(R2.id.appBarLayout)
+    AppBarLayout mAppBarLayout;
+    @BindView(R2.id.bannerView)
+    BannerView mBannerView;
+    @BindView(R2.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R2.id.header)
+    LinearLayout mHeader;
+    @BindView(R2.id.tv_name)
+    TextView mTvName;
+    @BindView(R2.id.tv_now_price)
+    TextView mTvNowPrice;
+    @BindView(R2.id.tv_ori_price)
+    TextView mTvOriPrice;
+    @BindView(R2.id.tv_custom_count)
+    TextView mTvCustomCount;
+    @BindView(R2.id.tv_postage)
+    TextView mTvPostage;
+    @BindView(R2.id.tv_activity)
+    TextView mTvActivity;
+    @BindView(R2.id.ll_params)
+    LinearLayout mLlParams;
+    @BindView(R2.id.tv_params)
+    TextView mTvParams;
+    @BindView(R2.id.recyclerView)
+    RecyclerView mRecyclerView;
 
-    private int               mId;
-    private int               mType;
-    private HomePresenter     mHomePresenter;
-    private GoodsAdapter      mAdapter;
+    private int mId;
+    private int mType;
+    private HomePresenter mHomePresenter;
+    private GoodsAdapter mAdapter;
     // 导航栏是否透明，默认是
-    private boolean           mIsHeaderTranslucent = true;
+    private boolean mIsHeaderTranslucent = true;
     // 是否加载过数据
-    private boolean           mIsLoadedData;
-    private ChartParamBean    mChartParamBean;
+    private boolean mIsLoadedData;
+    private ChartParamBean mChartParamBean;
     private GoodsPropertyBean mGoodsPropertyBean;
 
     private GoodsPropertyDialog mGoodsPropertyDialog;
@@ -196,21 +210,13 @@ public class ProductFragment extends BaseFragment {
         mHomePresenter.goodsProperty(mId);
     }
 
-    public int alphaColor(int color, float fraction) {
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-        int alpha = (int) (Color.alpha(color) * fraction);
-        return Color.argb(alpha, red, green, blue);
-    }
-
     private void initView() {
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 int totalScrollRange = mAppBarLayout.getTotalScrollRange();
                 LogUtils.i(verticalOffset + "-----" + totalScrollRange);
-                mToolbar.setBackgroundColor(alphaColor(Color.parseColor("#fafafa"), Math.abs(verticalOffset * 1.0f) / totalScrollRange));
+                mToolbar.setBackgroundColor(ColorUtils.alphaColor(Color.parseColor("#fafafa"), Math.abs(verticalOffset * 1.0f) / totalScrollRange));
                 mIsHeaderTranslucent = Math.abs(verticalOffset) != totalScrollRange;
                 ((ProductIntroductionActivity) getActivity()).resetHeaderStyle(mIsHeaderTranslucent);
             }

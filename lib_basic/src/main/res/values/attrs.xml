@@ -48,7 +48,7 @@
         <!--菜单文案-->
         <attr name="menu_text" format="string" />
         <!--分隔线是否可见-->
-        <attr name="line_visible" format="boolean" />
+        <attr name="divider_visible" format="boolean" />
     </declare-styleable>
 
     <!--加载状态布局-->

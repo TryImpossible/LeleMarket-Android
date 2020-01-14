@@ -5,9 +5,13 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +22,9 @@ import com.bynn.common.router.HomeRoutePath;
 import com.bynn.lib_basic.BaseApplication;
 import com.bynn.lib_basic.activity.BaseActivity;
 import com.bynn.lib_basic.qmui.QMUIDisplayHelper;
+import com.bynn.lib_basic.qmui.QMUIStatusBarHelper;
+import com.bynn.lib_basic.utils.ColorUtils;
+import com.bynn.lib_basic.utils.LogUtils;
 import com.bynn.lib_basic.view.HeaderView;
 import com.bynn.marketll.module_home.HomePresenter;
 import com.bynn.marketll.module_home.R;
@@ -41,16 +48,21 @@ import butterknife.ButterKnife;
 @Route(path = HomeRoutePath.APP_MODULE_ACTIVITY)
 public class AppModuleActivity extends BaseActivity {
 
-    @BindView(R2.id.headerView)    HeaderView         mHeaderView;
-    @BindView(R2.id.refreshLayout) SmartRefreshLayout mRefreshLayout;
-    @BindView(R2.id.recyclerView)  RecyclerView       mRecyclerView;
+    @BindView(R2.id.headerLayout)
+    LinearLayout mHeaderLayout;
+    @BindView(R2.id.headerView)
+    HeaderView mHeaderView;
+    @BindView(R2.id.refreshLayout)
+    SmartRefreshLayout mRefreshLayout;
+    @BindView(R2.id.recyclerView)
+    RecyclerView mRecyclerView;
 
-    private HomePresenter    mHomePresenter;
+    private HomePresenter mHomePresenter;
     private AppModuleAdapter mModuleAdapter;
-    private ImageView        mHeaderImage;
+    private ImageView mHeaderImage;
     // TODO: 先传固定值，不知道哪里的
-    private int              moduleId = 1;
-    private int              mPage    = 0;
+    private int moduleId = 1;
+    private int mPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +70,7 @@ public class AppModuleActivity extends BaseActivity {
         setContentView(R.layout.home_activity_app_module);
         mUnbinder = ButterKnife.bind(this);
         translucentStatusBar();
+        initNotch();
         injectPresenter();
         initView();
     }
@@ -99,6 +112,12 @@ public class AppModuleActivity extends BaseActivity {
         }
     }
 
+    private void initNotch() {
+        int top = QMUIStatusBarHelper.getStatusbarHeight(this);
+        mRefreshLayout.setPadding(0, top, 0, 0);
+        mHeaderLayout.setPadding(0, top, 0, 0);
+    }
+
     private void injectPresenter() {
         HomeComponent component = DaggerHomeComponent.builder()
                 .appComponent(BaseApplication.getAppComponent())
@@ -109,8 +128,6 @@ public class AppModuleActivity extends BaseActivity {
     }
 
     private void initView() {
-//        mHeaderView.setBackgroundColor(Color.BLACK);
-
         mModuleAdapter = new AppModuleAdapter(new ArrayList<>());
         View headerView = LayoutInflater.from(this).inflate(R.layout.home_item_app_module_header, null);
         mHeaderImage = headerView.findViewById(R.id.image);
@@ -153,6 +170,22 @@ public class AppModuleActivity extends BaseActivity {
                     }
                 }
                 outRect.bottom = space;
+            }
+        });
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LogUtils.i("------  " + dx + "," + dy + ","+ mRecyclerView.computeVerticalScrollOffset());
+                int totalScrollRange = QMUIStatusBarHelper.getStatusbarHeight(AppModuleActivity.this) + QMUIDisplayHelper.dp2px(AppModuleActivity.this, 48);
+                float fraction = Math.abs(mRecyclerView.computeVerticalScrollOffset() * 1.0f) / totalScrollRange;
+                int color = ContextCompat.getColor(AppModuleActivity.this, R.color.basic_white);
+                mHeaderLayout.setBackgroundColor(ColorUtils.alphaColor(color, fraction));
             }
         });
 

@@ -15,54 +15,58 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bynn.lib_basic.R;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
-
-import com.bynn.lib_basic.R;
 
 public class HeaderView extends RelativeLayout implements View.OnClickListener {
 
     /**
      * 上下文
      */
-    private Context         mContext;
+    private Context mContext;
+    /**
+     * 容器
+     */
+    private RelativeLayout mLayout;
     /**
      * 左侧
      */
-    private LinearLayout    mLlBack;
+    private LinearLayout mLlBack;
     /**
      * 返回图标
      */
-    private ImageView       mIvBackIcon;
+    private ImageView mIvBackIcon;
     /**
      * 返回文案
      */
-    private TextView        mTvBackText;
+    private TextView mTvBackText;
     /**
      * 中间
      */
-    private FrameLayout     mFlTitle;
+    private FrameLayout mFlTitle;
     /**
      * 标题
      */
-    private TextView        mTvTitleText;
+    private TextView mTvTitleText;
     /**
      * 右侧
      */
-    private FrameLayout     mFlMenu;
+    private FrameLayout mFlMenu;
     /**
      * 菜单图标
      */
-    private ImageView       mIvMenuIcon;
+    private ImageView mIvMenuIcon;
     /**
      * 菜单文案
      */
-    private TextView        mTvMenuText;
+    private TextView mTvMenuText;
     /**
      * 底部分隔线
      */
-    private View            mVLine;
+    private View mDivider;
     /**
      * 返回事件
      */
@@ -108,6 +112,7 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
         mContext = context;
 
         View view = LayoutInflater.from(context).inflate(R.layout.basic_header_view, this);
+        mLayout = view.findViewById(R.id.layout);
         mLlBack = view.findViewById(R.id.ll_back_layout);
         mLlBack.setOnClickListener(this);
         mIvBackIcon = view.findViewById(R.id.iv_back);
@@ -118,7 +123,28 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
         mFlMenu.setOnClickListener(this);
         mIvMenuIcon = view.findViewById(R.id.iv_menu);
         mTvMenuText = view.findViewById(R.id.tv_menu);
-        mVLine = view.findViewById(R.id.v_line);
+        mDivider = view.findViewById(R.id.divider);
+
+        // 获取系统属性
+        final int[] styleable = new int[]{
+                android.R.attr.background, // index 0
+                android.R.attr.layout_width, // index 1
+                android.R.attr.layout_height, // 2
+                android.R.attr.layout_margin, // 3
+                android.R.attr.padding // 4
+        };
+
+        TypedArray array = context.obtainStyledAttributes(attrs, styleable);
+        int backgroundResId = array.getResourceId(array.getIndex(0), -1);
+        if (backgroundResId == -1) {
+            mLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.basic_colorPrimary));
+        }
+//        int n = array.getIndexCount();
+//        for (int i = 0; i < n; i++) {
+//            int index = array.getIndex(i);
+//            int value = array.getDimensionPixelSize(index, 0);
+//        }
+        array.recycle();
 
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.HeaderView, defStyleAttr, 0);
         if (null != typedArray) {
@@ -150,8 +176,8 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
                 setMenuText(menuText);
             }
 
-            boolean lineVisible = typedArray.getBoolean(R.styleable.HeaderView_line_visible, true);
-            setLineVisible(lineVisible);
+            boolean dividerVisible = typedArray.getBoolean(R.styleable.HeaderView_divider_visible, true);
+            setDividerVisible(dividerVisible);
 
             typedArray.recycle();
         }
@@ -288,8 +314,8 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
      *
      * @param visible
      */
-    public void setLineVisible(boolean visible) {
-        mVLine.setVisibility(visible ? VISIBLE : GONE);
+    public void setDividerVisible(boolean visible) {
+        mDivider.setVisibility(visible ? VISIBLE : GONE);
     }
 
     /**
@@ -309,4 +335,9 @@ public class HeaderView extends RelativeLayout implements View.OnClickListener {
     public void setOnMenuClickListener(OnClickListener listener) {
         this.mMenuClickListener = listener;
     }
+
+//    @Override
+//    public void setBackgroundColor(int color) {
+//        super.setBackgroundColor(color);
+//    }
 }
