@@ -24,7 +24,7 @@
             android:layout_marginLeft="@dimen/basic_dp_16"
             android:minHeight="@dimen/basic_action_bar_height"
             android:scaleType="center"
-            android:src="@mipmap/basic_ic_nav_back_gray" />
+            android:src="@drawable/basic_btn_nav_back_selector" />
 
         <TextView
             android:id="@+id/tv_back"

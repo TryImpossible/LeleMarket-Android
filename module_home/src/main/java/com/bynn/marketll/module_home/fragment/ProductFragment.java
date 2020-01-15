@@ -55,45 +55,45 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class ProductFragment extends BaseFragment {
-    private static final String KEY_ID = "id";
+    private static final String KEY_ID   = "id";
     private static final String KEY_TYPE = "type";
 
     @BindView(R2.id.appBarLayout)
     AppBarLayout mAppBarLayout;
     @BindView(R2.id.bannerView)
-    BannerView mBannerView;
+    BannerView   mBannerView;
     @BindView(R2.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar      mToolbar;
     @BindView(R2.id.header)
     LinearLayout mHeader;
     @BindView(R2.id.tv_name)
-    TextView mTvName;
+    TextView     mTvName;
     @BindView(R2.id.tv_now_price)
-    TextView mTvNowPrice;
+    TextView     mTvNowPrice;
     @BindView(R2.id.tv_ori_price)
-    TextView mTvOriPrice;
+    TextView     mTvOriPrice;
     @BindView(R2.id.tv_custom_count)
-    TextView mTvCustomCount;
+    TextView     mTvCustomCount;
     @BindView(R2.id.tv_postage)
-    TextView mTvPostage;
+    TextView     mTvPostage;
     @BindView(R2.id.tv_activity)
-    TextView mTvActivity;
+    TextView     mTvActivity;
     @BindView(R2.id.ll_params)
     LinearLayout mLlParams;
     @BindView(R2.id.tv_params)
-    TextView mTvParams;
+    TextView     mTvParams;
     @BindView(R2.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private int mId;
-    private int mType;
-    private HomePresenter mHomePresenter;
-    private GoodsAdapter mAdapter;
+    private int               mId;
+    private int               mType;
+    private HomePresenter     mHomePresenter;
+    private GoodsAdapter      mAdapter;
     // 导航栏是否透明，默认是
-    private boolean mIsHeaderTranslucent = true;
+    private boolean           mIsHeaderTranslucent = true;
     // 是否加载过数据
-    private boolean mIsLoadedData;
-    private ChartParamBean mChartParamBean;
+    private boolean           mIsLoadedData;
+    private ChartParamBean    mChartParamBean;
     private GoodsPropertyBean mGoodsPropertyBean;
 
     private GoodsPropertyDialog mGoodsPropertyDialog;
@@ -112,7 +112,6 @@ public class ProductFragment extends BaseFragment {
     public ProductFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -174,6 +173,15 @@ public class ProductFragment extends BaseFragment {
         }
         if (successObj instanceof GoodsPropertyResult) {
             mGoodsPropertyBean = ((GoodsPropertyResult) successObj).getData();
+            for (GoodsPropertyBean.ListBeanX listBeanX : mGoodsPropertyBean.getList()) {
+                int i = -1;
+                for (GoodsPropertyBean.ListBeanX.ListBean bean : listBeanX.getList()) {
+                    i++;
+                    if (i == 0) {
+                        bean.setSelected(true);
+                    }
+                }
+            }
         }
     }
 

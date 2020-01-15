@@ -87,7 +87,8 @@ public class SplashActivity extends BaseActivity {
 
     @OnClick(R2.id.btn_skip)
     public void onSkipClicked() {
-        ARouter.getInstance().build(MainRoutePath.MAIN_ACTIVITY).navigation();
+        finish();
+        BaseApplication.getARouter().build(MainRoutePath.MAIN_ACTIVITY).navigation();
     }
 
     @Override

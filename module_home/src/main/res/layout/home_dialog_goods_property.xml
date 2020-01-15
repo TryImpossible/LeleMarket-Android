@@ -2,15 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
-    android:layout_gravity="bottom"
-    android:background="@color/basic_colorAccent">
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="425dp"
         android:background="@color/basic_white"
+        android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/basic_dp_10"
         app:cardBackgroundColor="@color/basic_divide_line"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,7 +31,7 @@
             android:id="@+id/image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_margin="@dimen/basic_dp_1"
+            android:layout_margin="@dimen/basic_dp_2"
             tools:src="@mipmap/ic_launcher" />
     </androidx.cardview.widget.CardView>
 
@@ -48,12 +49,15 @@
 
     <TextView
         android:id="@+id/tv_params"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/basic_dp_8"
+        android:maxLines="3"
+        android:singleLine="true"
         android:textColor="@color/basic_text_light"
         android:textSize="@dimen/basic_text_normal_size"
         app:layout_constraintLeft_toLeftOf="@id/tv_price"
+        app:layout_constraintRight_toRightOf="@id/iv_close"
         app:layout_constraintTop_toBottomOf="@id/tv_price"
         tools:text="已选： 情侣男款" />
 
@@ -71,102 +75,86 @@
         android:id="@+id/divider1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/basic_divide_line_height"
-        android:layout_marginTop="@dimen/basic_dp_10"
+        android:layout_marginTop="@dimen/basic_dp_8"
         android:background="@color/basic_divide_line"
+        app:layout_constraintBottom_toTopOf="@id/scollView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_image" />
 
-    <TextView
-        android:id="@+id/tv_property_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/basic_text_normal"
-        android:textSize="@dimen/basic_text_normal_size"
-        app:layout_constraintLeft_toLeftOf="@id/cv_image"
-        app:layout_constraintRight_toRightOf="@id/iv_close"
-        app:layout_constraintTop_toBottomOf="@id/divider1"
-        tools:text="款式" />
-
-    <com.google.android.material.internal.FlowLayout
-        android:id="@+id/flowLayout"
+    <ScrollView
+        android:id="@+id/scollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/basic_activity_horizontal_margin"
-        android:paddingHorizontal="@dimen/basic_activity_horizontal_margin"
-        app:itemSpacing="@dimen/basic_dp_10"
-        app:layout_constraintLeft_toLeftOf="@id/cv_image"
-        app:layout_constraintRight_toRightOf="@id/iv_close"
-        app:layout_constraintTop_toBottomOf="@id/tv_property_title"
-        app:lineSpacing="@dimen/basic_dp_10" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/basic_divide_line_height"
-        android:layout_marginTop="@dimen/basic_dp_10"
-        android:background="@color/basic_divide_line"
-        app:layout_constraintLeft_toLeftOf="@id/cv_image"
-        app:layout_constraintRight_toRightOf="@id/iv_close"
-        app:layout_constraintTop_toBottomOf="@id/flowLayout" />
-
-
-    <TextView
-        android:id="@+id/tv_buy_count"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="购买数量"
-        android:textColor="@color/basic_text_normal"
-        android:textSize="@dimen/basic_text_normal_size"
-        app:layout_constraintBottom_toBottomOf="@id/tv_num"
-        app:layout_constraintLeft_toLeftOf="@id/cv_image"
-        app:layout_constraintTop_toBottomOf="@id/divider2"
-        app:layout_constraintTop_toTopOf="@id/tv_num"
-        app:layout_constraintVertical_weight="1" />
-
-
-    <ImageView
-        android:id="@+id/iv_minus"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginRight="@dimen/basic_dp_4"
-        android:scaleType="center"
-        android:src="@mipmap/home_ic_like_selected"
-        app:layout_constraintRight_toLeftOf="@id/tv_num"
-        app:layout_constraintTop_toTopOf="@id/tv_num" />
-
-    <TextView
-        android:id="@+id/tv_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/basic_dp_4"
-        android:gravity="center"
-        android:minWidth="30dp"
-        android:minHeight="30dp"
-        app:layout_constraintRight_toLeftOf="@id/iv_puls"
-        app:layout_constraintTop_toTopOf="@id/iv_puls"
-        tools:text="10" />
-
-    <ImageView
-        android:id="@+id/iv_puls"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="@dimen/basic_dp_10"
-        android:layout_marginRight="@dimen/basic_dp_10"
-        android:scaleType="center"
-        android:src="@mipmap/home_ic_like_selected"
+        android:minHeight="270dp"
+        android:paddingHorizontal="@dimen/basic_dp_10"
+        app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider2" />
+        app:layout_constraintTop_toBottomOf="@id/divider1">
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/basic_divide_line_height"
-        android:layout_marginTop="@dimen/basic_dp_10"
-        android:background="@color/basic_divide_line"
-        app:layout_constraintLeft_toLeftOf="@id/cv_image"
-        app:layout_constraintRight_toRightOf="@id/iv_close"
-        app:layout_constraintTop_toBottomOf="@id/tv_num" />
+        <LinearLayout
+            android:id="@+id/ll_property"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/basic_dp_10">
+
+                <TextView
+                    android:id="@+id/tv_buy_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="购买数量"
+                    android:textColor="@color/basic_text_normal"
+                    android:textSize="@dimen/basic_text_normal_size" />
+
+                <ImageView
+                    android:id="@+id/iv_minus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="@dimen/basic_dp_4"
+                    android:background="@color/basic_gray"
+                    android:scaleType="center"
+                    android:src="@drawable/common_btn_minus" />
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/basic_dp_4"
+                    android:background="@color/basic_gray"
+                    android:gravity="center"
+                    android:minWidth="30dp"
+                    android:minHeight="30dp"
+                    android:text="1"
+                    android:textColor="@color/basic_text_dark"
+                    android:textSize="@dimen/basic_text_normal_size" />
+
+                <ImageView
+                    android:id="@+id/iv_plus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@color/basic_gray"
+                    android:scaleType="center"
+                    android:src="@drawable/common_btn_plus" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/basic_divide_line_height"
+                android:background="@color/basic_divide_line" />
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_confirm"
@@ -178,5 +166,6 @@
         android:textSize="@dimen/basic_text_normal_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scollView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

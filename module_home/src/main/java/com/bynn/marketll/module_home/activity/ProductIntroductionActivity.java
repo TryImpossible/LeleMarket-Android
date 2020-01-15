@@ -1,14 +1,8 @@
 package com.bynn.marketll.module_home.activity;
 
-import android.graphics.Camera;
-import android.graphics.Color;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -198,14 +192,14 @@ public class ProductIntroductionActivity extends BaseActivity {
             mIvBack.setImageResource(R.mipmap.home_ic_nav_back_white_normal);
             mTabLayout.setTabTextColors(ContextCompat.getColor(this, R.color.basic_white), ContextCompat.getColor(this, R.color.basic_white));
             mTabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.basic_white));
-            mIvShare.setImageResource(R.mipmap.home_ic_nav_share_white_noraml);
+            mIvShare.setImageResource(R.mipmap.common_ic_nav_share_white_noraml);
             mDivider.setVisibility(View.GONE);
         } else {
             setStatusBarLightMode();
             mIvBack.setImageResource(R.mipmap.home_ic_nav_back_gray_normal);
             mTabLayout.setTabTextColors(ContextCompat.getColor(this, R.color.basic_text_normal), ContextCompat.getColor(this, R.color.basic_text_dark));
             mTabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.basic_colorAccent));
-            mIvShare.setImageResource(R.mipmap.home_ic_nav_share_gray_noraml);
+            mIvShare.setImageResource(R.mipmap.common_ic_nav_share_gray_noraml);
             mDivider.setVisibility(View.VISIBLE);
         }
         mIsHeaderTranslucent = isTranslucent;
